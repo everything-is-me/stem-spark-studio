@@ -180,7 +180,7 @@ const Navigation: React.FC = () => {
               <img 
                 src="/logo.png" 
                 alt="Make India Foundation Logo" 
-                className="w-7 h-7"
+                className="w-10 h-10 rounded-2xl object-cover"
               />
               {/* <Cpu className={`
                 w-6 h-6 transition-colors duration-300
