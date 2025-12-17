@@ -1,11 +1,16 @@
-import { Beaker, Atom, Lightbulb, Users } from "lucide-react";
+import { Beaker, Atom, Lightbulb, Users, MapPin, Rocket } from "lucide-react";
 
 const Mission = () => {
   const values = [
     {
       icon: Beaker,
-      title: "Hands-On Learning",
-      description: "We believe in experiential education that brings STEM concepts to life through practical application.",
+      title: "Learn by Making",
+      description: "We believe the best way to learn STEM is by building. From simple circuits to smart devices, we provide the platform for hands-on creation.",
+    },
+    {
+      icon: MapPin,
+      title: "Build for India",
+      description: "We encourage projects that address India's needs — clean water, sustainable energy, affordable healthcare, secure technology, and more.",
     },
     {
       icon: Atom,
@@ -18,8 +23,13 @@ const Mission = () => {
       description: "Providing platforms for young minds to showcase their talents and build confidence.",
     },
     {
+      icon: Rocket,
+      title: "From Ideas to Impact",
+      description: "We guide young innovators from concept to prototype, connecting them with mentors from India's top tech companies and institutions.",
+    },
+    {
       icon: Users,
-      title: "Community Building",
+      title: "Community of Creators",
       description: "Fostering collaboration and mentorship among students, educators, and industry professionals.",
     },
   ];
@@ -32,10 +42,7 @@ const Mission = () => {
             Our Mission
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            We are dedicated to igniting passion for science, technology, engineering, and mathematics
-            in young minds. Through our annual competitions, we create opportunities for students to
-            explore, innovate, and excel in STEM fields while building the skills they need to become
-            tomorrow's leaders and problem-solvers.
+            We inspire India's next generation to become creators, not just consumers of technology. Through hands-on competitions in hardware, electronics, and innovation, we empower students to solve real Indian problems with Indian solutions — building a foundation for our nation's tech sovereignty.
           </p>
         </div>
 
