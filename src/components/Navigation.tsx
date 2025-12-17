@@ -177,13 +177,18 @@ const Navigation: React.FC = () => {
                 : "bg-white/20 backdrop-blur-sm group-hover:bg-primary"
               }
             `}>
-              <Cpu className={`
+              <img 
+                src="/logo.png" 
+                alt="Make India Foundation Logo" 
+                className="w-7 h-7"
+              />
+              {/* <Cpu className={`
                 w-6 h-6 transition-colors duration-300
                 ${isScrolled 
                   ? "text-white" 
                   : "text-white group-hover:text-white"
                 }
-              `} />
+              `} /> */}
             </div>
             <div className="flex flex-col">
               <span className={`
