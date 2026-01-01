@@ -1,10 +1,10 @@
-import { 
-  CircuitBoard, 
-  Shield, 
-  Cpu, 
-  Smartphone, 
-  Zap, 
-  Users, 
+import {
+  CircuitBoard,
+  Shield,
+  Cpu,
+  Smartphone,
+  Zap,
+  Users,
   Target,
   Heart,
   Wrench,
@@ -89,7 +89,7 @@ interface ValueCardProps {
 
 const ValueCard: React.FC<ValueCardProps> = ({ value }) => {
   const Icon = value.icon;
-  
+
   return (
     <div
       className={`
@@ -132,16 +132,16 @@ const Mission = () => {
             <Target className="w-4 h-4" />
             Our Why
           </div>
-          
+
           <h2 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-6">
-            Why We Exist
+            Building India's Tech Future
           </h2>
-          
+
           <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-            Today, 90% of India's electronics and chips are imported. We're building a movement of 
+            Today, 90% of India's electronics and chips are imported. We're building a movement of
             young creators who will change this reality — designing and making technology for India, in India.
           </p>
-          
+
           <div className="inline-flex items-center gap-4 p-4 bg-background/50 rounded-2xl border border-border/50">
             <Heart className="w-6 h-6 text-primary" />
             <span className="font-heading font-semibold text-foreground">
@@ -165,7 +165,7 @@ const Mission = () => {
             </div>
             <div>
               <blockquote className="text-xl italic text-muted-foreground mb-4 leading-relaxed">
-                "We must move from screwdriver assembly to designing and making in India. This isn't just 
+                "We must move from screwdriver assembly to designing and making in India. This isn't just
                 about manufacturing — it's about creating Indian intellectual property for the world."
               </blockquote>
               <div className="font-heading font-semibold text-foreground">
