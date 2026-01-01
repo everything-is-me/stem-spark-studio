@@ -355,7 +355,7 @@ const Competitions: React.FC = () => {
         <CompetitionFlow />
 
         {/* FAQ Section */}
-        <div className="mt-16 fade-in-up">
+        <div id="faq" className="mt-16 fade-in-up">
           <div className="flex items-center justify-center gap-3 mb-8">
             <GraduationCap className="w-8 h-8 text-primary" />
             <h3 className="text-2xl font-heading font-bold text-foreground">
