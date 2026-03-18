@@ -104,42 +104,65 @@ const Competitions = () => {
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-32 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <Trophy className="w-4 h-4" />
-              Make India Innovation Challenge 2024
-            </div>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Left Column - Logo */}
+              <div className="flex justify-center lg:justify-start fade-in-up">
+                <div className="relative">
+                  {/* Floating elements around logo */}
+                  <div className="absolute -top-8 -left-8 w-32 h-32 bg-primary/10 rounded-3xl rotate-12 animate-float"></div>
+                  <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-secondary/10 rounded-3xl -rotate-12 animate-float-delayed"></div>
+                  
+                  {/* Main logo container */}
+                  <div className="relative w-48 h-48 bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-xl rounded-3xl border border-white/30 shadow-2xl flex items-center justify-center">
+                    <img 
+                      src="/logo.png" 
+                      alt="Make India Foundation Logo" 
+                      className="w-36 h-36 rounded-2xl object-cover shadow-lg"
+                    />
+                  </div>
+                </div>
+              </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight mb-6">
-              India's Premier{" "}
-              <span className="text-primary relative inline-block">
-                Science Competition
-                <Sparkles className="absolute -top-4 -right-8 text-accent w-8 h-8 animate-pulse" />
-              </span>
-            </h1>
+              {/* Right Column - Content */}
+              <div className="text-center lg:text-left space-y-6 fade-in-up" style={{ animationDelay: "0.2s" }}>
+                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
+                  <Trophy className="w-4 h-4" />
+                  MIF Science and Engineering Fair
+                </div>
 
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
-              Join thousands of young innovators across India in the largest science and technology competition.
-              From local fairs to national finals, discover your potential in STEM.
-            </p>
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white leading-tight">
+                  India's Premier{" "}
+                  <span className="text-primary relative inline-block">
+                    Science Competition
+                    <Sparkles className="absolute -top-4 -right-8 text-accent w-8 h-8 animate-pulse" />
+                  </span>
+                </h1>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-primary hover:bg-primary-dark px-8 py-6 text-lg"
-                onClick={() => document.getElementById("quick-links")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                Explore Competition
-                <ChevronRight className="w-5 h-5 ml-2" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-white text-white hover:bg-white hover:text-slate-900 px-8 py-6 text-lg"
-                onClick={() => document.getElementById("stats")?.scrollIntoView({ behavior: "smooth" })}
-              >
-                View Statistics
-              </Button>
+                <p className="text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0">
+                  Join thousands of young innovators across India in the largest science and technology competition.
+                  From local fairs to national finals, discover your potential in STEM.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <Button
+                    size="lg"
+                    className="bg-primary hover:bg-primary-dark px-8 py-6 text-lg"
+                    onClick={() => document.getElementById("quick-links")?.scrollIntoView({ behavior: "smooth" })}
+                  >
+                    Explore Competition
+                    <ChevronRight className="w-5 h-5 ml-2" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-white text-white hover:bg-white hover:text-slate-900 px-8 py-6 text-lg"
+                    onClick={() => document.getElementById("stats")?.scrollIntoView({ behavior: "smooth" })}
+                  >
+                    View Statistics
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
