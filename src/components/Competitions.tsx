@@ -1,6 +1,19 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import {
   Brain,
   Cpu,
   Leaf,
@@ -37,8 +50,13 @@ import {
   Bug,
   Wrench,
   Radio,
+  ChevronDown,
+  Mail,
+  Phone,
+  MapPin,
+  X,
 } from "lucide-react";
-import { ComponentType, ReactNode } from "react";
+import { ComponentType, ReactNode, useState } from "react";
 
 // ========== TYPES ==========
 interface Subcategory {
@@ -53,6 +71,7 @@ interface CompetitionCategory {
   id: string;
   title: string;
   focus: string;
+  icon: ComponentType<{ className?: string; strokeWidth?: number | string }>;
   subcategories: Subcategory[];
   keyDates: {
     registration: string;
@@ -61,12 +80,21 @@ interface CompetitionCategory {
   };
 }
 
+interface RegistrationModalState {
+  isOpen: boolean;
+  categoryId: string;
+  categoryTitle: string;
+  subcategoryCode?: string;
+  subcategoryTitle?: string;
+}
+
 // ========== DATA ==========
 const COMPETITION_DATA: CompetitionCategory[] = [
   {
     id: "life-sciences",
     title: "Life Sciences & Biology",
     focus: "Living organisms, health, plants, microbes, and biology research.",
+    icon: Dna,
     subcategories: [
       {
         icon: Bug,
@@ -121,6 +149,7 @@ const COMPETITION_DATA: CompetitionCategory[] = [
     id: "physical-sciences",
     title: "Physical Sciences",
     focus: "Fundamental sciences like matter, energy, and natural laws.",
+    icon: Atom,
     subcategories: [
       {
         icon: Atom,
@@ -161,6 +190,7 @@ const COMPETITION_DATA: CompetitionCategory[] = [
     id: "earth-environmental",
     title: "Earth & Environmental Sciences",
     focus: "Very relevant for India's climate, agriculture, and sustainability.",
+    icon: Mountain,
     subcategories: [
       {
         icon: Mountain,
@@ -194,6 +224,7 @@ const COMPETITION_DATA: CompetitionCategory[] = [
     id: "computer-science",
     title: "Computer Science & Technology",
     focus: "For modern tech-focused student projects.",
+    icon: Code,
     subcategories: [
       {
         icon: Code,
@@ -220,6 +251,7 @@ const COMPETITION_DATA: CompetitionCategory[] = [
     id: "engineering-robotics",
     title: "Engineering & Robotics",
     focus: "Hands-on engineering and innovation.",
+    icon: Cpu,
     subcategories: [
       {
         icon: Cpu,
@@ -253,6 +285,7 @@ const COMPETITION_DATA: CompetitionCategory[] = [
     id: "social-behavioral",
     title: "Social & Behavioral Sciences",
     focus: "Human behavior and society studies.",
+    icon: Users,
     subcategories: [
       {
         icon: Users,
@@ -271,32 +304,189 @@ const COMPETITION_DATA: CompetitionCategory[] = [
 ];
 
 // ========== COMPONENTS ==========
+
+// Registration Modal Component
+interface RegistrationFormProps {
+  isOpen: boolean;
+  categoryId: string;
+  categoryTitle: string;
+  subcategoryCode?: string;
+  subcategoryTitle?: string;
+  onClose: () => void;
+}
+
+const RegistrationModal: React.FC<RegistrationFormProps> = ({
+  isOpen,
+  categoryTitle,
+  subcategoryTitle,
+  subcategoryCode,
+  onClose,
+}) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    school: "",
+    grade: "",
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission
+    console.log("Registration submitted:", {
+      ...formData,
+      category: categoryTitle,
+      subcategory: subcategoryTitle || "General",
+    });
+    onClose();
+  };
+
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-[500px]">
+        <DialogHeader>
+          <DialogTitle>Register for {subcategoryTitle ? `${subcategoryTitle} (${subcategoryCode})` : categoryTitle}</DialogTitle>
+          <DialogDescription>
+            Fill in your details to express interest in this {subcategoryTitle ? "track" : "category"}
+          </DialogDescription>
+        </DialogHeader>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-foreground mb-2">Full Name</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
+              className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder="Your full name"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+              className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder="your.email@example.com"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-foreground mb-2">Phone Number</label>
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleInputChange}
+              required
+              className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder="+91 XXXXX XXXXX"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-foreground mb-2">School Name</label>
+            <input
+              type="text"
+              name="school"
+              value={formData.school}
+              onChange={handleInputChange}
+              required
+              className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+              placeholder="Your school name"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-foreground mb-2">Grade</label>
+            <select
+              name="grade"
+              value={formData.grade}
+              onChange={handleInputChange}
+              required
+              className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+            >
+              <option value="">Select your grade</option>
+              <option value="6">Grade 6</option>
+              <option value="7">Grade 7</option>
+              <option value="8">Grade 8</option>
+              <option value="9">Grade 9</option>
+              <option value="10">Grade 10</option>
+              <option value="11">Grade 11</option>
+              <option value="12">Grade 12</option>
+            </select>
+          </div>
+
+          <div className="flex gap-3 pt-4">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onClose}
+              className="flex-1"
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              className="flex-1 bg-primary hover:bg-primary-dark"
+            >
+              Submit Registration
+            </Button>
+          </div>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+// Subcategory Card Component
 interface SubcategoryCardProps {
   subcategory: Subcategory;
   index: number;
+  onRegister: () => void;
 }
 
-const SubcategoryCard: React.FC<SubcategoryCardProps> = ({ subcategory, index }) => {
+const SubcategoryCard: React.FC<SubcategoryCardProps> = ({ subcategory, index, onRegister }) => {
   const Icon = subcategory.icon;
   return (
     <Card
       className="group p-6 hover:shadow-lg transition-all duration-300 border-border/50 bg-background fade-in-up hover:-translate-y-1"
-      style={{ animationDelay: `${index * 0.1}s` }}
+      style={{ animationDelay: `${index * 0.08}s` }}
     >
       <div className="flex items-start justify-between mb-4">
         <div className={`w-12 h-12 rounded-xl ${subcategory.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
           <Icon className="w-6 h-6" strokeWidth={2} />
         </div>
-        <span className="text-sm font-mono font-bold text-primary bg-primary/10 px-2 py-1 rounded">
+        <span className="text-xs font-mono font-bold text-primary bg-primary/10 px-2.5 py-1.5 rounded-md">
           {subcategory.code}
         </span>
       </div>
-      <h4 className="font-heading font-bold text-lg mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
+      <h4 className="font-heading font-bold text-lg mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
         {subcategory.title}
       </h4>
-      <p className="text-sm text-muted-foreground leading-relaxed">
+      <p className="text-sm text-muted-foreground leading-relaxed mb-4">
         {subcategory.description}
       </p>
+      <Button
+        size="sm"
+        variant="outline"
+        onClick={onRegister}
+        className="w-full text-xs group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+      >
+        Register for this Track
+      </Button>
     </Card>
   );
 };
@@ -315,74 +505,104 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ icon: Icon, title, children }) =>
   </div>
 );
 
-interface DivisionHeaderProps {
-  title: string;
-  focus: string;
-  buttonText?: string;
-  onRegister?: () => void;
-}
-
-const DivisionHeader: React.FC<DivisionHeaderProps> = ({ title, focus, buttonText = "Explore Category", onRegister }) => (
-  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-    <div className="flex-1">
-      <h3 className="text-3xl font-heading font-bold text-foreground mb-2">
-        {title}
-      </h3>
-      <p className="text-muted-foreground text-lg">{focus}</p>
-    </div>
-    <Button
-      className="bg-primary hover:bg-primary-dark btn-hover-lift px-8 py-6 text-base"
-      onClick={onRegister}
-      size="lg"
-    >
-      {buttonText}
-    </Button>
-  </div>
-);
-
-interface CompetitionCategoryProps {
+// Accordion Trigger Component
+interface CategoryTriggerProps {
   category: CompetitionCategory;
 }
 
-const CompetitionCategorySection: React.FC<CompetitionCategoryProps> = ({ category }) => {
-  const handleRegister = () => {
-    const element = document.getElementById("contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const gridCols = category.subcategories.length <= 3
-    ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-    : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
-
+const CategoryTrigger: React.FC<CategoryTriggerProps> = ({ category }) => {
+  const Icon = category.icon;
   return (
-    <div className="bg-card rounded-3xl p-8 sm:p-12 shadow-lg fade-in-up mb-16 last:mb-0">
-      <DivisionHeader
-        title={category.title}
-        focus={category.focus}
-        buttonText="Express Interest"
-        onRegister={handleRegister}
-      />
+    <div className="flex items-center gap-4 w-full">
+      <div className="hidden sm:flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary flex-shrink-0">
+        <Icon className="w-6 h-6" strokeWidth={2} />
+      </div>
+      <div className="flex-1 min-w-0">
+        <h3 className="text-lg font-heading font-bold text-foreground leading-tight">
+          {category.title}
+        </h3>
+        <p className="text-sm text-muted-foreground line-clamp-1 mt-1">
+          {category.focus}
+        </p>
+      </div>
+      <ChevronDown className="h-5 w-5 text-primary flex-shrink-0 transition-transform duration-300" />
+    </div>
+  );
+};
 
-      <div className={`grid ${gridCols} gap-6 mb-10`}>
-        {category.subcategories.map((subcategory, index) => (
-          <SubcategoryCard key={subcategory.code} subcategory={subcategory} index={index} />
-        ))}
+// Category Content Component
+interface CategoryContentProps {
+  category: CompetitionCategory;
+  onRegisterCategory: () => void;
+  onRegisterSubcategory: (subcategory: Subcategory) => void;
+}
+
+const CategoryContent: React.FC<CategoryContentProps> = ({
+  category,
+  onRegisterCategory,
+  onRegisterSubcategory,
+}) => {
+  return (
+    <div className="pt-6 space-y-6">
+      {/* Category Registration Button */}
+      <div className="flex gap-4 mb-6">
+        <Button
+          onClick={onRegisterCategory}
+          className="flex-1 bg-primary hover:bg-primary-dark"
+        >
+          Express Interest in {category.title}
+        </Button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <InfoPanel icon={Calendar} title="Key Dates">
-          <p><span className="font-semibold text-foreground">Registration:</span> {category.keyDates.registration}</p>
-          <p><span className="font-semibold text-foreground">Project Submission:</span> {category.keyDates.submission}</p>
-          <p><span className="font-semibold text-foreground">National Finals:</span> {category.keyDates.finals}</p>
-        </InfoPanel>
-        <InfoPanel icon={Award} title="Awards & Recognition">
-          <p><span className="font-semibold text-foreground">🏆 National Winners:</span> Cash prizes + Incubation support</p>
-          <p><span className="font-semibold text-foreground">🥈 State Level Awards:</span> Scholarships + STEM kits</p>
-          <p><span className="font-semibold text-foreground">🥉 Special Category Awards:</span> Mentorship + Lab access</p>
-          <p className="pt-2 text-primary font-medium">*Detailed prize structure announced in Phase 2</p>
-        </InfoPanel>
+      {/* Subcategories Grid */}
+      <div>
+        <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide mb-4">
+          Available Tracks
+        </h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {category.subcategories.map((subcategory, index) => (
+            <SubcategoryCard
+              key={subcategory.code}
+              subcategory={subcategory}
+              index={index}
+              onRegister={() => onRegisterSubcategory(subcategory)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Key Dates */}
+      <div className="pt-6 border-t border-border/50">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <InfoPanel icon={Calendar} title="Key Dates">
+            <p>
+              <span className="font-semibold text-foreground">Registration:</span>{" "}
+              {category.keyDates.registration}
+            </p>
+            <p>
+              <span className="font-semibold text-foreground">Submission:</span>{" "}
+              {category.keyDates.submission}
+            </p>
+            <p>
+              <span className="font-semibold text-foreground">Finals:</span>{" "}
+              {category.keyDates.finals}
+            </p>
+          </InfoPanel>
+          <InfoPanel icon={Award} title="Awards & Recognition">
+            <p>
+              <span className="font-semibold text-foreground">🏆 National Winners:</span> Cash
+              prizes + Incubation
+            </p>
+            <p>
+              <span className="font-semibold text-foreground">🥈 State Level:</span> Scholarships
+              + STEM kits
+            </p>
+            <p>
+              <span className="font-semibold text-foreground">🥉 Special Awards:</span> Mentorship
+              + Lab access
+            </p>
+          </InfoPanel>
+        </div>
       </div>
     </div>
   );
@@ -454,20 +674,55 @@ const CompetitionFlow = () => {
 
 // ========== MAIN COMPONENT ==========
 const Competitions: React.FC = () => {
+  const [registrationModal, setRegistrationModal] = useState<RegistrationModalState>({
+    isOpen: false,
+    categoryId: "",
+    categoryTitle: "",
+  });
+
+  const handleRegisterCategory = (category: CompetitionCategory) => {
+    setRegistrationModal({
+      isOpen: true,
+      categoryId: category.id,
+      categoryTitle: category.title,
+      subcategoryCode: undefined,
+      subcategoryTitle: undefined,
+    });
+  };
+
+  const handleRegisterSubcategory = (category: CompetitionCategory, subcategory: Subcategory) => {
+    setRegistrationModal({
+      isOpen: true,
+      categoryId: category.id,
+      categoryTitle: category.title,
+      subcategoryCode: subcategory.code,
+      subcategoryTitle: subcategory.title,
+    });
+  };
+
+  const closeModal = () => {
+    setRegistrationModal({
+      isOpen: false,
+      categoryId: "",
+      categoryTitle: "",
+    });
+  };
+
   return (
     <section id="competitions" className="py-20 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="text-center mb-16 fade-in-up">
           <h2 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-4">
             Make India Innovation Challenge 2024
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            India's premier innovation competition for school students across 6 major scientific and engineering disciplines
+            6 major scientific and engineering disciplines with 20+ specialized tracks for students grades 6-12
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <div className="bg-transparent border border-primary text-primary px-4 py-2 rounded-full text-sm font-medium">
-              <i className="w-4 h-4 inline mr-2">🇮🇳</i> 
-              National Level Competition
+              <i className="w-4 h-4 inline mr-2">🇮🇳</i>
+              National Level
             </div>
             <div className="bg-transparent border border-primary text-primary px-4 py-2 rounded-full text-sm font-medium">
               <Trophy className="w-4 h-4 inline mr-2" />
@@ -475,48 +730,72 @@ const Competitions: React.FC = () => {
             </div>
             <div className="bg-transparent border border-primary text-primary px-4 py-2 rounded-full text-sm font-medium">
               <Users className="w-4 h-4 inline mr-2" />
-              6 Major Categories
+              20+ Tracks
             </div>
           </div>
         </div>
 
-        {COMPETITION_DATA.map((category) => (
-          <CompetitionCategorySection key={category.id} category={category} />
-        ))}
+        {/* Accordion Categories */}
+        <div className="max-w-4xl mx-auto mb-20">
+          <Accordion type="single" collapsible className="space-y-3 fade-in-up">
+            {COMPETITION_DATA.map((category, index) => (
+              <AccordionItem
+                key={category.id}
+                value={category.id}
+                className="border border-border/50 rounded-lg hover:border-primary/50 transition-colors duration-300 overflow-hidden bg-card shadow-sm hover:shadow-md"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-primary/5 transition-colors">
+                  <CategoryTrigger category={category} />
+                </AccordionTrigger>
+                <AccordionContent className="px-6 py-6 bg-background/50">
+                  <CategoryContent
+                    category={category}
+                    onRegisterCategory={() => handleRegisterCategory(category)}
+                    onRegisterSubcategory={(subcategory) =>
+                      handleRegisterSubcategory(category, subcategory)
+                    }
+                  />
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
 
+        {/* Competition Flow Section */}
         <CompetitionFlow />
 
         {/* FAQ Section */}
-        <div id="faq" className="mt-16 fade-in-up">
+        <div id="faq" className="mt-20 fade-in-up">
           <div className="flex items-center justify-center gap-3 mb-8">
             <GraduationCap className="w-8 h-8 text-primary" />
             <h3 className="text-2xl font-heading font-bold text-foreground">
               Frequently Asked Questions
             </h3>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <Card className="p-6 border-border/50">
               <h4 className="font-heading font-bold text-lg mb-3 text-foreground">Who can participate?</h4>
-              <p className="text-muted-foreground">Students from grades 6-12 across India. You can participate as an individual or in teams of up to 3 members.</p>
+              <p className="text-muted-foreground">Students from grades 6-12 across India. Participate as an individual or in teams of up to 3 members.</p>
             </Card>
-            
+
             <Card className="p-6 border-border/50">
               <h4 className="font-heading font-bold text-lg mb-3 text-foreground">Is there a registration fee?</h4>
               <p className="text-muted-foreground">Registration is completely free for all participants. We believe in removing barriers to innovation.</p>
             </Card>
-            
+
             <Card className="p-6 border-border/50">
               <h4 className="font-heading font-bold text-lg mb-3 text-foreground">How will projects be judged?</h4>
-              <p className="text-muted-foreground">Projects will be evaluated by industry experts and academicians based on innovation, impact, and implementation.</p>
+              <p className="text-muted-foreground">Evaluated by industry experts based on innovation, impact, feasibility, and implementation quality.</p>
             </Card>
-            
+
             <Card className="p-6 border-border/50">
-              <h4 className="font-heading font-bold text-lg mb-3 text-foreground">What support will be provided?</h4>
-              <p className="text-muted-foreground">Mentorship sessions, online workshops, and access to our partner labs and makerspaces.</p>
+              <h4 className="font-heading font-bold text-lg mb-3 text-foreground">What support is provided?</h4>
+              <p className="text-muted-foreground">Mentorship sessions, online workshops, and access to partner labs and makerspaces.</p>
             </Card>
           </div>
-          
+
           <div className="mt-8 text-center">
             <Button
               variant="outline"
@@ -529,325 +808,18 @@ const Competitions: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Registration Modal */}
+      <RegistrationModal
+        isOpen={registrationModal.isOpen}
+        categoryId={registrationModal.categoryId}
+        categoryTitle={registrationModal.categoryTitle}
+        subcategoryCode={registrationModal.subcategoryCode}
+        subcategoryTitle={registrationModal.subcategoryTitle}
+        onClose={closeModal}
+      />
     </section>
   );
 };
 
 export default Competitions;
-
-
-// import { Card } from "@/components/ui/card";
-// import { Button } from "@/components/ui/button";
-// import {
-//   Brain,
-//   Cpu,
-//   Leaf,
-//   Dna,
-//   BarChart3,
-//   Rocket,
-//   Calendar,
-//   Award,
-//   Cctv,
-//   Wifi,
-//   Smartphone,
-//   Wind,
-//   Satellite,
-//   Zap,
-//   Building,
-//   CircuitBoard,
-//   Shield,
-//   Battery,
-// } from "lucide-react";
-// import { ComponentType, ReactNode } from "react";
-
-// // ========== TYPES ==========
-// interface CompetitionCategory {
-//   icon: ComponentType<{ className?: string; strokeWidth?: number | string }>;
-//   title: string;
-//   description: string;
-//   color: string;
-// }
-
-// interface CompetitionDivision {
-//   id: "middle" | "high";
-//   title: string;
-//   ageRange: string;
-//   categories: CompetitionCategory[];
-//   keyDates: {
-//     registration: string;
-//     submission: string;
-//     finals: string;
-//   };
-//   prizes: {
-//     first: string;
-//     second: string;
-//     third: string;
-//     extras?: string;
-//   };
-//   buttonText: string;
-// }
-
-// // ========== DATA ==========
-// const COMPETITION_DATA: CompetitionDivision[] = [
-//   {
-//     id: "middle",
-//     title: "Middle School Division",
-//     ageRange: "Ages 11-14 years",
-//     categories: [
-//       {
-//         icon: CircuitBoard,
-//         title: "Basic Electronics & Circuits",
-//         description: "Build simple electronic devices using Indian components.",
-//         color: "bg-primary/10 text-primary",
-//       },
-//       {
-//         icon: Cpu,
-//         title: "Introductory Robotics",
-//         description: "Create basic robots that can perform simple Indian context tasks.",
-//         color: "bg-secondary/10 text-secondary",
-//       },
-//       {
-//         icon: Wind,
-//         title: "Environmental Tech",
-//         description: "Design solutions for waste management, water conservation, or clean energy.",
-//         color: "bg-accent/30 text-accent-dark",
-//       },
-//       {
-//         icon: Smartphone,
-//         title: "DIY Indian Tech",
-//         description: "Build everyday useful devices with locally available materials.",
-//         color: "bg-primary/10 text-primary",
-//       },
-//     ],
-//     keyDates: {
-//       registration: "August 1 - October 15",
-//       submission: "December 31",
-//       finals: "February 15",
-//     },
-//     prizes: {
-//       first: "₹50,000 + STEM Kit",
-//       second: "₹25,000 + Mentorship",
-//       third: "₹10,000 + Workshop Invitation",
-//     },
-//     buttonText: "Register Now",
-//   },
-//   {
-//     id: "high",
-//     title: "High School Division",
-//     ageRange: "Ages 14-18 years",
-//     categories: [
-//       {
-//         icon: Cctv,
-//         title: "Indian Hardware Challenge",
-//         description: "Design and build electronic devices using Indian components and chips.",
-//         color: "bg-primary/10 text-primary",
-//       },
-//       {
-//         icon: Shield,
-//         title: "Secure Communications",
-//         description: "Create projects in data security, encryption, or local networks.",
-//         color: "bg-secondary/10 text-secondary",
-//       },
-//       {
-//         icon: Satellite,
-//         title: "Space & Drone Tech",
-//         description: "Build model satellites, drones, or remote sensing devices.",
-//         color: "bg-accent/30 text-accent-dark",
-//       },
-//       {
-//         icon: Zap,
-//         title: "Renewable Energy Systems",
-//         description: "Design solar, wind, or hybrid energy solutions for Indian villages.",
-//         color: "bg-primary/10 text-primary",
-//       },
-//       {
-//         icon: Building,
-//         title: "Make in India Product",
-//         description: "Create a complete product prototype that could be manufactured in India.",
-//         color: "bg-secondary/10 text-secondary",
-//       },
-//       {
-//         icon: Battery,
-//         title: "Rare Earth & E-Waste",
-//         description: "Develop solutions for recycling and recovering valuable materials from e-waste.",
-//         color: "bg-accent/30 text-accent-dark",
-//       },
-//     ],
-//     keyDates: {
-//       registration: "August 1 - November 15",
-//       submission: "January 31",
-//       finals: "March 20",
-//     },
-//     prizes: {
-//       first: "₹1,00,000 + Incubation Support",
-//       second: "₹50,000 + Summer Internship",
-//       third: "₹25,000 + Maker Lab Access",
-//       extras: "Special Prize: 'Future Chip Designer' Award",
-//     },
-//     buttonText: "Apply Now",
-//   },
-// ];
-
-// // ========== COMPONENTS ==========
-// interface CategoryCardProps {
-//   category: CompetitionCategory;
-//   index: number;
-// }
-
-// const CategoryCard: React.FC<CategoryCardProps> = ({ category, index }) => {
-//   const Icon = category.icon;
-//   return (
-//     <Card
-//       className="group p-6 hover:shadow-lg transition-all duration-300 border-border/50 bg-background fade-in-up hover:-translate-y-1"
-//       style={{ animationDelay: `${index * 0.1}s` }}
-//     >
-//       <div className={`w-12 h-12 rounded-xl ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-//         <Icon className="w-6 h-6" strokeWidth={2} />
-//       </div>
-//       <h4 className="font-heading font-bold text-lg mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
-//         {category.title}
-//       </h4>
-//       <p className="text-sm text-muted-foreground leading-relaxed">
-//         {category.description}
-//       </p>
-//     </Card>
-//   );
-// };
-
-// interface InfoPanelProps {
-//   icon: ComponentType<{ className?: string; strokeWidth?: number | string }>;
-//   title: string;
-//   children: ReactNode;
-// }
-
-// const InfoPanel: React.FC<InfoPanelProps> = ({ icon: Icon, title, children }) => (
-//   <div className="bg-background rounded-2xl p-6 border border-border/50 hover:border-primary/50 transition-colors duration-300">
-//     <Icon className="w-8 h-8 text-primary mb-3" strokeWidth={2} />
-//     <h5 className="font-heading font-semibold text-foreground mb-3">{title}</h5>
-//     <div className="text-sm text-muted-foreground space-y-1">{children}</div>
-//   </div>
-// );
-
-// interface DivisionHeaderProps {
-//   title: string;
-//   ageRange: string;
-//   buttonText: string;
-//   onRegister: () => void;
-// }
-
-// const DivisionHeader: React.FC<DivisionHeaderProps> = ({ title, ageRange, buttonText, onRegister }) => (
-//   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-//     <div>
-//       <h3 className="text-3xl font-heading font-bold text-foreground mb-2">
-//         {title}
-//       </h3>
-//       <p className="text-muted-foreground text-lg">{ageRange}</p>
-//     </div>
-//     <Button
-//       className="bg-primary hover:bg-primary-dark btn-hover-lift px-8 py-6 text-base"
-//       onClick={onRegister}
-//       size="lg"
-//     >
-//       {buttonText}
-//     </Button>
-//   </div>
-// );
-
-// interface CompetitionDivisionProps {
-//   division: CompetitionDivision;
-// }
-
-// const CompetitionDivision: React.FC<CompetitionDivisionProps> = ({ division }) => {
-//   const handleRegister = () => {
-//     const element = document.getElementById("contact");
-//     if (element) {
-//       element.scrollIntoView({ behavior: "smooth" });
-//     }
-//   };
-
-//   const gridCols = division.id === "middle" 
-//     ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-4" 
-//     : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
-
-//   return (
-//     <div className="bg-card rounded-3xl p-8 sm:p-12 shadow-lg fade-in-up mb-16 last:mb-0">
-//       <DivisionHeader
-//         title={division.title}
-//         ageRange={division.ageRange}
-//         buttonText={division.buttonText}
-//         onRegister={handleRegister}
-//       />
-
-//       <div className={`grid ${gridCols} gap-6 mb-10`}>
-//         {division.categories.map((category, index) => (
-//           <CategoryCard key={category.title} category={category} index={index} />
-//         ))}
-//       </div>
-
-//       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-//         <InfoPanel icon={Calendar} title="Key Dates">
-//           <p><span className="font-semibold text-foreground">Registration:</span> {division.keyDates.registration}</p>
-//           <p><span className="font-semibold text-foreground">Submission:</span> {division.keyDates.submission}</p>
-//           <p><span className="font-semibold text-foreground">National Finals:</span> {division.keyDates.finals}</p>
-//         </InfoPanel>
-//         <InfoPanel icon={Award} title={division.id === "high" ? "Prizes & Mentorship" : "Prizes"}>
-//           <p><span className="font-semibold text-foreground">1st Prize:</span> {division.prizes.first}</p>
-//           <p><span className="font-semibold text-foreground">2nd Prize:</span> {division.prizes.second}</p>
-//           <p><span className="font-semibold text-foreground">3rd Prize:</span> {division.prizes.third}</p>
-//           {division.prizes.extras && (
-//             <p className="pt-2 text-primary font-medium">{division.prizes.extras}</p>
-//           )}
-//         </InfoPanel>
-//       </div>
-//     </div>
-//   );
-// };
-
-// // ========== MAIN COMPONENT ==========
-// const Competitions: React.FC = () => {
-//   return (
-//     <section id="competitions" className="py-20 bg-background">
-//       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-//         <div className="text-center mb-16 fade-in-up">
-//           <h2 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-4">
-//             Competition Divisions
-//           </h2>
-//           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-//             Choose your path to innovation and discovery for India's tech future
-//           </p>
-//           <div className="mt-8 flex flex-wrap justify-center gap-4">
-//             <div className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
-//               1000+ Student Innovators
-//             </div>
-//             <div className="bg-secondary/10 text-secondary px-4 py-2 rounded-full text-sm font-medium">
-//               25+ States & UTs
-//             </div>
-//             <div className="bg-accent/30 text-accent-dark px-4 py-2 rounded-full text-sm font-medium">
-//               ₹25 Lakh+ in Prizes
-//             </div>
-//           </div>
-//         </div>
-
-//         {COMPETITION_DATA.map((division) => (
-//           <CompetitionDivision key={division.id} division={division} />
-//         ))}
-
-//         <div className="mt-16 text-center fade-in-up">
-//           <p className="text-muted-foreground mb-4">
-//             Need help choosing a category? Contact our student advisors!
-//           </p>
-//           <Button
-//             variant="outline"
-//             className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-//             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-//           >
-//             <Brain className="w-4 h-4 mr-2" />
-//             Get Guidance
-//           </Button>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Competitions;
