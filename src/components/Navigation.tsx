@@ -12,7 +12,7 @@ interface NavItem {
 // ========== DATA ==========
 const NAV_ITEMS: NavItem[] = [
   { id: "home", label: "Home", icon: Home },
-  { id: "competitions", label: "Innovation Challenges", icon: Trophy },
+  { id: "competitions", label: "Indian Science Competition", icon: Trophy },
   { id: "about", label: "About Us", icon: Users },
   { id: "contact", label: "Get in Touch", icon: Mail },
 ];

@@ -134,7 +134,7 @@ const Mission = () => {
           </div>
 
           <h2 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-6">
-            Building India's Tech Future
+            Building India's Future
           </h2>
 
           <p className="text-lg text-muted-foreground leading-relaxed mb-8">

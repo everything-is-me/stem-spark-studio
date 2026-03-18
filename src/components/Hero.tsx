@@ -38,7 +38,7 @@ const Hero = () => {
               <div className="fade-in-up">
                 <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
                   <Sparkles className="w-4 h-4" />
-                  Building India's Tech Future
+                  Building India's  Future
                 </div>
                 
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight mb-6">
@@ -50,7 +50,7 @@ const Hero = () => {
                 </h1>
                 
                 <h2 className="text-3xl sm:text-4xl font-heading font-semibold text-secondary mb-6">
-                  Design. Build. Innovate for India.
+                  Design. Build. Innovate for India and world.
                 </h2>
               </div>
 
