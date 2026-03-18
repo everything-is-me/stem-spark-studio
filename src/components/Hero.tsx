@@ -42,11 +42,15 @@ const Hero = () => {
                 </div>
                 
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight mb-6">
-                  Young Minds.{" "}
+                  Young minds,{" "}
                   <span className="text-primary relative inline-block">
-                    Indian Tech
-                    <Sparkles className="absolute -top-4 -right-8 text-accent w-8 h-8 animate-pulse" />
+                    Local Ideas
+                    <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary rounded-full animate-pulse">
+                      <Sparkles className="absolute -top-4 -right-8 text-accent w-8 h-8 animate-pulse" />
+                    </span>
                   </span>
+                  <br />
+                  Global Market
                 </h1>
                 
                 <h2 className="text-3xl sm:text-4xl font-heading font-semibold text-secondary mb-6">

@@ -1,40 +1,59 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Home, Trophy, Users, Mail, CircuitBoard, Cpu } from "lucide-react";
+import { Menu, X, Home, Trophy, Users, Mail, CircuitBoard, Cpu, ChevronDown } from "lucide-react";
 
 // ========== TYPES ==========
 interface NavItem {
   id: string;
   label: string;
   icon?: React.ComponentType<{ className?: string; strokeWidth?: number | string }>;
+  href?: string;
+  children?: NavItem[];
 }
 
 // ========== DATA ==========
 const NAV_ITEMS: NavItem[] = [
-  { id: "home", label: "Home", icon: Home },
-  { id: "competitions", label: "Indian Science Competition", icon: Trophy },
-  { id: "about", label: "About Us", icon: Users },
-  { id: "contact", label: "Get in Touch", icon: Mail },
+  { id: "home", label: "Home", icon: Home, href: "/" },
+  {
+    id: "competitions",
+    label: "Competitions",
+    icon: Trophy,
+    children: [
+      { id: "competitions-overview", label: "Overview", href: "/competitions" },
+      { id: "competitions-categories", label: "Categories", href: "/competitions/categories" },
+      { id: "competitions-rules", label: "Rules", href: "/competitions/rules" },
+      { id: "competitions-faq", label: "FAQ", href: "/competitions/faq" },
+      { id: "competitions-find-fair", label: "Find a Fair", href: "/competitions/find-fair" },
+      { id: "competitions-guidelines", label: "Guidelines", href: "/competitions/guidelines" },
+      { id: "competitions-projects", label: "Project Database", href: "/competitions/projects" },
+    ]
+  },
+  { id: "about", label: "About Us", icon: Users, href: "/#about" },
+  { id: "contact", label: "Get in Touch", icon: Mail, href: "/#contact" },
 ];
 
 // ========== COMPONENTS ==========
 interface NavButtonProps {
   item: NavItem;
-  onClick: (id: string) => void;
   isMobile?: boolean;
   isScrolled: boolean;
   isActive: boolean;
+  onDropdownToggle?: (id: string) => void;
+  isDropdownOpen?: boolean;
 }
 
-const NavButton: React.FC<NavButtonProps> = ({ 
-  item, 
-  onClick, 
-  isMobile = false, 
+const NavButton: React.FC<NavButtonProps> = ({
+  item,
+  isMobile = false,
   isScrolled,
-  isActive 
+  isActive,
+  onDropdownToggle,
+  isDropdownOpen = false
 }) => {
   const Icon = item.icon;
-  
+  const hasChildren = item.children && item.children.length > 0;
+
   // Determine text color based on state
   let textColor = "";
   if (isMobile) {
@@ -47,51 +66,118 @@ const NavButton: React.FC<NavButtonProps> = ({
     }
   }
 
+  const buttonContent = (
+    <>
+      {Icon && <Icon className="w-4 h-4" />}
+      {item.label}
+      {hasChildren && <ChevronDown className={`w-3 h-3 ml-1 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />}
+      {!isMobile && !hasChildren && (
+        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+      )}
+      {!isMobile && !hasChildren && isActive && (
+        <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary"></span>
+      )}
+    </>
+  );
+
+  if (hasChildren) {
+    return (
+      <div className="relative">
+        <button
+          onClick={() => onDropdownToggle?.(item.id)}
+          className={`
+            flex items-center gap-2 transition-all duration-200 font-medium relative group
+            ${isMobile
+              ? `w-full text-left py-3 px-4 ${textColor} hover:bg-primary/5 rounded-lg`
+              : `${textColor}`
+            }
+          `}
+        >
+          {buttonContent}
+        </button>
+
+        {/* Dropdown Menu */}
+        {isDropdownOpen && (
+          <div className={`
+            absolute top-full left-0 mt-2 min-w-[200px] bg-card/95 backdrop-blur-sm rounded-lg shadow-xl border border-border/50 py-2
+            ${isMobile ? 'relative top-0 mt-1 bg-card rounded-lg' : ''}
+          `}>
+            {item.children?.map((child) => (
+              <Link
+                key={child.id}
+                to={child.href || '#'}
+                className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 hover:text-primary transition-colors"
+              >
+                {child.label}
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
-    <button
-      onClick={() => onClick(item.id)}
+    <Link
+      to={item.href || '#'}
       className={`
         flex items-center gap-2 transition-all duration-200 font-medium
-        ${isMobile 
-          ? `w-full text-left py-3 px-4 ${textColor} hover:bg-primary/5 rounded-lg` 
+        ${isMobile
+          ? `w-full text-left py-3 px-4 ${textColor} hover:bg-primary/5 rounded-lg`
           : `${textColor} relative group`
         }
       `}
     >
       {Icon && <Icon className="w-4 h-4" />}
       {item.label}
-      {!isMobile && !isMobile && (
+      {!isMobile && (
         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
       )}
       {!isMobile && isActive && (
         <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary"></span>
       )}
-    </button>
+    </Link>
   );
 };
 
 interface MobileMenuProps {
   isOpen: boolean;
   items: NavItem[];
-  onItemClick: (id: string) => void;
   onRegisterClick: () => void;
+  openDropdowns: string[];
+  onDropdownToggle: (id: string) => void;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items, onItemClick, onRegisterClick }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items, onRegisterClick, openDropdowns, onDropdownToggle }) => {
   if (!isOpen) return null;
 
   return (
     <div className="md:hidden animate-fade-in bg-card/95 backdrop-blur-sm rounded-2xl mt-2 p-4 shadow-xl border border-border/50">
       <div className="space-y-1">
         {items.map((item) => (
-          <NavButton 
-            key={item.id} 
-            item={item} 
-            onClick={onItemClick} 
-            isMobile 
-            isScrolled={true} // Mobile menu always has background
-            isActive={false}
-          />
+          <div key={item.id}>
+            <NavButton
+              item={item}
+              isMobile
+              isScrolled={true}
+              isActive={false}
+              onDropdownToggle={onDropdownToggle}
+              isDropdownOpen={openDropdowns.includes(item.id)}
+            />
+            {item.children && openDropdowns.includes(item.id) && (
+              <div className="ml-6 mt-1 space-y-1">
+                {item.children.map((child) => (
+                  <Link
+                    key={child.id}
+                    to={child.href || '#'}
+                    className="block py-2 px-4 text-sm text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-lg transition-colors"
+                  >
+                    {child.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
         ))}
       </div>
       <div className="pt-4 mt-4 border-t border-border/50">
@@ -113,44 +199,40 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, items, onItemClick, onR
 
 // ========== MAIN COMPONENT ==========
 const Navigation: React.FC = () => {
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [openDropdowns, setOpenDropdowns] = useState<string[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-      
-      // Update active section based on scroll position
-      const sections = NAV_ITEMS.map(item => item.id);
-      const current = sections.find(section => {
-        const element = document.getElementById(section);
-        if (!element) return false;
-        const rect = element.getBoundingClientRect();
-        return rect.top <= 100 && rect.bottom >= 100;
-      });
-      if (current) setActiveSection(current);
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial check
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ 
-        behavior: "smooth", 
-        block: "start" 
-      });
-      setIsMobileMenuOpen(false);
-      setActiveSection(id);
-    }
+  const handleDropdownToggle = (id: string) => {
+    setOpenDropdowns(prev =>
+      prev.includes(id)
+        ? prev.filter(dropdownId => dropdownId !== id)
+        : [...prev, id]
+    );
   };
 
   const handleRegisterClick = () => {
-    scrollToSection("contact");
+    // Navigate to competitions page or scroll to contact section
+    window.location.href = "/competitions/categories";
+  };
+
+  const isActive = (href?: string) => {
+    if (!href) return false;
+    if (href.startsWith('/#')) {
+      return location.pathname === '/' && location.hash === href.substring(1);
+    }
+    return location.pathname === href;
   };
 
   return (
@@ -166,9 +248,9 @@ const Navigation: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div 
+          <Link
+            to="/"
             className="flex items-center space-x-3 cursor-pointer group"
-            onClick={() => scrollToSection("home")}
           >
             <div className={`
               w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-300
@@ -210,17 +292,18 @@ const Navigation: React.FC = () => {
                 Foundation
               </span>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {NAV_ITEMS.map((item) => (
               <div key={item.id} className="relative px-1">
-                <NavButton 
-                  item={item} 
-                  onClick={scrollToSection} 
+                <NavButton
+                  item={item}
                   isScrolled={isScrolled}
-                  isActive={activeSection === item.id}
+                  isActive={isActive(item.href)}
+                  onDropdownToggle={handleDropdownToggle}
+                  isDropdownOpen={openDropdowns.includes(item.id)}
                 />
               </div>
             ))}
@@ -228,19 +311,20 @@ const Navigation: React.FC = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button
-              variant="outline"
-              className={`
-                border-2 transition-all duration-300
-                ${isScrolled 
-                  ? "border-primary text-primary hover:bg-primary hover:text-white" 
-                  : "border-white text-white hover:bg-white hover:text-slate-900"
-                }
-              `}
-              onClick={() => scrollToSection("competitions")}
-            >
-              View Challenges
-            </Button>
+            <Link to="/competitions">
+              <Button
+                variant="outline"
+                className={`
+                  border-2 transition-all duration-300
+                  ${isScrolled
+                    ? "border-primary text-primary hover:bg-primary hover:text-white"
+                    : "border-white text-white hover:bg-white hover:text-slate-900"
+                  }
+                `}
+              >
+                View Challenges
+              </Button>
+            </Link>
             <Button
               variant="default"
               className={`
@@ -278,8 +362,9 @@ const Navigation: React.FC = () => {
         <MobileMenu
           isOpen={isMobileMenuOpen}
           items={NAV_ITEMS}
-          onItemClick={scrollToSection}
           onRegisterClick={handleRegisterClick}
+          openDropdowns={openDropdowns}
+          onDropdownToggle={handleDropdownToggle}
         />
       </div>
     </nav>

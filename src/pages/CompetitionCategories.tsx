@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -491,6 +494,7 @@ const SubcategoryCard: React.FC<SubcategoryCardProps> = ({ subcategory, index, o
   );
 };
 
+// Info Panel Component
 interface InfoPanelProps {
   icon: ComponentType<{ className?: string; strokeWidth?: number | string }>;
   title: string;
@@ -608,72 +612,8 @@ const CategoryContent: React.FC<CategoryContentProps> = ({
   );
 };
 
-// Competition Flow Section
-const CompetitionFlow = () => {
-  const steps = [
-    {
-      number: "01",
-      title: "Registration",
-      description: "Register your school/team online through our portal",
-      icon: Users,
-    },
-    {
-      number: "02",
-      title: "Project Development",
-      description: "3-month period to develop your innovation with mentor support",
-      icon: Brain,
-    },
-    {
-      number: "03",
-      title: "State-Level Competitions",
-      description: "Present at your state/UT competition",
-      icon: Target,
-    },
-    {
-      number: "04",
-      title: "National Finals",
-      description: "Top projects compete at the national level",
-      icon: Trophy,
-    },
-    {
-      number: "05",
-      title: "Awards & Incubation",
-      description: "Winners receive prizes and startup support",
-      icon: Sparkles,
-    },
-  ];
-
-  return (
-    <div className="mt-16 mb-16 fade-in-up">
-      <h3 className="text-3xl font-heading font-bold text-center text-foreground mb-12">
-        Competition Journey
-      </h3>
-      <div className="relative">
-        <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gradient-to-b from-primary via-primary/50 to-transparent"></div>
-        <div className="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-5 lg:gap-8">
-          {steps.map((step, index) => {
-            const Icon = step.icon;
-            return (
-              <div key={step.number} className="relative">
-                <div className={`flex flex-col items-center text-center p-6 bg-card rounded-2xl border border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg ${index % 2 === 0 ? 'lg:mt-0' : 'lg:mt-12'}`}>
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                    <span className="text-2xl font-bold text-primary">{step.number}</span>
-                  </div>
-                  <Icon className="w-8 h-8 text-primary mb-4" />
-                  <h4 className="font-heading font-bold text-xl mb-3 text-foreground">{step.title}</h4>
-                  <p className="text-sm text-muted-foreground">{step.description}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-};
-
 // ========== MAIN COMPONENT ==========
-const Competitions: React.FC = () => {
+const CompetitionCategories = () => {
   const [registrationModal, setRegistrationModal] = useState<RegistrationModalState>({
     isOpen: false,
     categoryId: "",
@@ -708,106 +648,81 @@ const Competitions: React.FC = () => {
     });
   };
 
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -100px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-fade-in-up");
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll(".fade-in-up").forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="competitions" className="py-20 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16 fade-in-up">
-          <h2 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-4">
-            MIF Science and Engineering Fair
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            6 major scientific and engineering disciplines with 20+ specialized tracks for students grades 6-12
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <div className="bg-transparent border border-primary text-primary px-4 py-2 rounded-full text-sm font-medium">
-              <i className="w-4 h-4 inline mr-2">🇮🇳</i>
-              National Level
+    <div className="min-h-screen">
+      <Navigation />
+
+      {/* Header */}
+      <section className="bg-gradient-to-br from-primary/5 via-background to-secondary/5 py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <Target className="w-4 h-4" />
+              Competition Categories
             </div>
-            <div className="bg-transparent border border-primary text-primary px-4 py-2 rounded-full text-sm font-medium">
-              <Trophy className="w-4 h-4 inline mr-2" />
-              Cash Prizes + Incubation
-            </div>
-            <div className="bg-transparent border border-primary text-primary px-4 py-2 rounded-full text-sm font-medium">
-              <Users className="w-4 h-4 inline mr-2" />
-              20+ Tracks
-            </div>
+
+            <h1 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-6">
+              6 Major Categories,{" "}
+              <span className="text-primary">20+ Specialized Tracks</span>
+            </h1>
+
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Choose from our comprehensive range of scientific and engineering disciplines.
+              Each category offers unique opportunities for innovation and discovery.
+            </p>
           </div>
         </div>
+      </section>
 
-        {/* Accordion Categories */}
-        <div className="max-w-4xl mx-auto mb-20">
-          <Accordion type="single" collapsible className="space-y-3 fade-in-up">
-            {COMPETITION_DATA.map((category, index) => (
-              <AccordionItem
-                key={category.id}
-                value={category.id}
-                className="border border-border/50 rounded-lg hover:border-primary/50 transition-colors duration-300 overflow-hidden bg-card shadow-sm hover:shadow-md"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-primary/5 transition-colors">
-                  <CategoryTrigger category={category} />
-                </AccordionTrigger>
-                <AccordionContent className="px-6 py-6 bg-background/50">
-                  <CategoryContent
-                    category={category}
-                    onRegisterCategory={() => handleRegisterCategory(category)}
-                    onRegisterSubcategory={(subcategory) =>
-                      handleRegisterSubcategory(category, subcategory)
-                    }
-                  />
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-
-        {/* Competition Flow Section */}
-        <CompetitionFlow />
-
-        {/* FAQ Section */}
-        <div id="faq" className="mt-20 fade-in-up">
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <GraduationCap className="w-8 h-8 text-primary" />
-            <h3 className="text-2xl font-heading font-bold text-foreground">
-              Frequently Asked Questions
-            </h3>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            <Card className="p-6 border-border/50">
-              <h4 className="font-heading font-bold text-lg mb-3 text-foreground">Who can participate?</h4>
-              <p className="text-muted-foreground">Students from grades 6-12 across India. Participate as an individual or in teams of up to 3 members.</p>
-            </Card>
-
-            <Card className="p-6 border-border/50">
-              <h4 className="font-heading font-bold text-lg mb-3 text-foreground">Is there a registration fee?</h4>
-              <p className="text-muted-foreground">Registration is completely free for all participants. We believe in removing barriers to innovation.</p>
-            </Card>
-
-            <Card className="p-6 border-border/50">
-              <h4 className="font-heading font-bold text-lg mb-3 text-foreground">How will projects be judged?</h4>
-              <p className="text-muted-foreground">Evaluated by industry experts based on innovation, impact, feasibility, and implementation quality.</p>
-            </Card>
-
-            <Card className="p-6 border-border/50">
-              <h4 className="font-heading font-bold text-lg mb-3 text-foreground">What support is provided?</h4>
-              <p className="text-muted-foreground">Mentorship sessions, online workshops, and access to partner labs and makerspaces.</p>
-            </Card>
-          </div>
-
-          <div className="mt-8 text-center">
-            <Button
-              variant="outline"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              <Globe className="w-4 h-4 mr-2" />
-              More Questions? Contact Us
-            </Button>
+      {/* Categories Accordion */}
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            <Accordion type="single" collapsible className="space-y-3">
+              {COMPETITION_DATA.map((category, index) => (
+                <AccordionItem
+                  key={category.id}
+                  value={category.id}
+                  className="border border-border/50 rounded-lg hover:border-primary/50 transition-colors duration-300 overflow-hidden bg-card shadow-sm hover:shadow-md fade-in-up"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-primary/5 transition-colors">
+                    <CategoryTrigger category={category} />
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 py-6 bg-background/50">
+                    <CategoryContent
+                      category={category}
+                      onRegisterCategory={() => handleRegisterCategory(category)}
+                      onRegisterSubcategory={(subcategory) =>
+                        handleRegisterSubcategory(category, subcategory)
+                      }
+                    />
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Registration Modal */}
       <RegistrationModal
@@ -818,8 +733,10 @@ const Competitions: React.FC = () => {
         subcategoryTitle={registrationModal.subcategoryTitle}
         onClose={closeModal}
       />
-    </section>
+
+      <Footer />
+    </div>
   );
 };
 
-export default Competitions;
+export default CompetitionCategories;
