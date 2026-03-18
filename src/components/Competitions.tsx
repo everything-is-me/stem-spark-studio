@@ -29,109 +29,86 @@ import {
   Code,
   Factory,
   Sparkles,
+  Heart,
+  Atom,
+  Mountain,
+  Sun,
+  Beaker,
+  Bug,
+  Wrench,
+  Radio,
 } from "lucide-react";
 import { ComponentType, ReactNode } from "react";
 
 // ========== TYPES ==========
-interface CompetitionCategory {
+interface Subcategory {
   icon: ComponentType<{ className?: string; strokeWidth?: number | string }>;
   title: string;
+  code: string;
   description: string;
   color: string;
 }
 
-interface CompetitionDivision {
-  id: "middle" | "high";
+interface CompetitionCategory {
+  id: string;
   title: string;
-  ageRange: string;
-  categories: CompetitionCategory[];
+  focus: string;
+  subcategories: Subcategory[];
   keyDates: {
     registration: string;
     submission: string;
     finals: string;
   };
-  buttonText: string;
 }
 
 // ========== DATA ==========
-const COMPETITION_DATA: CompetitionDivision[] = [
+const COMPETITION_DATA: CompetitionCategory[] = [
   {
-    id: "middle",
-    title: "Junior Innovators (Middle School)",
-    ageRange: "Grades 6-8 | Ages 11-14",
-    categories: [
+    id: "life-sciences",
+    title: "Life Sciences & Biology",
+    focus: "Living organisms, health, plants, microbes, and biology research.",
+    subcategories: [
       {
-        icon: CircuitBoard,
-        title: "Young Electronics Wizards",
-        description: "Create simple circuits and electronic gadgets using basic components.",
-        color: "bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400",
+        icon: Bug,
+        code: "ANIM",
+        title: "Animal Sciences",
+        description: "Research and innovation in animal behavior, physiology, and conservation.",
+        color: "bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400",
       },
       {
-        icon: Smartphone,
-        title: "Digital India Projects",
-        description: "Build apps or devices that solve everyday problems in Indian communities.",
-        color: "bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400",
-      },
-      {
-        icon: Wind,
-        title: "Eco Warriors",
-        description: "Design solutions for waste management, water conservation, or pollution control.",
+        icon: Leaf,
+        code: "PLNT",
+        title: "Plant Sciences",
+        description: "Plant biology, agriculture enhancement, and botanical innovations.",
         color: "bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400",
       },
       {
-        icon: BookOpen,
-        title: "Science Models & Exhibits",
-        description: "Create working models that demonstrate scientific principles.",
-        color: "bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400",
-      },
-    ],
-    keyDates: {
-      registration: "Coming Soon",
-      submission: "Coming Soon",
-      finals: "Coming Soon",
-    },
-    buttonText: "Express Interest",
-  },
-  {
-    id: "high",
-    title: "Young Scientists (High School)",
-    ageRange: "Grades 9-12 | Ages 14-18",
-    categories: [
-      {
-        icon: Cpu,
-        title: "Robotics & Automation",
-        description: "Build robots and automated systems for Indian industry and agriculture.",
-        color: "bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400",
-      },
-      {
-        icon: Zap,
-        title: "Renewable Energy Solutions",
-        description: "Design solar, wind, or hybrid systems for Indian villages and cities.",
-        color: "bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400",
-      },
-      {
         icon: Microscope,
-        title: "Biotech & Healthcare",
-        description: "Innovate in medical devices, diagnostics, or agricultural biotechnology.",
+        code: "MCRO",
+        title: "Microbiology",
+        description: "Study of microorganisms and their applications in biotechnology.",
         color: "bg-teal-100 text-teal-600 dark:bg-teal-900/30 dark:text-teal-400",
       },
       {
-        icon: Code,
-        title: "Software & AI Solutions",
-        description: "Develop apps, algorithms, or AI tools addressing Indian challenges.",
-        color: "bg-indigo-100 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400",
-      },
-      {
-        icon: Satellite,
-        title: "Space & Drone Tech",
-        description: "Create model satellites, drones, or remote sensing applications.",
-        color: "bg-violet-100 text-violet-600 dark:bg-violet-900/30 dark:text-violet-400",
-      },
-      {
-        icon: Factory,
-        title: "Make in India Products",
-        description: "Design complete product prototypes that could be manufactured in India.",
+        icon: Dna,
+        code: "CELL",
+        title: "Cellular and Molecular Biology",
+        description: "Cell structure, genetics, and molecular mechanisms of life.",
         color: "bg-cyan-100 text-cyan-600 dark:bg-cyan-900/30 dark:text-cyan-400",
+      },
+      {
+        icon: Beaker,
+        code: "BCHM",
+        title: "Biochemistry",
+        description: "Chemical processes and reactions in living organisms.",
+        color: "bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400",
+      },
+      {
+        icon: Heart,
+        code: "BMED",
+        title: "Biomedical and Health Sciences",
+        description: "Medical innovations, healthcare solutions, and health technology.",
+        color: "bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400",
       },
     ],
     keyDates: {
@@ -139,31 +116,186 @@ const COMPETITION_DATA: CompetitionDivision[] = [
       submission: "Coming Soon",
       finals: "Coming Soon",
     },
-    buttonText: "Register Interest",
+  },
+  {
+    id: "physical-sciences",
+    title: "Physical Sciences",
+    focus: "Fundamental sciences like matter, energy, and natural laws.",
+    subcategories: [
+      {
+        icon: Atom,
+        code: "PHYS",
+        title: "Physics and Astronomy",
+        description: "Fundamental physics, particle physics, cosmology, and space science.",
+        color: "bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400",
+      },
+      {
+        icon: Beaker,
+        code: "CHEM",
+        title: "Chemistry",
+        description: "Chemical reactions, materials, and advanced chemistry applications.",
+        color: "bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400",
+      },
+      {
+        icon: Building,
+        code: "MATS",
+        title: "Materials Science",
+        description: "Discovery and engineering of new materials with novel properties.",
+        color: "bg-slate-100 text-slate-600 dark:bg-slate-900/30 dark:text-slate-400",
+      },
+      {
+        icon: Brain,
+        code: "MATH",
+        title: "Mathematics",
+        description: "Pure and applied mathematics, computational mathematics, and modeling.",
+        color: "bg-indigo-100 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-400",
+      },
+    ],
+    keyDates: {
+      registration: "Coming Soon",
+      submission: "Coming Soon",
+      finals: "Coming Soon",
+    },
+  },
+  {
+    id: "earth-environmental",
+    title: "Earth & Environmental Sciences",
+    focus: "Very relevant for India's climate, agriculture, and sustainability.",
+    subcategories: [
+      {
+        icon: Mountain,
+        code: "EAEV",
+        title: "Earth and Environmental Sciences",
+        description: "Geology, environmental systems, climate, and sustainable ecosystems.",
+        color: "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400",
+      },
+      {
+        icon: Wind,
+        code: "ENEV",
+        title: "Environmental Engineering",
+        description: "Water treatment, air quality, waste management, and environmental solutions.",
+        color: "bg-lime-100 text-lime-600 dark:bg-lime-900/30 dark:text-lime-400",
+      },
+      {
+        icon: Sun,
+        code: "EGSD",
+        title: "Energy: Sustainable Materials and Design",
+        description: "Renewable energy, sustainable design, and green technologies.",
+        color: "bg-yellow-100 text-yellow-600 dark:bg-yellow-900/30 dark:text-yellow-400",
+      },
+    ],
+    keyDates: {
+      registration: "Coming Soon",
+      submission: "Coming Soon",
+      finals: "Coming Soon",
+    },
+  },
+  {
+    id: "computer-science",
+    title: "Computer Science & Technology",
+    focus: "For modern tech-focused student projects.",
+    subcategories: [
+      {
+        icon: Code,
+        code: "SFTD",
+        title: "Software Design",
+        description: "Web development, mobile apps, software architecture, and system design.",
+        color: "bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400",
+      },
+      {
+        icon: Dna,
+        code: "CBIO",
+        title: "Computational Biology and Bioinformatics",
+        description: "Computational methods for biological data analysis and bioinformatics.",
+        color: "bg-fuchsia-100 text-fuchsia-600 dark:bg-fuchsia-900/30 dark:text-fuchsia-400",
+      },
+    ],
+    keyDates: {
+      registration: "Coming Soon",
+      submission: "Coming Soon",
+      finals: "Coming Soon",
+    },
+  },
+  {
+    id: "engineering-robotics",
+    title: "Engineering & Robotics",
+    focus: "Hands-on engineering and innovation.",
+    subcategories: [
+      {
+        icon: Cpu,
+        code: "ROBO",
+        title: "Robotics and Intelligent Machines",
+        description: "Robot design, automation, autonomous systems, and AI-driven machines.",
+        color: "bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400",
+      },
+      {
+        icon: CircuitBoard,
+        code: "EBED",
+        title: "Embedded Systems",
+        description: "Microcontrollers, IoT devices, hardware integration, and automation.",
+        color: "bg-violet-100 text-violet-600 dark:bg-violet-900/30 dark:text-violet-400",
+      },
+      {
+        icon: Heart,
+        code: "ENBM",
+        title: "Biomedical Engineering",
+        description: "Medical devices, prosthetics, diagnostic tools, and health technology.",
+        color: "bg-pink-100 text-pink-600 dark:bg-pink-900/30 dark:text-pink-400",
+      },
+    ],
+    keyDates: {
+      registration: "Coming Soon",
+      submission: "Coming Soon",
+      finals: "Coming Soon",
+    },
+  },
+  {
+    id: "social-behavioral",
+    title: "Social & Behavioral Sciences",
+    focus: "Human behavior and society studies.",
+    subcategories: [
+      {
+        icon: Users,
+        code: "BEHA",
+        title: "Behavioral and Social Sciences",
+        description: "Psychology, sociology, anthropology, economics, and social innovation.",
+        color: "bg-rose-100 text-rose-600 dark:bg-rose-900/30 dark:text-rose-400",
+      },
+    ],
+    keyDates: {
+      registration: "Coming Soon",
+      submission: "Coming Soon",
+      finals: "Coming Soon",
+    },
   },
 ];
 
 // ========== COMPONENTS ==========
-interface CategoryCardProps {
-  category: CompetitionCategory;
+interface SubcategoryCardProps {
+  subcategory: Subcategory;
   index: number;
 }
 
-const CategoryCard: React.FC<CategoryCardProps> = ({ category, index }) => {
-  const Icon = category.icon;
+const SubcategoryCard: React.FC<SubcategoryCardProps> = ({ subcategory, index }) => {
+  const Icon = subcategory.icon;
   return (
     <Card
       className="group p-6 hover:shadow-lg transition-all duration-300 border-border/50 bg-background fade-in-up hover:-translate-y-1"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
-      <div className={`w-12 h-12 rounded-xl ${category.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-        <Icon className="w-6 h-6" strokeWidth={2} />
+      <div className="flex items-start justify-between mb-4">
+        <div className={`w-12 h-12 rounded-xl ${subcategory.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+          <Icon className="w-6 h-6" strokeWidth={2} />
+        </div>
+        <span className="text-sm font-mono font-bold text-primary bg-primary/10 px-2 py-1 rounded">
+          {subcategory.code}
+        </span>
       </div>
       <h4 className="font-heading font-bold text-lg mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
-        {category.title}
+        {subcategory.title}
       </h4>
       <p className="text-sm text-muted-foreground leading-relaxed">
-        {category.description}
+        {subcategory.description}
       </p>
     </Card>
   );
@@ -185,18 +317,18 @@ const InfoPanel: React.FC<InfoPanelProps> = ({ icon: Icon, title, children }) =>
 
 interface DivisionHeaderProps {
   title: string;
-  ageRange: string;
-  buttonText: string;
-  onRegister: () => void;
+  focus: string;
+  buttonText?: string;
+  onRegister?: () => void;
 }
 
-const DivisionHeader: React.FC<DivisionHeaderProps> = ({ title, ageRange, buttonText, onRegister }) => (
+const DivisionHeader: React.FC<DivisionHeaderProps> = ({ title, focus, buttonText = "Explore Category", onRegister }) => (
   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-    <div>
+    <div className="flex-1">
       <h3 className="text-3xl font-heading font-bold text-foreground mb-2">
         {title}
       </h3>
-      <p className="text-muted-foreground text-lg">{ageRange}</p>
+      <p className="text-muted-foreground text-lg">{focus}</p>
     </div>
     <Button
       className="bg-primary hover:bg-primary-dark btn-hover-lift px-8 py-6 text-base"
@@ -208,11 +340,11 @@ const DivisionHeader: React.FC<DivisionHeaderProps> = ({ title, ageRange, button
   </div>
 );
 
-interface CompetitionDivisionProps {
-  division: CompetitionDivision;
+interface CompetitionCategoryProps {
+  category: CompetitionCategory;
 }
 
-const CompetitionDivision: React.FC<CompetitionDivisionProps> = ({ division }) => {
+const CompetitionCategorySection: React.FC<CompetitionCategoryProps> = ({ category }) => {
   const handleRegister = () => {
     const element = document.getElementById("contact");
     if (element) {
@@ -220,30 +352,30 @@ const CompetitionDivision: React.FC<CompetitionDivisionProps> = ({ division }) =
     }
   };
 
-  const gridCols = division.id === "middle" 
-    ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-4" 
+  const gridCols = category.subcategories.length <= 3
+    ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
     : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
 
   return (
     <div className="bg-card rounded-3xl p-8 sm:p-12 shadow-lg fade-in-up mb-16 last:mb-0">
       <DivisionHeader
-        title={division.title}
-        ageRange={division.ageRange}
-        buttonText={division.buttonText}
+        title={category.title}
+        focus={category.focus}
+        buttonText="Express Interest"
         onRegister={handleRegister}
       />
 
       <div className={`grid ${gridCols} gap-6 mb-10`}>
-        {division.categories.map((category, index) => (
-          <CategoryCard key={category.title} category={category} index={index} />
+        {category.subcategories.map((subcategory, index) => (
+          <SubcategoryCard key={subcategory.code} subcategory={subcategory} index={index} />
         ))}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <InfoPanel icon={Calendar} title="Key Dates">
-          <p><span className="font-semibold text-foreground">Registration:</span> {division.keyDates.registration}</p>
-          <p><span className="font-semibold text-foreground">Project Submission:</span> {division.keyDates.submission}</p>
-          <p><span className="font-semibold text-foreground">National Finals:</span> {division.keyDates.finals}</p>
+          <p><span className="font-semibold text-foreground">Registration:</span> {category.keyDates.registration}</p>
+          <p><span className="font-semibold text-foreground">Project Submission:</span> {category.keyDates.submission}</p>
+          <p><span className="font-semibold text-foreground">National Finals:</span> {category.keyDates.finals}</p>
         </InfoPanel>
         <InfoPanel icon={Award} title="Awards & Recognition">
           <p><span className="font-semibold text-foreground">🏆 National Winners:</span> Cash prizes + Incubation support</p>
@@ -330,7 +462,7 @@ const Competitions: React.FC = () => {
             Make India Innovation Challenge 2024
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            India's premier innovation competition for school students, inspiring the next generation of creators and problem-solvers
+            India's premier innovation competition for school students across 6 major scientific and engineering disciplines
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <div className="bg-transparent border border-primary text-primary px-4 py-2 rounded-full text-sm font-medium">
@@ -343,13 +475,13 @@ const Competitions: React.FC = () => {
             </div>
             <div className="bg-transparent border border-primary text-primary px-4 py-2 rounded-full text-sm font-medium">
               <Users className="w-4 h-4 inline mr-2" />
-              Team & Individual Projects
+              6 Major Categories
             </div>
           </div>
         </div>
 
-        {COMPETITION_DATA.map((division) => (
-          <CompetitionDivision key={division.id} division={division} />
+        {COMPETITION_DATA.map((category) => (
+          <CompetitionCategorySection key={category.id} category={category} />
         ))}
 
         <CompetitionFlow />
