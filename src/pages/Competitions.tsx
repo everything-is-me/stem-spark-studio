@@ -50,7 +50,7 @@ const Competitions = () => {
     },
     {
       icon: FileText,
-      title: "International Rules & Guidelines",
+      title: "Rules & Guidelines",
       description: "Official competition rules and participation guidelines",
       link: "/competitions/rules",
       color: "bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400"

@@ -45,7 +45,7 @@ const Hero = () => {
                   Young minds,{" "}
                   <span className="text-primary relative inline-block">
                     Local Ideas
-                    <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary rounded-full animate-pulse">
+                    <span className="absolute -bottom-2 left-0 w-full h-1">
                       <Sparkles className="absolute -top-4 -right-8 text-accent w-8 h-8 animate-pulse" />
                     </span>
                   </span>
