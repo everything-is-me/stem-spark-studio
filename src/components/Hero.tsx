@@ -13,14 +13,14 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-primary/20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-white/20 to-primary/20"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-accent/10 rounded-full blur-2xl animate-bounce"></div>
-        
+
         {/* Circuit pattern overlay */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
@@ -30,43 +30,44 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-32 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left Column - Main Content */}
             <div className="space-y-8">
               <div className="fade-in-up">
-                <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+                {/* <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
                   <Sparkles className="w-4 h-4" />
                   Building India's  Future
-                </div>
-                
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight mb-6">
+                </div> */}
+
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-bold text-[#F7941E] leading-tight mb-6 drop-shadow-lg" style={{ textShadow: '5px 5px 0px rgba(80, 20, 100, 0.4)' }}>
                   Young minds,{" "}
-                  <span className="text-primary relative inline-block">
+                  <span className="text-[beige] relative inline-block" style={{ textShadow: '5px 5px 0px rgba(80, 20, 100, 0.4)' }}>
                     Local Ideas
-                    <span className="absolute -bottom-2 left-0 w-full h-1">
-                      <Sparkles className="absolute -top-4 -right-8 text-accent w-8 h-8 animate-pulse" />
+                    <span className="absolute bottom-0 left-5 w-full h-1">
+                      <Sparkles className="absolute -top-4 -right-8 text-[#50146466] w-8 h-8 animate-pulse" />
                     </span>
                   </span>
                   <br />
                   Global Market
                 </h1>
-                
-                <h2 className="text-3xl sm:text-4xl font-heading font-semibold text-secondary mb-6">
-                  Design. Build. Innovate for India and world.
+
+                <h2 className="text-3xl sm:text-4xl font-heading font-bold text-[#031634] mb-6">
+                  Design. Build. Innovate. Share.
                 </h2>
               </div>
 
               <div className="fade-in-up" style={{ animationDelay: "0.2s" }}>
-                <p className="text-xl text-slate-300 font-body mb-8 leading-relaxed">
-                  India's premier youth innovation challenge for hardware, electronics, 
+                <p className="text-xl text-[#031634] font-body mb-8 leading-relaxed">
+                  India's premier youth innovation challenge in Science Technology Engineering and Mathematics (STEM).
+                  {/* for hardware, electronics, 
                   and deep-tech. Join thousands of students building products for 
-                  India's tech sovereignty.
+                  India's tech sovereignty. */}
                 </p>
               </div>
 
-              <div
+              {/* <div
                 className="flex flex-col sm:flex-row gap-4 fade-in-up"
                 style={{ animationDelay: "0.4s" }}
               >
@@ -87,45 +88,57 @@ const Hero = () => {
                   <Trophy className="mr-2 h-5 w-5" />
                   Register Now
                 </Button>
-              </div>
+              </div> */}
 
               {/* Quick Stats */}
               <div
                 className="mt-12 grid grid-cols-3 gap-6 fade-in-up"
                 style={{ animationDelay: "0.6s" }}
               >
-                <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-4 hover:bg-white/10 transition-colors">
+                <div className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-4 hover:bg-white/10 transition-colors shadow-[0_0px_15px_1px_rgba(0,0,0,0.8)] transition-shadow duration-300">
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <Users className="w-5 h-5 text-primary" />
-                    <div className="text-3xl font-bold text-white">1000+</div>
+                    <div className="text-3xl font-bold text-[#031634]">1000+</div>
                   </div>
-                  <div className="text-sm text-slate-300">Student Innovators</div>
+                  <div className="text-sm text-[#031634]">Student Innovators</div>
                 </div>
-                <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-4 hover:bg-white/10 transition-colors">
+                <div className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-4 hover:bg-white/10 transition-colors shadow-[0_0px_15px_1px_rgba(0,0,0,0.8)] transition-shadow duration-300">
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <Cpu className="w-5 h-5 text-secondary" />
-                    <div className="text-3xl font-bold text-white">25+</div>
+                    <div className="text-3xl font-bold text-[#031634]">25+</div>
                   </div>
-                  <div className="text-sm text-slate-300">States & UTs</div>
+                  <div className="text-sm text-[#031634]">States & UTs</div>
                 </div>
-                <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-4 hover:bg-white/10 transition-colors">
+                <div className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-4 hover:bg-white/10 transition-colors shadow-[0_0px_15px_1px_rgba(0,0,0,0.8)] transition-shadow duration-300">
                   <div className="flex items-center justify-center gap-2 mb-2">
                     <Smartphone className="w-5 h-5 text-accent" />
-                    <div className="text-3xl font-bold text-white">₹25L+</div>
+                    <div className="text-3xl font-bold text-[#031634]">₹25L+</div>
                   </div>
-                  <div className="text-sm text-slate-300">In Prizes</div>
+                  <div className="text-sm text-[#031634]">In Prizes</div>
                 </div>
               </div>
             </div>
 
             {/* Right Column - Visual Elements */}
             <div className="relative fade-in-up" style={{ animationDelay: "0.3s" }}>
+              <div className="absolute -top-8 -left-8 w-24 h-24 bg-primary/20 rounded-3xl rotate-12 animate-float"></div>
+              <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-secondary/20 rounded-3xl -rotate-12 animate-float-delayed"></div>
+
+              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-5 border border-white/20 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)] transition-shadow duration-300">
+                <img
+                  src="src/assets/Gemini_Generated_Image_l1jbel1jbel1jbel.png"
+                  alt="STEM Innovation Challenge"
+                  className="w-full h-auto rounded-2xl object-cover"
+                />
+              </div>
+            </div>
+            {/* <div className="relative fade-in-up" style={{ animationDelay: "0.3s" }}>
               <div className="relative">
-                {/* Floating elements */}
+                Floating elements
                 <div className="absolute -top-8 -left-8 w-24 h-24 bg-primary/20 rounded-3xl rotate-12 animate-float"></div>
                 <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-secondary/20 rounded-3xl -rotate-12 animate-float-delayed"></div>
                 
-                {/* Main card */}
+                Main card
                 <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl">
                   <div className="text-center mb-8">
                     <div className="inline-flex items-center gap-2 bg-accent/20 text-accent px-4 py-2 rounded-full text-sm font-medium mb-4">
@@ -169,7 +182,7 @@ const Hero = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

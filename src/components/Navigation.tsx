@@ -315,9 +315,9 @@ const Navigation: React.FC = () => {
               <Button
                 variant="outline"
                 className={`
-                  border-2 transition-all duration-300
+                  border-2 transition-all duration-300 bg-[#50146466] btn-hover-lift
                   ${isScrolled
-                    ? "border-primary text-primary hover:bg-primary hover:text-white"
+                    ? "border-primary text-white hover:bg-primary hover:text-white"
                     : "border-white text-white hover:bg-white hover:text-slate-900"
                   }
                 `}
@@ -328,7 +328,7 @@ const Navigation: React.FC = () => {
             <Button
               variant="default"
               className={`
-                bg-primary hover:bg-primary-dark btn-hover-lift shadow-lg hover:shadow-xl transition-all
+                bg-[#F7941E] hover:bg-primary-dark btn-hover-lift shadow-lg hover:shadow-xl transition-all
                 ${!isScrolled ? "border-2 border-white" : ""}
               `}
               onClick={handleRegisterClick}
