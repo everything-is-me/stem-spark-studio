@@ -126,7 +126,7 @@ const Hero = () => {
 
               <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-5 border border-white/20 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)] transition-shadow duration-300">
                 <img
-                  src="src/assets/Gemini_Generated_Image_l1jbel1jbel1jbel.png"
+                  src="../assets/Gemini_Generated_Image_l1jbel1jbel1jbel.png"
                   alt="STEM Innovation Challenge"
                   className="w-full h-auto rounded-2xl object-cover"
                 />
