@@ -14,7 +14,7 @@ interface NavItem {
 
 // ========== DATA ==========
 const NAV_ITEMS: NavItem[] = [
-  { id: "home", label: "Home", icon: Home, href: "/" },
+  // { id: "home", label: "Home", icon: Home, href: "/" },
   {
     id: "competitions",
     label: "Competitions",
@@ -317,7 +317,7 @@ const Navigation: React.FC = () => {
                 className={`
                   border-2 transition-all duration-300 bg-[#50146466] btn-hover-lift
                   ${isScrolled
-                    ? "border-primary text-white hover:bg-primary hover:text-white"
+                    ? "border-[#50146466] text-white hover:bg-primary hover:text-white"
                     : "border-white text-white hover:bg-white hover:text-slate-900"
                   }
                 `}

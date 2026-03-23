@@ -1,0 +1,350 @@
+import { useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Lightbulb, Wrench, Trophy, Globe, Award, ArrowRight, Sparkles, Rocket } from "lucide-react";
+
+const journeySteps = [
+  {
+    id: 1,
+    icon: Lightbulb,
+    emoji: "💡",
+    title: "Spark an Idea",
+    description: "Every innovation begins with curiosity. Identify a real-world problem and think of a creative solution.",
+    gradient: "from-primary to-primary-dark",
+    bgGradient: "from-primary/5 to-primary/10",
+    delay: "0s"
+  },
+  {
+    id: 2,
+    icon: Wrench,
+    emoji: "🛠",
+    title: "MIF STEM Competition",
+    description: "Bring your idea to life. Build, experiment, and present your project at MIF's platform.",
+    gradient: "from-secondary to-secondary-light",
+    bgGradient: "from-secondary/5 to-secondary/10",
+    delay: "0.1s"
+  },
+  {
+    id: 3,
+    icon: Trophy,
+    emoji: "🏆",
+    title: "MIF Winner",
+    description: "Stand out among the best. Winning at MIF gives you recognition, confidence, and the next big opportunity.",
+    gradient: "from-accent to-accent-dark",
+    bgGradient: "from-accent/5 to-accent/10",
+    delay: "0.2s"
+  },
+  {
+    id: 4,
+    icon: Globe,
+    emoji: "🌍",
+    title: "Global Stage",
+    description: "Take your innovation beyond borders and compete at an international level inspired by Society for Science Competitions.",
+    gradient: "from-primary to-secondary",
+    bgGradient: "from-primary/5 to-secondary/5",
+    delay: "0.3s"
+  },
+  {
+    id: 5,
+    icon: Award,
+    emoji: "🥇",
+    title: "Global Recognition",
+    description: "Become a global innovator. Showcase your work among the world's best and make a real impact.",
+    gradient: "from-secondary to-accent",
+    bgGradient: "from-secondary/5 to-accent/5",
+    delay: "0.4s"
+  }
+];
+
+const InnovatorJourney = () => {
+  const [hoveredStep, setHoveredStep] = useState<number | null>(null);
+  const [activeStep, setActiveStep] = useState<number>(1);
+
+  return (
+    <section className="py-20 bg-white text-foreground relative overflow-hidden">
+
+        {/* Floating particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full opacity-20"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animation: `float ${5 + Math.random() * 10}s ease-in-out infinite`,
+              animationDelay: `${Math.random() * 5}s`
+            }}
+          ></div>
+        ))}
+      </div>
+
+      {/* Background elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-32 translate-x-32"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full translate-y-64 -translate-x-64"></div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header Section */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary/30 text-primary px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-6">
+            <Sparkles className="w-4 h-4" />
+            Roadmap Breakdown
+          </div>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mt-4 text-foreground">The Innovator's Journey</h2>
+          <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
+            From a spark of curiosity to global recognition — your path to becoming a STEM innovator
+          </p>
+        </div>
+
+        {/* Journey Steps - Modern Card Layout */}
+        <div className="max-w-7xl mx-auto mb-20">
+          {/* Desktop: Horizontal Flow */}
+          <div className="hidden lg:block relative">
+            {/* Connecting Path */}
+            <svg className="absolute top-32 left-0 w-full h-24 -z-0" style={{ overflow: 'visible' }}>
+              <defs>
+                <linearGradient id="pathGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3" />
+                  <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.3" />
+                  <stop offset="100%" stopColor="#ec4899" stopOpacity="0.3" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M 100 12 Q 300 12, 400 12 T 800 12 T 1200 12 T 1600 12"
+                stroke="url(#pathGradient)"
+                strokeWidth="3"
+                fill="none"
+                strokeDasharray="10,5"
+                className="animate-pulse"
+              />
+            </svg>
+
+            <div className="grid grid-cols-5 gap-6">
+              {journeySteps.map((step, index) => {
+                const Icon = step.icon;
+                const isActive = activeStep === step.id;
+                const isHovered = hoveredStep === step.id;
+
+                return (
+                  <div
+                    key={step.id}
+                    className="relative"
+                    style={{ 
+                      animation: `fadeInUp 0.6s ease-out ${step.delay} both`
+                    }}
+                    onMouseEnter={() => {
+                      setHoveredStep(step.id);
+                      setActiveStep(step.id);
+                    }}
+                    onMouseLeave={() => setHoveredStep(null)}
+                  >
+                    {/* Step Number with Glow */}
+                    <div className="flex justify-center mb-8 relative">
+                      <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white text-2xl font-bold shadow-2xl transform transition-all duration-500 ${
+                        isActive || isHovered ? 'scale-125 rotate-6' : 'scale-100'
+                      }`}>
+                        <span className="relative z-10">{step.id}</span>
+                        {(isActive || isHovered) && (
+                          <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${step.gradient} blur-xl opacity-60 animate-pulse`}></div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Card */}
+                    <Card className={`relative p-8 bg-card/75 backdrop-blur-xl border border-border/40 transition-all duration-500 overflow-hidden group ${
+                      isActive || isHovered 
+                        ? `border-primary/50 shadow-2xl -translate-y-4 bg-gradient-to-br ${step.bgGradient}` 
+                        : 'shadow-lg hover:-translate-y-2'
+                    }`}>
+                      {/* Gradient overlay on hover */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${step.gradient} opacity-0 transition-opacity duration-500 ${
+                        isActive || isHovered ? 'opacity-5' : ''
+                      }`}></div>
+
+                      {/* Icon */}
+                      <div className="relative mb-6 flex justify-center">
+                        <div className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${step.gradient} p-0.5 transition-transform duration-500 ${
+                          isActive || isHovered ? 'rotate-12 scale-110' : ''
+                        }`}>
+                          <div className="w-full h-full rounded-3xl bg-white flex items-center justify-center">
+                            <step.icon className={`w-10 h-10 bg-gradient-to-br ${step.gradient} bg-clip-text`} strokeWidth={2} />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Emoji */}
+                      {/* <div className="text-4xl text-center mb-4 transform transition-transform duration-300 group-hover:scale-125">
+                        {step.emoji}
+                      </div> */}
+
+                      {/* Content */}
+                      <div className="relative text-center">
+                        <h3 className="text-xl font-bold text-foreground mb-3">
+                          {step.title}
+                        </h3>
+                        <p className={`text-sm leading-relaxed transition-colors duration-300 ${
+                          isActive || isHovered ? 'text-foreground' : 'text-muted-foreground'
+                        }`}>
+                          {step.description}
+                        </p>
+                      </div>
+
+                      {/* Shine effect */}
+                      {(isActive || isHovered) && (
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer"></div>
+                      )}
+                    </Card>
+
+                    {/* Arrow connector */}
+                    {index < journeySteps.length - 1 && (
+                      <div className="absolute top-8 -right-3 z-20">
+                        <ArrowRight className={`w-6 h-6 transition-all duration-300 ${
+                          isActive || isHovered 
+                            ? `text-transparent bg-clip-text bg-gradient-to-r ${step.gradient} scale-125` 
+                            : 'text-slate-300'
+                        }`} />
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Mobile & Tablet: Vertical Flow */}
+          <div className="lg:hidden space-y-8">
+            {journeySteps.map((step) => {
+              const Icon = step.icon;
+              const isHovered = hoveredStep === step.id;
+
+              return (
+                <div
+                  key={step.id}
+                  className="relative"
+                  style={{ 
+                    animation: `fadeInUp 0.6s ease-out ${step.delay} both`
+                  }}
+                  onMouseEnter={() => setHoveredStep(step.id)}
+                  onMouseLeave={() => setHoveredStep(null)}
+                >
+                  <Card className={`relative p-8 bg-card/75 backdrop-blur-xl border border-border/40 transition-all duration-500 overflow-hidden ${
+                    isHovered 
+                      ? `border-primary/50 shadow-2xl bg-gradient-to-br ${step.bgGradient}` 
+                      : 'shadow-lg'
+                  }`}>
+                    <div className="flex gap-6">
+                      {/* Number & Icon */}
+                      <div className="flex-shrink-0">
+                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white text-2xl font-bold shadow-xl mb-4 transition-transform duration-500 ${
+                          isHovered ? 'scale-110 rotate-6' : ''
+                        }`}>
+                          {step.id}
+                        </div>
+                        <div className={`w-16 h-16 rounded-3xl bg-gradient-to-br ${step.gradient} p-0.5 transition-transform duration-500 ${
+                          isHovered ? 'rotate-12' : ''
+                        }`}>
+                          <div className="w-full h-full rounded-3xl bg-white flex items-center justify-center">
+                            <Icon className={`w-8 h-8 bg-gradient-to-br ${step.gradient} bg-clip-text text-transparent`} strokeWidth={2} />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="flex-1">
+                        <div className="text-3xl mb-3">{step.emoji}</div>
+                        <h3 className="text-2xl font-bold text-foreground mb-3">
+                          {step.title}
+                        </h3>
+                        <p className="text-muted-foreground leading-relaxed">
+                          {step.description}
+                        </p>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* CTA Section - Enhanced */}
+        <div className="max-w-5xl mx-auto">
+          <div className="relative rounded-3xl overflow-hidden">
+            {/* Gradient background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-accent"></div>
+            
+            {/* Animated gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/50 via-secondary/50 to-accent/50 animate-pulse"></div>
+            
+            {/* Content */}
+            <div className="relative p-12 text-center">
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 px-4 py-2 rounded-full mb-6">
+                <Rocket className="w-4 h-4 text-white" />
+                <span className="text-sm font-bold text-white uppercase tracking-wider">
+                  Begin Your Adventure
+                </span>
+              </div>
+
+              <h3 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+                Ready to Start Your Journey?
+              </h3>
+              
+              <p className="text-lg sm:text-xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Join thousands of young innovators who have turned their ideas into reality through MIF's STEM competitions.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button className="group relative bg-white text-primary px-10 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:bg-primary hover:text-white">
+                  Start Your Idea Today
+                  <ArrowRight className="inline-block w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+                </button>
+                
+                <button className="group relative bg-transparent border-2 border-white text-white px-10 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:bg-white hover:text-primary hover:shadow-2xl hover:-translate-y-1">
+                  Learn More About Competitions
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px) translateX(0px);
+          }
+          50% {
+            transform: translateY(-20px) translateX(10px);
+          }
+        }
+
+        @keyframes shimmer {
+          0% {
+            transform: translateX(-100%) skewX(-12deg);
+          }
+          100% {
+            transform: translateX(200%) skewX(-12deg);
+          }
+        }
+
+        .animate-shimmer {
+          animation: shimmer 2s infinite;
+        }
+      `}</style>
+    </section>
+  );
+};
+
+export default InnovatorJourney;

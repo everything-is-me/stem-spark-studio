@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Sparkles, Trophy, Cpu, CircuitBoard, Smartphone, Users } from "lucide-react";
 import heroBg from "@/assets/Gemini_Generated_Image_l1jbel1jbel1jbel.png";
+import heroBg2 from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -13,8 +14,16 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary via-white/20 to-primary/20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      style={{
+        backgroundImage: `url(${heroBg2})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat"
+      }}
     >
+      <div className="absolute inset-0 bg-white/60" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/20 to-secondary pointer-events-none" />
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>

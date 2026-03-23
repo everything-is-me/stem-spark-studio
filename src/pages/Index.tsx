@@ -5,6 +5,8 @@ import Mission from "@/components/Mission";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import CompetitionSection from "@/components/CompetitionSection";
+import InnovatorJourney from "@/components/InnovatorJourney";
 
 const Index = () => {
   useEffect(() => {
@@ -31,6 +33,8 @@ const Index = () => {
       <Navigation />
       <Hero />
       <Mission />
+      <CompetitionSection />
+      <InnovatorJourney />
       <About />
       <Contact />
       <Footer />
