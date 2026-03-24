@@ -1,9 +1,37 @@
-import { Button } from "@/components/ui/button";
-import { Sparkles, Trophy, Cpu, CircuitBoard, Smartphone, Users } from "lucide-react";
-import heroBg from "@/assets/Gemini_Generated_Image_l1jbel1jbel1jbel.png";
-import heroBg2 from "@/assets/hero-bg.jpg";
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import hero1 from "@/assets/hero/hero1.png";
+import hero2 from "@/assets/hero/hero2.png";
 
 const Hero = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    {
+      image: hero1,
+      title: "Young minds,",
+      subtitle: "Local Ideas",
+      highlight: "Global Market",
+      description: "India's premier youth innovation challenge in STEM",
+      align: "left"
+    },
+    {
+      image: hero2,
+      title: "Design. Build.",
+      subtitle: "Innovate.",
+      highlight: "Share.",
+      description: "Join thousands of students building products for India's tech sovereignty",
+      align: "left"
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -11,195 +39,171 @@ const Hero = () => {
     }
   };
 
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{
-        backgroundImage: `url(${heroBg2})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat"
-      }}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black"
     >
-      <div className="absolute inset-0 bg-white/60" />
-      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/20 to-secondary pointer-events-none" />
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-accent/10 rounded-full blur-2xl animate-bounce"></div>
+      {/* Image Carousel */}
+      <div className="absolute inset-0 w-full h-full">
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <img
+              src={slide.image}
+              alt={`Hero slide ${index + 1}`}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        ))}
 
-        {/* Circuit pattern overlay */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-            backgroundSize: '100px 100px'
-          }}></div>
-        </div>
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black/40"></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Column - Main Content */}
-            <div className="space-y-8">
-              <div className="fade-in-up">
-                {/* <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-                  <Sparkles className="w-4 h-4" />
-                  Building India's  Future
-                </div> */}
-
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-bold text-[#F7941E] leading-tight mb-6 drop-shadow-lg" style={{ textShadow: '5px 5px 0px rgba(80, 20, 100, 0.4)' }}>
-                  Young minds,{" "}
-                  <span className="text-[beige] relative inline-block" style={{ textShadow: '5px 5px 0px rgba(80, 20, 100, 0.4)' }}>
-                    Local Ideas
-                    <span className="absolute bottom-0 left-5 w-full h-1">
-                      <Sparkles className="absolute -top-4 -right-8 text-[#50146466] w-8 h-8 animate-pulse" />
-                    </span>
-                  </span>
-                  <br />
-                  Global Market
-                </h1>
-
-                <h2 className="text-3xl sm:text-4xl font-heading font-bold text-[#031634] mb-6">
-                  Design. Build. Innovate. Share.
-                </h2>
-              </div>
-
-              <div className="fade-in-up" style={{ animationDelay: "0.2s" }}>
-                <p className="text-xl text-[#031634] font-body mb-8 leading-relaxed">
-                  India's premier youth innovation challenge in Science Technology Engineering and Mathematics (STEM).
-                  {/* for hardware, electronics, 
-                  and deep-tech. Join thousands of students building products for 
-                  India's tech sovereignty. */}
-                </p>
-              </div>
-
-              {/* <div
-                className="flex flex-col sm:flex-row gap-4 fade-in-up"
-                style={{ animationDelay: "0.4s" }}
-              >
-                <Button
-                  size="lg"
-                  className="bg-primary hover:bg-primary-dark text-white btn-hover-lift text-lg px-8 py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all"
-                  onClick={() => scrollToSection("competitions")}
-                >
-                  <CircuitBoard className="mr-2 h-5 w-5" />
-                  View Innovation Challenges
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-secondary text-secondary hover:bg-secondary hover:text-white btn-hover-lift text-lg px-8 py-6 rounded-2xl"
-                  onClick={() => scrollToSection("contact")}
-                >
-                  <Trophy className="mr-2 h-5 w-5" />
-                  Register Now
-                </Button>
-              </div> */}
-
-              {/* Quick Stats */}
+      {/* Content */}
+      <div className="relative z-10 w-full h-full flex items-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+          <div className="max-w-6xl mx-auto h-full flex items-center">
+            {slides.map((slide, index) => (
               <div
-                className="mt-12 grid grid-cols-3 gap-6 fade-in-up"
-                style={{ animationDelay: "0.6s" }}
+                key={index}
+                className={`absolute w-full transition-all duration-1000 ease-in-out ${
+                  index === currentSlide
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-10"
+                } ${slide.align === "left" ? "left-0 text-left" : "right-0 text-right"}`}
               >
-                <div className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-4 hover:bg-white/10 transition-colors shadow-[0_0px_15px_1px_rgba(0,0,0,0.8)] transition-shadow duration-300">
-                  <div className="flex items-center justify-center gap-2 mb-2">
-                    <Users className="w-5 h-5 text-primary" />
-                    <div className="text-3xl font-bold text-[#031634]">1000+</div>
+                <div
+                  className={`max-w-2xl ${
+                    slide.align === "left" ? "pl-8 lg:pl-16" : "pr-8 lg:pr-16"
+                  }`}
+                >
+                  {/* Animated Title */}
+                  <div
+                    className="animate-fade-in-up"
+                    style={{
+                      animation:
+                        index === currentSlide
+                          ? "fadeInUp 0.8s ease-out 0.1s forwards"
+                          : "none",
+                      opacity: index === currentSlide ? 1 : 0
+                    }}
+                  >
+                    <h1 className="text-5xl sm:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight mb-2 drop-shadow-lg">
+                      {slide.title}
+                    </h1>
+                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-[#F7941E] leading-tight mb-2 drop-shadow-lg">
+                      {slide.subtitle}
+                    </h2>
+                    <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white leading-tight mb-6 drop-shadow-lg">
+                      {slide.highlight}
+                    </h2>
                   </div>
-                  <div className="text-sm text-[#031634]">Student Innovators</div>
-                </div>
-                <div className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-4 hover:bg-white/10 transition-colors shadow-[0_0px_15px_1px_rgba(0,0,0,0.8)] transition-shadow duration-300">
-                  <div className="flex items-center justify-center gap-2 mb-2">
-                    <Cpu className="w-5 h-5 text-secondary" />
-                    <div className="text-3xl font-bold text-[#031634]">25+</div>
-                  </div>
-                  <div className="text-sm text-[#031634]">States & UTs</div>
-                </div>
-                <div className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-4 hover:bg-white/10 transition-colors shadow-[0_0px_15px_1px_rgba(0,0,0,0.8)] transition-shadow duration-300">
-                  <div className="flex items-center justify-center gap-2 mb-2">
-                    <Smartphone className="w-5 h-5 text-accent" />
-                    <div className="text-3xl font-bold text-[#031634]">₹25L+</div>
-                  </div>
-                  <div className="text-sm text-[#031634]">In Prizes</div>
-                </div>
-              </div>
-            </div>
 
-            {/* Right Column - Visual Elements */}
-            <div className="relative fade-in-up" style={{ animationDelay: "0.3s" }}>
-              <div className="absolute -top-8 -left-8 w-24 h-24 bg-primary/20 rounded-3xl rotate-12 animate-float"></div>
-              <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-secondary/20 rounded-3xl -rotate-12 animate-float-delayed"></div>
-
-              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-5 border border-white/20 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.8)] transition-shadow duration-300">
-                <img
-                  src={heroBg}
-                  alt="STEM Innovation Challenge"
-                  className="w-full h-auto rounded-2xl object-cover"
-                />
-              </div>
-            </div>
-            {/* <div className="relative fade-in-up" style={{ animationDelay: "0.3s" }}>
-              <div className="relative">
-                Floating elements
-                <div className="absolute -top-8 -left-8 w-24 h-24 bg-primary/20 rounded-3xl rotate-12 animate-float"></div>
-                <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-secondary/20 rounded-3xl -rotate-12 animate-float-delayed"></div>
-                
-                Main card
-                <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl">
-                  <div className="text-center mb-8">
-                    <div className="inline-flex items-center gap-2 bg-accent/20 text-accent px-4 py-2 rounded-full text-sm font-medium mb-4">
-                      <Trophy className="w-4 h-4" />
-                      Annual National Competition
-                    </div>
-                    <h3 className="text-2xl font-heading font-bold text-white mb-4">
-                      For Middle & High School Students
-                    </h3>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    {[
-                      { icon: CircuitBoard, text: "Hardware & Electronics", color: "text-primary" },
-                      { icon: Smartphone, text: "Indian Product Design", color: "text-secondary" },
-                      { icon: Cpu, text: "Secure Tech Development", color: "text-accent" },
-                      { icon: Trophy, text: "Mentorship & Incubation", color: "text-primary" }
-                    ].map((item, index) => (
-                      <div 
-                        key={index}
-                        className="flex items-center gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors group"
-                      >
-                        <div className={`w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center group-hover:scale-110 transition-transform ${item.color}`}>
-                          <item.icon className="w-6 h-6" />
-                        </div>
-                        <span className="text-white font-medium">{item.text}</span>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <div className="mt-8 pt-8 border-t border-white/20">
-                    <p className="text-sm text-slate-300 text-center">
-                      Supported by Indian tech leaders & industry mentors
+                  {/* Animated Description */}
+                  <div
+                    style={{
+                      animation:
+                        index === currentSlide
+                          ? "fadeInUp 0.8s ease-out 0.3s forwards"
+                          : "none",
+                      opacity: index === currentSlide ? 1 : 0
+                    }}
+                  >
+                    <p className="text-xl sm:text-2xl text-white/90 font-body mb-8 leading-relaxed drop-shadow-lg">
+                      {slide.description}
                     </p>
-                    <div className="flex justify-center gap-4 mt-4">
-                      <div className="text-xs bg-white/10 text-white px-3 py-1 rounded-full">HCL</div>
-                      <div className="text-xs bg-white/10 text-white px-3 py-1 rounded-full">TATA</div>
-                      <div className="text-xs bg-white/10 text-white px-3 py-1 rounded-full">ISRO</div>
-                      <div className="text-xs bg-white/10 text-white px-3 py-1 rounded-full">DRDO</div>
-                    </div>
+                  </div>
+
+                  {/* Animated CTA Buttons */}
+                  <div
+                    className="flex gap-4 flex-wrap"
+                    style={{
+                      animation:
+                        index === currentSlide
+                          ? "fadeInUp 0.8s ease-out 0.5s forwards"
+                          : "none",
+                      opacity: index === currentSlide ? 1 : 0
+                    }}
+                  >
+                    <button
+                      onClick={() => scrollToSection("competitions")}
+                      className="bg-primary hover:bg-primary/80 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    >
+                      View Challenges
+                    </button>
+                    <button
+                      onClick={() => scrollToSection("contact")}
+                      className="bg-white/20 hover:bg-white/30 text-white font-semibold py-3 px-8 rounded-lg backdrop-blur-sm transition-all duration-300 transform hover:scale-105 border border-white/50"
+                    >
+                      Register Now
+                    </button>
                   </div>
                 </div>
               </div>
-            </div> */}
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Navigation Controls */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex items-center gap-6">
+        {/* Slide Indicators */}
+        <div className="flex gap-3">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentSlide
+                  ? "bg-white w-8"
+                  : "bg-white/50 hover:bg-white/75"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Arrow Controls */}
+        <div className="flex gap-2 bg-white/10 backdrop-blur-sm rounded-full p-2">
+          <button
+            onClick={prevSlide}
+            className="p-2 hover:bg-white/20 rounded-full transition-colors text-white"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="p-2 hover:bg-white/20 rounded-full transition-colors text-white"
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+
+      {/* Scroll Indicator */}
       <button
         onClick={() => scrollToSection("about")}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white/60 hover:text-white transition-colors"
+        className="absolute bottom-24 left-1/2 transform -translate-x-1/2 text-white/60 hover:text-white transition-colors z-20"
         aria-label="Scroll to next section"
       >
         <div className="animate-bounce">
@@ -209,8 +213,18 @@ const Hero = () => {
         </div>
       </button>
 
-      {/* Decorative gradient overlay */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent"></div>
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </section>
   );
 };

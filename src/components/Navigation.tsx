@@ -29,7 +29,7 @@ const NAV_ITEMS: NavItem[] = [
       { id: "competitions-projects", label: "Project Database", href: "/competitions/projects" },
     ]
   },
-  { id: "about", label: "About Us", icon: Users, href: "/#about" },
+  { id: "about", label: "About Us", icon: Users, href: "/about" },
   { id: "contact", label: "Get in Touch", icon: Mail, href: "/#contact" },
 ];
 

@@ -1,5 +1,5 @@
-import c1 from "@/assets/c1.png";
-import c2 from "@/assets/c2.png";
+import c1 from "@/assets/competitions/c1.png";
+import c2 from "@/assets/competitions/c2.png";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Sparkles, Bot, Cpu, CircuitBoard, FlaskConical, Gauge, Brain } from "lucide-react";

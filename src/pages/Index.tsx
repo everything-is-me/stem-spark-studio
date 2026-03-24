@@ -2,11 +2,12 @@ import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Mission from "@/components/Mission";
-import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import CompetitionSection from "@/components/CompetitionSection";
 import InnovatorJourney from "@/components/InnovatorJourney";
+import TrendingNews from "@/components/TrendingNews";
+import ScienceSimplified from "@/components/ScienceSimplified";
 
 const Index = () => {
   useEffect(() => {
@@ -35,7 +36,8 @@ const Index = () => {
       <Mission />
       <CompetitionSection />
       <InnovatorJourney />
-      <About />
+      <TrendingNews />
+      <ScienceSimplified />
       <Contact />
       <Footer />
     </div>
