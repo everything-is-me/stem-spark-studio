@@ -20,7 +20,7 @@ const IGNITE = () => {
             GRADES 6-8
           </div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-8">
+          <h1 className="text-foreground text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-8" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">IGNITE</span> Competition
           </h1>
           <p className="text-xl md:text-2xl text-slate-300 mb-10 leading-relaxed max-w-3xl mx-auto">
@@ -143,7 +143,7 @@ const IGNITE = () => {
               <Card className="border-none shadow-xl bg-gradient-to-br from-amber-700 to-orange-900 text-white overflow-hidden p-8 md:p-12 text-center relative">
                 <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-500/20 via-transparent to-transparent pointer-events-none" />
                 <Trophy className="w-20 h-20 text-yellow-400 mx-auto mb-6 drop-shadow-lg" />
-                <h2 className="text-4xl font-extrabold mb-6">IGNITE Rewards</h2>
+                <h2 className="text-4xl font-extrabold mb-6" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>IGNITE Rewards</h2>
                 <p className="text-xl text-orange-200 max-w-2xl mx-auto mb-10 leading-relaxed">
                   We reward pure curiosity! Winners of the IGNITE track take home exciting prizes that help continue their STEM journey.
                 </p>

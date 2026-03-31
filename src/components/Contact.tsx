@@ -215,7 +215,7 @@ const Contact = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16 fade-in-up">
-          <h2 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-4">
+          <h2 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-4" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
             Get In Touch
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

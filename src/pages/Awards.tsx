@@ -17,7 +17,7 @@ const Awards = () => {
               AWARDS
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 text-foreground" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
               Honoring Excellence
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

@@ -91,7 +91,7 @@ const InnovatorJourney = () => {
             <Sparkles className="w-4 h-4" />
             Roadmap Breakdown
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mt-4 text-foreground">The Innovator's Journey</h2>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mt-4 text-foreground" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>The Innovator's Journey</h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
             From a spark of curiosity to global recognition — your path to becoming a STEM innovator
           </p>

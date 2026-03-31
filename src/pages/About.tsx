@@ -12,7 +12,7 @@ const About = () => {
         {/* About MIF Section */}
         <section className="bg-primary/5 py-20 border-b border-primary/10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-8 text-foreground" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
               About Make India Foundation
             </h1>
             <div className="space-y-6 text-lg text-muted-foreground leading-relaxed text-left">

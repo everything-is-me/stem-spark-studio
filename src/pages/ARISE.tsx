@@ -20,7 +20,7 @@ const ARISE = () => {
             GRADES 9-12
           </div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-8">
+          <h1 className="text-foreground text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-8" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">ARISE</span> Competition
           </h1>
           <p className="text-xl md:text-2xl text-slate-300 mb-10 leading-relaxed max-w-3xl mx-auto">
@@ -143,7 +143,7 @@ const ARISE = () => {
               <Card className="border-none shadow-xl bg-gradient-to-br from-indigo-900 to-slate-900 text-white overflow-hidden p-8 md:p-12 text-center relative">
                 <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-500/20 via-transparent to-transparent pointer-events-none" />
                 <Trophy className="w-20 h-20 text-yellow-400 mx-auto mb-6 drop-shadow-lg" />
-                <h2 className="text-4xl font-extrabold mb-6">ARISE Honors</h2>
+                <h2 className="text-4xl font-extrabold mb-6" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>ARISE Honors</h2>
                 <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
                   Top tier projects will compete for the ultimate ARISE National Awards, unlocking massive opportunities for young scientists.
                 </p>

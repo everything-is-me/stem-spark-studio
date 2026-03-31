@@ -192,7 +192,7 @@ const Competitions = () => {
       <section id="quick-links" className="py-20 bg-card">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-heading font-bold text-foreground mb-4">
+            <h2 className="text-4xl font-heading font-bold text-foreground mb-4" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
               Competition Resources
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

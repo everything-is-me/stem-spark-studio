@@ -136,7 +136,7 @@ const FindFair = () => {
               Find a Fair
             </div>
 
-            <h1 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-6">
+            <h1 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-6" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
               Locate State-Level{" "}
               <span className="text-primary">Science Fairs</span>
             </h1>
