@@ -10,6 +10,9 @@ import CompetitionRules from "./pages/CompetitionRules";
 import CompetitionFAQ from "./pages/CompetitionFAQ";
 import FindFair from "./pages/FindFair";
 import Guidelines from "./pages/Guidelines";
+import ARISE from "./pages/ARISE";
+import IGNITE from "./pages/IGNITE";
+import Awards from "./pages/Awards";
 import ProjectDatabase from "./pages/ProjectDatabase";
 import Ample from "./pages/ample";
 import NotFound from "./pages/NotFound";
@@ -34,6 +37,9 @@ const App = () => (
           <Route path="/competitions/faq" element={<CompetitionFAQ />} />
           <Route path="/competitions/find-fair" element={<FindFair />} />
           <Route path="/competitions/guidelines" element={<Guidelines />} />
+          <Route path="/competitions/arise" element={<ARISE />} />
+          <Route path="/competitions/ignite" element={<IGNITE />} />
+          <Route path="/competitions/awards" element={<Awards />} />
           <Route path="/competitions/projects" element={<ProjectDatabase />} />
           <Route path="/about" element={<About />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

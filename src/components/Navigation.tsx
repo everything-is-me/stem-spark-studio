@@ -20,13 +20,11 @@ const NAV_ITEMS: NavItem[] = [
     label: "Competitions",
     icon: Trophy,
     children: [
-      { id: "competitions-overview", label: "Overview", href: "/competitions" },
-      { id: "competitions-categories", label: "Categories", href: "/competitions/categories" },
-      { id: "competitions-rules", label: "Rules", href: "/competitions/rules" },
-      { id: "competitions-faq", label: "FAQ", href: "/competitions/faq" },
-      { id: "competitions-find-fair", label: "Find a Fair", href: "/competitions/find-fair" },
-      { id: "competitions-guidelines", label: "Guidelines", href: "/competitions/guidelines" },
-      { id: "competitions-projects", label: "Project Database", href: "/competitions/projects" },
+      { id: "competitions-guidelines", label: "Guidelines and Rules", href: "/competitions/guidelines" },
+      { id: "competitions-arise", label: "ARISE", href: "/competitions/arise" },
+      { id: "competitions-ignite", label: "IGNITE", href: "/competitions/ignite" },
+      { id: "competitions-categories", label: "Categories and Sub-Categories", href: "/competitions/categories" },
+      { id: "competitions-awards", label: "Awards MIF", href: "/competitions/awards" },
     ]
   },
   { id: "about", label: "About Us", icon: Users, href: "/about" },

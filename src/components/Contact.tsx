@@ -99,7 +99,7 @@ const validateForm = (formData: ContactFormData): string[] => {
     errors.push("Invalid email format");
   }
   
-  if (formData.phone && !/^[\d\s\-\+\(\)]{10,}$/.test(formData.phone)) {
+  if (formData.phone && !/^[\d\s\-+()]{10,}$/.test(formData.phone)) {
     errors.push("Invalid phone number");
   }
   

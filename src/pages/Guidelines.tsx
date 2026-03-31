@@ -1,369 +1,378 @@
-import { useEffect } from "react";
+import React from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import {
-  FileText,
-  Download,
-  CheckCircle,
-  AlertTriangle,
-  BookOpen,
-  Target,
-  Users,
-  Clock,
-  Award,
-  Lightbulb
+import { Badge } from "@/components/ui/badge";
+import { 
+  CheckCircle2, 
+  XCircle, 
+  Lightbulb, 
+  Beaker, 
+  FileText, 
+  Video, 
+  ShieldCheck, 
+  Microscope, 
+  AlertTriangle, 
+  ListChecks, 
+  Users, 
+  BookOpen, 
+  Calculator,
+  UserX,
+  Zap,
+  Leaf
 } from "lucide-react";
 
 const Guidelines = () => {
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: "0px 0px -100px 0px",
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-fade-in-up");
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll(".fade-in-up").forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
-  const guidelines = [
-    {
-      title: "Project Requirements",
-      icon: <Target className="w-5 h-5" />,
-      content: [
-        "Projects must demonstrate original research or innovative solutions",
-        "All work must be completed by the student(s) with appropriate adult guidance",
-        "Projects should address real-world problems or scientific questions",
-        "Research must follow ethical guidelines and safety protocols",
-        "Documentation must be complete and well-organized"
-      ]
-    },
-    {
-      title: "Safety Guidelines",
-      icon: <AlertTriangle className="w-5 h-5" />,
-      content: [
-        "All projects must comply with ISEF safety rules and regulations",
-        "Hazardous materials require pre-approval and special handling",
-        "Electrical projects must follow proper wiring and safety standards",
-        "Biological materials must be handled according to biosafety protocols",
-        "Adult supervision required for potentially dangerous procedures"
-      ]
-    },
-    {
-      title: "Display Requirements",
-      icon: <BookOpen className="w-5 h-5" />,
-      content: [
-        "Display boards must be 36\" x 48\" (91 cm x 122 cm) or smaller",
-        "All text must be readable from 3 feet (1 meter) away",
-        "Projects must fit within the designated display space",
-        "No live animals, hazardous materials, or perishable items allowed",
-        "Electrical outlets may not be available - plan accordingly"
-      ]
-    },
-    {
-      title: "Presentation Guidelines",
-      icon: <Users className="w-5 h-5" />,
-      content: [
-        "Students must be prepared to explain their project to judges",
-        "Presentations should be clear, concise, and engaging",
-        "Visual aids and demonstrations are encouraged",
-        "Time limits will be strictly enforced",
-        "Professional conduct and respect for judges is required"
-      ]
-    },
-    {
-      title: "Research Ethics",
-      icon: <CheckCircle className="w-5 h-5" />,
-      content: [
-        "All research involving human subjects requires IRB approval",
-        "Animal research must follow humane treatment guidelines",
-        "Intellectual property and plagiarism rules must be followed",
-        "Data collection and analysis must be scientifically sound",
-        "Proper citation of sources is mandatory"
-      ]
-    }
-  ];
-
-  const resources = [
-    {
-      title: "ISEF Rules & Guidelines",
-      description: "Complete official rules for the International Science and Engineering Fair",
-      downloadUrl: "#",
-      fileSize: "2.4 MB"
-    },
-    {
-      title: "Project Display Template",
-      description: "Standard template for creating your project display board",
-      downloadUrl: "#",
-      fileSize: "1.8 MB"
-    },
-    {
-      title: "Research Planning Guide",
-      description: "Step-by-step guide for planning and conducting scientific research",
-      downloadUrl: "#",
-      fileSize: "3.2 MB"
-    },
-    {
-      title: "Safety Checklist",
-      description: "Comprehensive safety checklist for all project types",
-      downloadUrl: "#",
-      fileSize: "956 KB"
-    },
-    {
-      title: "Abstract Writing Guide",
-      description: "Guidelines for writing clear and effective project abstracts",
-      downloadUrl: "#",
-      fileSize: "1.1 MB"
-    },
-    {
-      title: "Presentation Tips",
-      description: "Tips and techniques for effective project presentations",
-      downloadUrl: "#",
-      fileSize: "2.1 MB"
-    }
-  ];
-
-  const timeline = [
-    {
-      phase: "Research & Planning",
-      duration: "2-3 months",
-      activities: [
-        "Select research topic and formulate hypothesis",
-        "Review literature and gather background information",
-        "Plan experimental procedures and methodology",
-        "Obtain necessary approvals (IRB, SRC, etc.)",
-        "Begin data collection and experimentation"
-      ]
-    },
-    {
-      phase: "Data Collection & Analysis",
-      duration: "1-2 months",
-      activities: [
-        "Conduct experiments and collect data",
-        "Document procedures and observations",
-        "Analyze data using appropriate statistical methods",
-        "Draw conclusions based on results",
-        "Prepare data visualizations and charts"
-      ]
-    },
-    {
-      phase: "Project Documentation",
-      duration: "2-3 weeks",
-      activities: [
-        "Write research paper and abstract",
-        "Create display board and visual materials",
-        "Prepare presentation materials",
-        "Practice presentation delivery",
-        "Complete all required forms and documentation"
-      ]
-    },
-    {
-      phase: "Competition Preparation",
-      duration: "1 week",
-      activities: [
-        "Review all rules and guidelines",
-        "Pack project materials safely",
-        "Practice presentation with time limits",
-        "Prepare responses to potential questions",
-        "Arrive early and set up display properly"
-      ]
-    }
-  ];
-
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
       <Navigation />
 
-      {/* Header */}
-      <section className="bg-gradient-to-br from-primary/5 via-background to-secondary/5 py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <FileText className="w-4 h-4" />
-              Guidelines & Resources
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-6">
-              Competition{" "}
-              <span className="text-primary">Guidelines</span>
+      <main className="flex-1 w-full pb-20">
+        {/* Modern Hero Section */}
+        <section className="relative overflow-hidden bg-primary/5 py-16 sm:py-24 mb-12 border-b border-primary/10">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-background to-background" />
+          <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <Badge className="mb-4 bg-primary/20 text-primary hover:bg-primary/30 text-sm px-4 py-1">Rulebook</Badge>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
+              Guidelines & Rules
             </h1>
-
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-              Everything you need to know to prepare a winning science fair project.
-              From research ethics to display requirements, we've got you covered.
+            <p className="max-w-2xl mx-auto text-xl text-muted-foreground">
+              Everything you need to know to create a winning project, from eligibility to ethics. 
+              Let your curiosity lead the way!
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="px-8 py-6">
-                <Download className="w-5 h-5 mr-2" />
-                Download All Resources
-              </Button>
-              <Button size="lg" variant="outline" className="px-8 py-6">
-                <BookOpen className="w-5 h-5 mr-2" />
-                View Rules
-              </Button>
-            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Guidelines Accordion */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-heading font-bold text-foreground mb-4">
-                Key Guidelines
-              </h2>
-              <p className="text-muted-foreground">
-                Essential requirements and best practices for participating in STEM Spark competitions
-              </p>
-            </div>
+        <section className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <Tabs defaultValue="participation" className="w-full">
+            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 h-auto min-h-14 gap-2 p-1 bg-muted/50 rounded-xl mb-12">
+              <TabsTrigger value="participation" className="text-sm sm:text-base py-3 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300">
+                <Users className="w-4 h-4 mr-2 hidden sm:inline" /> Eligibility
+              </TabsTrigger>
+              <TabsTrigger value="journey" className="text-sm sm:text-base py-3 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300">
+                <Lightbulb className="w-4 h-4 mr-2 hidden sm:inline" /> Project Journey
+              </TabsTrigger>
+              <TabsTrigger value="submission" className="text-sm sm:text-base py-3 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300">
+                <FileText className="w-4 h-4 mr-2 hidden sm:inline" /> Submission
+              </TabsTrigger>
+              <TabsTrigger value="ethics" className="text-sm sm:text-base py-3 rounded-lg data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300">
+                <ShieldCheck className="w-4 h-4 mr-2 hidden sm:inline" /> Ethics & Rules
+              </TabsTrigger>
+            </TabsList>
 
-            <Accordion type="single" collapsible className="space-y-4">
-              {guidelines.map((guideline, index) => (
-                <AccordionItem
-                  key={index}
-                  value={`guideline-${index}`}
-                  className="border border-border rounded-lg px-6 fade-in-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <AccordionTrigger className="text-left hover:no-underline">
-                    <div className="flex items-center gap-3">
-                      <div className="text-primary">{guideline.icon}</div>
-                      <span className="text-lg font-heading font-semibold">{guideline.title}</span>
+            {/* TAB 1: PARTICIPATION */}
+            <TabsContent value="participation" className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="grid md:grid-cols-2 gap-6">
+                <Card className="border-primary/20 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <CardHeader className="bg-primary/5 rounded-t-xl pb-6 border-b border-primary/10">
+                    <CardTitle className="flex items-center text-2xl">
+                      <Users className="w-6 h-6 mr-3 text-primary" /> Who is Eligible?
+                    </CardTitle>
+                    <CardDescription className="text-base mt-2">
+                      Students of Indian origin studying in schools based in South India (Tamil Nadu, Karnataka, Kerala, Andhra Pradesh, Telangana, and Puducherry).
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="pt-6 space-y-4">
+                    <div className="flex items-start space-x-3 p-4 bg-muted/30 rounded-lg">
+                      <div className="bg-blue-100 dark:bg-blue-900/30 p-2 rounded-full text-blue-600 dark:text-blue-400">
+                        <Zap className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg">ARISE</h4>
+                        <p className="text-muted-foreground">Class 9 to Class 12 students are eligible to participate.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-3 p-4 bg-muted/30 rounded-lg">
+                      <div className="bg-orange-100 dark:bg-orange-900/30 p-2 rounded-full text-orange-600 dark:text-orange-400">
+                        <Lightbulb className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg">IGNITE</h4>
+                        <p className="text-muted-foreground">Class 6 to Class 8 students are eligible to participate.</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-3 p-4 bg-red-100/50 dark:bg-red-900/10 rounded-lg border border-red-200 dark:border-red-900/30">
+                      <UserX className="w-5 h-5 text-red-500 mt-1 flex-shrink-0" />
+                      <p className="text-sm text-red-800 dark:text-red-300">
+                        <span className="font-bold">Note:</span> A student who has previously participated in ARISE as a Class 12 student is not eligible to re-register.
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-primary/20 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <CardHeader className="bg-primary/5 rounded-t-xl pb-6 border-b border-primary/10">
+                    <CardTitle className="flex items-center text-2xl">
+                      <Microscope className="w-6 h-6 mr-3 text-primary" /> What we look for
+                    </CardTitle>
+                    <CardDescription className="text-base mt-2">
+                      Your project must be original in content and driven by genuine curiosity.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="pt-6">
+                    <ul className="space-y-4">
+                      <li className="flex items-center p-3 hover:bg-muted/50 rounded-lg transition-colors">
+                        <CheckCircle2 className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                        <span>Research-based projects are highly welcomed.</span>
+                      </li>
+                      <li className="flex items-center p-3 hover:bg-muted/50 rounded-lg transition-colors">
+                        <CheckCircle2 className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                        <span>Novel engineering designs are strongly encouraged.</span>
+                      </li>
+                      <li className="flex items-start p-3 hover:bg-muted/50 rounded-lg transition-colors">
+                        <CheckCircle2 className="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-1" />
+                        <span>Engineering projects <span className="font-semibold underline decoration-primary decoration-2 underline-offset-2">must demonstrate meaningful improvement</span> over existing solutions, not merely replicate them.</span>
+                      </li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            {/* TAB 2: PROJECT JOURNEY */}
+            <TabsContent value="journey" className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl font-bold mb-4">9 Steps to Scientific Success</h2>
+                <p className="text-muted-foreground max-w-2xl mx-auto">Follow this systematic approach to develop an outstanding, reliable, and original science project.</p>
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  { icon: Lightbulb, title: "1. Choose a Topic", desc: "Pick something that genuinely interests you. The best projects come from real curiosity, not convenience. Check local resources first." },
+                  { icon: BookOpen, title: "2. Research", desc: "Dig deep. Use Google Scholar, PubMed, or Scirus to see what work has already been done. Understand the existing landscape." },
+                  { icon: ListChecks, title: "3. Make a Plan", desc: "Define the purpose, identify your variables, state your hypothesis, and map out a procedure. Build a realistic timeline." },
+                  { icon: Microscope, title: "4. Form a Hypothesis", desc: "Create a testable statement about what you expect. Design at least one experiment to test it. Change one variable at a time." },
+                  { icon: Beaker, title: "5. Run Experiments", desc: "Create a controlled experiment with a clear reference point. Repeat experiments to confirm reproducibility. Record everything!" },
+                  { icon: FileText, title: "6. Record Data", desc: "Keep a detailed project data book. Write down unexpected outcomes and errors. Photos/videos are strongly encouraged." },
+                  { icon: Users, title: "7. Work with Guide", desc: "Maintain ongoing discussions throughout the project. Your guide is your most important resource and certifier." },
+                  { icon: Calculator, title: "8. Process Results", desc: "Process raw data using proper calculations. Use tables, graphs, and statistics to identify trends and draw conclusions." },
+                  { icon: CheckCircle2, title: "9. Draw Conclusions", desc: "Do results support your hypothesis? Valid science accepts 'no'. Never alter results to fit a theory. Be honest and open-minded." },
+                ].map((step, i) => (
+                  <Card key={i} className="group hover:-translate-y-2 hover:shadow-xl hover:border-primary/50 transition-all duration-300 overflow-hidden relative">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-[100px] -z-10 transition-transform group-hover:scale-125 duration-500" />
+                    <CardHeader className="pb-2">
+                      <step.icon className="w-10 h-10 text-primary mb-4 p-2 bg-primary/10 rounded-xl group-hover:scale-110 transition-transform duration-300" />
+                      <CardTitle className="text-xl">{step.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </TabsContent>
+
+            {/* TAB 3: SUBMISSION */}
+            <TabsContent value="submission" className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+              
+              <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-6 rounded-r-xl shadow-sm mb-8">
+                <div className="flex items-start">
+                  <AlertTriangle className="w-6 h-6 text-yellow-600 dark:text-yellow-500 mr-4 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-bold text-lg text-yellow-800 dark:text-yellow-400 mb-2">CRITICAL RULE: Total Anonymity</h3>
+                    <p className="text-yellow-800/80 dark:text-yellow-400/80 font-medium">
+                      Do not disclose your school name, city, or state in ANY part of your submission — including your abstract, research paper, report, presentation, or project video. All documents will go through a pre-check. <strong className="text-red-600 dark:text-red-400">Projects that violate this rule will be instantly disqualified.</strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid lg:grid-cols-2 gap-8">
+                <Card className="border-t-4 border-t-primary shadow-md hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <CardTitle className="flex items-center text-2xl">
+                      <FileText className="w-6 h-6 text-primary mr-3" /> Mandatory Documents
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <p className="text-sm text-muted-foreground">Submit online via the MIF portal only. No emails or offline submissions. You may also attach a full scientific report.</p>
+                    <ul className="space-y-3">
+                      {[
+                        { label: "Project Abstract", words: "250 words" },
+                        { label: "Introduction & Objective", words: "100–150 words" },
+                        { label: "Innovation", words: "50–100 words" },
+                        { label: "Methodology", words: "150–250 words" },
+                        { label: "Results and Conclusions", words: "100–150 words" },
+                        { label: "Acknowledgements & Links", words: "50–100 words" },
+                      ].map((req, i) => (
+                         <li key={i} className="flex justify-between items-center bg-muted/40 p-3 rounded-md border border-border/50">
+                           <span className="font-medium">{req.label}</span>
+                           <Badge variant="outline" className="bg-background text-xs">{req.words}</Badge>
+                         </li>
+                      ))}
+                    </ul>
+                    
+                    <div className="pt-4 mt-6 border-t border-border">
+                      <h4 className="font-semibold mb-3">Project Essentials:</h4>
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                        <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-primary" /> Data Book</li>
+                        <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-primary" /> Synopsis</li>
+                        <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-primary" /> Research Paper</li>
+                        <li className="flex items-center"><CheckCircle2 className="w-4 h-4 mr-2 text-primary" /> Cost Feasibility (If device)</li>
+                      </ul>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <div className="space-y-8">
+                  <Card className="shadow-md hover:shadow-lg transition-shadow">
+                    <CardHeader className="bg-gradient-to-r from-blue-500/10 to-purple-500/10">
+                      <CardTitle className="flex items-center text-xl">
+                        <Video className="w-6 h-6 mr-3 text-blue-600 dark:text-blue-400" /> Highly Important: Project Video
+                      </CardTitle>
+                      <CardDescription>Maximum 90 seconds. Key focus for judges.</CardDescription>
+                    </CardHeader>
+                    <CardContent className="pt-6">
+                      <div className="grid grid-cols-2 gap-4 mb-6">
+                        <div className="bg-green-50 dark:bg-green-900/10 p-4 rounded-lg border border-green-200 dark:border-green-900/30">
+                          <h4 className="font-bold text-green-700 dark:text-green-400 flex items-center mb-2"><CheckCircle2 className="w-4 h-4 mr-2" /> Must Include</h4>
+                          <ul className="text-sm space-y-1 text-green-900/80 dark:text-green-400/80 list-disc ml-4">
+                            <li>Full name and grade</li>
+                            <li>1-sentence project summary</li>
+                            <li>Creation & innovation</li>
+                            <li>Methodology</li>
+                            <li>Conclusions</li>
+                          </ul>
+                        </div>
+                        <div className="bg-red-50 dark:bg-red-900/10 p-4 rounded-lg border border-red-200 dark:border-red-900/30">
+                          <h4 className="font-bold text-red-700 dark:text-red-400 flex items-center mb-2"><XCircle className="w-4 h-4 mr-2" /> DO NOT Include</h4>
+                          <ul className="text-sm space-y-1 text-red-900/80 dark:text-red-400/80 list-disc ml-4">
+                            <li>School name, city, state</li>
+                            <li>Anyone other than you</li>
+                          </ul>
+                        </div>
+                      </div>
+                      <p className="text-xs text-muted-foreground"><strong>Pro-tips:</strong> English preferred, well-lit place, horizontal (landscape), clear audio. Max 30MB file, or open-access link.</p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-red-200 shadow-md">
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-lg text-red-600 dark:text-red-400 flex items-center">
+                        <XCircle className="w-5 h-5 mr-2" /> What DOES NOT Qualify?
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="text-sm space-y-2 text-muted-foreground">
+                        <li className="flex items-start"><span className="text-red-500 mr-2 font-bold">—</span> Repeating a standard textbook experiment</li>
+                        <li className="flex items-start"><span className="text-red-500 mr-2 font-bold">—</span> General essays or survey reports</li>
+                        <li className="flex items-start"><span className="text-red-500 mr-2 font-bold">—</span> Unsupported hypothesis without proof</li>
+                        <li className="flex items-start"><span className="text-red-500 mr-2 font-bold">—</span> Claims violating laws (e.g. perpetual motion)</li>
+                        <li className="flex items-start"><span className="text-red-500 mr-2 font-bold">—</span> Animal toxicity studies resulting in death</li>
+                        <li className="flex items-start"><span className="text-red-500 mr-2 font-bold">—</span> Basic models illustrating known concepts</li>
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </TabsContent>
+
+            {/* TAB 4: ETHICS AND DISPLAY */}
+            <TabsContent value="ethics" className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <Accordion type="single" collapsible className="w-full bg-card shadow-lg rounded-xl border p-4 px-6" defaultValue="human">
+                <AccordionItem value="human" className="border-b">
+                  <AccordionTrigger className="hover:no-underline hover:text-primary transition-colors py-6 text-xl">
+                    <div className="flex items-center text-left">
+                      <Users className="w-6 h-6 mr-4" /> 
+                      <div>
+                        Rules Involving Human Participants & Informed Consent
+                        <p className="text-sm text-muted-foreground font-normal mt-1 hidden sm:block">Protecting participant welfare and ensuring ethical study conduct.</p>
+                      </div>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="pt-4">
-                    <ul className="space-y-2">
-                      {guideline.content.map((item, itemIndex) => (
-                        <li key={itemIndex} className="flex items-start gap-2">
-                          <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-muted-foreground">{item}</span>
-                        </li>
-                      ))}
+                  <AccordionContent className="text-base text-muted-foreground space-y-4 pb-6 px-10">
+                    <p>
+                      A human participant is any living individual from whom a student researcher collects data, samples, or identifiable private information.
+                    </p>
+                    <ul className="list-disc ml-6 space-y-2">
+                      <li><strong>Informed Consent:</strong> You must fully inform participants (and parents/guardians) about study risks/benefits before collecting data.</li>
+                      <li><strong>Voluntary:</strong> Participation must be voluntary with no pressure. They can withdraw anytime.</li>
+                      <li><strong>No medical practice:</strong> Students cannot diagnose illness, prescribe medication, or perform medical procedures without a licensed professional.</li>
+                      <li><strong>Privacy:</strong> Never publish/display identifiable personal info (including photos) without explicit written consent.</li>
                     </ul>
                   </AccordionContent>
                 </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </div>
-      </section>
 
-      {/* Project Timeline */}
-      <section className="py-20 bg-muted/30">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-heading font-bold text-foreground mb-4">
-                Project Timeline
-              </h2>
-              <p className="text-muted-foreground">
-                A typical timeline for completing a science fair project from start to finish
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {timeline.map((phase, index) => (
-                <Card key={index} className="p-6 border-border/50 fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                      <Clock className="w-5 h-5 text-primary" />
+                <AccordionItem value="animals" className="border-b">
+                  <AccordionTrigger className="hover:no-underline hover:text-primary transition-colors py-6 text-xl">
+                    <div className="flex items-center text-left">
+                      <Leaf className="w-6 h-6 mr-4" /> 
+                      <div>
+                        Rules Involving Vertebrate Animals
+                        <p className="text-sm text-muted-foreground font-normal mt-1 hidden sm:block">MIF strongly encourages non-animal research methods where possible.</p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-heading font-bold text-foreground">{phase.phase}</h3>
-                      <p className="text-sm text-primary font-medium">{phase.duration}</p>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-base text-muted-foreground space-y-4 pb-6 px-10">
+                    <div className="bg-primary/10 p-4 rounded-lg border border-primary/20 mb-4 grid sm:grid-cols-2 gap-4">
+                      <div><strong className="text-primary">Replace:</strong> Use invertebrates, simulations instead.</div>
+                      <div><strong className="text-primary">Reduce:</strong> Minimise animal usage.</div>
+                      <div><strong className="text-primary">Refine:</strong> Minimise pain, stress, distress.</div>
+                      <div><strong className="text-primary">Respect:</strong> Treat all animals with care.</div>
                     </div>
-                  </div>
-                  <ul className="space-y-2">
-                    {phase.activities.map((activity, activityIndex) => (
-                      <li key={activityIndex} className="flex items-start gap-2 text-sm">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-muted-foreground">{activity}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+                    <ul className="list-disc ml-6 space-y-2">
+                      <li><strong>Strictly Prohibited:</strong> Any study designed or expected to result in vertebrate animal death.</li>
+                      <li>If unintended death occurs, stop immediately and investigate. If linked to procedure, disqualification applies.</li>
+                      <li><strong>Permitted:</strong> Observational studies in nature/zoos, livestock studies using ag practices, basic aquaculture.</li>
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
 
-      {/* Resources */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-heading font-bold text-foreground mb-4">
-                Downloadable Resources
-              </h2>
-              <p className="text-muted-foreground">
-                Essential documents, templates, and guides to help you succeed
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {resources.map((resource, index) => (
-                <Card key={index} className="p-6 border-border/50 hover:border-primary/50 transition-colors fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                  <div className="flex items-start gap-3 mb-4">
-                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                      <FileText className="w-5 h-5 text-primary" />
+                <AccordionItem value="display" className="border-none">
+                  <AccordionTrigger className="hover:no-underline hover:text-primary transition-colors py-6 text-xl">
+                    <div className="flex items-center text-left">
+                      <ShieldCheck className="w-6 h-6 mr-4" /> 
+                      <div>
+                        Display Guidelines for Shortlisted Projects
+                        <p className="text-sm text-muted-foreground font-normal mt-1 hidden sm:block">What you can and cannot bring to the ARISE Fair.</p>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="font-heading font-bold text-foreground mb-1">{resource.title}</h3>
-                      <p className="text-sm text-muted-foreground mb-2">{resource.description}</p>
-                      <p className="text-xs text-muted-foreground">{resource.fileSize}</p>
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-6">
+                    <div className="grid md:grid-cols-2 gap-8 px-2 mt-4">
+                      <div>
+                        <h4 className="font-bold text-green-600 flex items-center mb-3"><CheckCircle2 className="w-5 h-5 mr-2" /> Allowed Display Items</h4>
+                        <ul className="space-y-2 text-sm text-muted-foreground">
+                          <li>• Dried plant materials sealed in acrylic</li>
+                          <li>• Sealed soil/liquid samples</li>
+                          <li>• Personal photos (inside papers only)</li>
+                          <li>• Class II student-operated lasers (with housing)</li>
+                          <li>• Pressurised tanks (non-combustible, secured)</li>
+                          <li>• Personal laptops (bring your own net)</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-red-600 flex items-center mb-3"><XCircle className="w-5 h-5 mr-2" /> Prohibited Items</h4>
+                        <ul className="space-y-2 text-sm text-muted-foreground">
+                          <li>• Living organisms, preserved animals, bodily fluids</li>
+                          <li>• Household/lab chemicals, dry ice, sublimating solids</li>
+                          <li>• Firearms, hazardous devices, blades/syringes</li>
+                          <li>• Open flames, flammable materials, open-top batteries</li>
+                          <li>• Awards, medals, business cards, flags</li>
+                          <li>• <strong>Any visible student identity</strong> on posters</li>
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                  <Button className="w-full" variant="outline">
-                    <Download className="w-4 h-4 mr-2" />
-                    Download
-                  </Button>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+                    <div className="mt-6 p-4 bg-muted/40 rounded-lg text-sm flex items-start">
+                      <Zap className="w-5 h-5 text-yellow-500 mr-2 flex-shrink-0" />
+                      <p><strong>Electrical:</strong> 220V/50Hz AC available. All wires/edges must be insulated. No heavy machinery allowed.</p>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </TabsContent>
+          </Tabs>
 
-      {/* Call to Action */}
-      <section className="py-20 bg-primary">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-3xl mx-auto">
-            <Lightbulb className="w-16 h-16 text-white mx-auto mb-6" />
-            <h2 className="text-3xl font-heading font-bold text-white mb-4">
-              Need Additional Help?
-            </h2>
-            <p className="text-lg text-primary-foreground/80 mb-8">
-              Our team of experienced mentors and educators is here to support you throughout your project journey.
-              Get personalized guidance and expert advice.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" className="px-8 py-6">
-                <Users className="w-5 h-5 mr-2" />
-                Contact Mentors
-              </Button>
-              <Button size="lg" variant="outline" className="px-8 py-6 border-white text-white hover:bg-white hover:text-primary">
-                <Award className="w-5 h-5 mr-2" />
-                View Past Winners
-              </Button>
-            </div>
+          <div className="mt-20 pt-8 border-t text-center space-y-4">
+            <p className="text-primary font-medium">ARISE is an initiative of the Make India Foundation.</p>
+            <p className="text-muted-foreground text-sm">For queries, write to us at <a href="mailto:contact@makeindiafoundation.org" className="hover:underline font-medium">contact@makeindiafoundation.org</a> or visit <a href="https://makeindiafoundation.org" target="_blank" rel="noreferrer" className="hover:underline font-medium text-primary">makeindiafoundation.org</a></p>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
       <Footer />
     </div>

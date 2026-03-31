@@ -1,199 +1,176 @@
-import { Target, Heart, Zap, Users, GraduationCap, TrendingUp } from "lucide-react";
-import teamPhoto from "@/assets/team-photo.jpg";
-import { ReactNode } from "react";
 import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import { Card, CardContent } from "@/components/ui/card";
+import { Target, Lightbulb, User, Users, GraduationCap, Building } from "lucide-react";
 
-// ========== TYPES ==========
-interface ValueCardProps {
-  icon: React.ComponentType<{ className?: string; strokeWidth?: number | string }>;
-  title: string;
-  description: string;
-  color: string;
-  delay: string;
-}
-
-interface ImpactStatProps {
-  icon: React.ComponentType<{ className?: string; strokeWidth?: number | string }>;
-  value: string;
-  label: string;
-  description: string;
-}
-
-// ========== COMPONENTS ==========
-const ValueCard: React.FC<ValueCardProps> = ({ icon: Icon, title, description, color, delay }) => (
-  <div
-    className="text-center p-8 bg-background rounded-3xl shadow-sm fade-in-up border border-border/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-    style={{ animationDelay: delay }}
-  >
-    <div className={`w-16 h-16 ${color} rounded-2xl flex items-center justify-center mx-auto mb-6 transition-transform duration-300 hover:scale-110`}>
-      <Icon className="w-8 h-8" strokeWidth={1.5} />
-    </div>
-    <h4 className="font-heading font-bold text-xl text-foreground mb-3">{title}</h4>
-    <p className="text-muted-foreground leading-relaxed">{description}</p>
-  </div>
-);
-
-const ImpactStat: React.FC<ImpactStatProps> = ({ icon: Icon, value, label, description }) => (
-  <div className="text-center p-6 bg-card rounded-2xl border border-border/30">
-    <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-      <Icon className="w-7 h-7 text-primary" strokeWidth={1.5} />
-    </div>
-    <div className="text-3xl font-heading font-bold text-foreground mb-1">{value}</div>
-    <div className="text-sm font-semibold text-primary mb-2">{label}</div>
-    <p className="text-xs text-muted-foreground">{description}</p>
-  </div>
-);
-
-// ========== DATA ==========
-const VALUES: ValueCardProps[] = [
-  {
-    icon: Target,
-    title: "Our Vision",
-    description: "An India where every young person designs and builds technology — transforming from tech consumers to creators for our nation's sovereignty.",
-    color: "bg-primary/10 text-primary",
-    delay: "0s"
-  },
-  {
-    icon: Heart,
-    title: "Our Mission",
-    description: "To ignite India's next generation of hardware innovators and product creators through hands-on learning, competitions, and real-world problem-solving.",
-    color: "bg-secondary/10 text-secondary",
-    delay: "0.1s"
-  },
-  {
-    icon: Zap,
-    title: "Our Core Belief",
-    description: "India must become a product nation. The change begins in classrooms, maker spaces, and young minds building for India's tech independence.",
-    color: "bg-accent/20 text-accent-dark",
-    delay: "0.2s"
-  }
-];
-
-const IMPACT_STATS: ImpactStatProps[] = [
-  {
-    icon: Users,
-    value: "5,000+",
-    label: "Students Trained",
-    description: "In hardware design & innovation"
-  },
-  {
-    icon: GraduationCap,
-    value: "85%",
-    label: "Pursue STEM",
-    description: "Of participants continue in tech fields"
-  },
-  {
-    icon: TrendingUp,
-    value: "200+",
-    label: "Prototypes Built",
-    description: "Student projects turned into real products"
-  }
-];
-
-// ========== MAIN COMPONENT ==========
 const About = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col bg-background">
       <Navigation />
 
-      <section id="about" className="py-20 bg-card relative overflow-hidden">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-primary rounded-full"></div>
-          <div className="absolute bottom-10 right-10 w-40 h-40 bg-secondary rounded-full"></div>
-        </div>
-
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16 fade-in-up">
-            <h2 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-4">
+      <main className="flex-1">
+        {/* About MIF Section */}
+        <section className="bg-primary/5 py-20 border-b border-primary/10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
               About Make India Foundation
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Building India's tech future, one young innovator at a time
-            </p>
-          </div>
-
-          {/* Team & Story Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-            <div className="fade-in-up">
-              <img
-                src={teamPhoto}
-                alt="Make India Foundation team with student innovators"
-                className="rounded-3xl shadow-xl w-full h-auto object-cover hover:shadow-2xl transition-shadow duration-500"
-              />
-            </div>
-
-            <div className="space-y-6 fade-in-up" style={{ animationDelay: "0.2s" }}>
-              <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
-                Our Story
-              </div>
-              <h3 className="text-3xl font-heading font-bold text-foreground">
-                Who We Are
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Make India Foundation is a non-profit educational initiative founded by Indian tech leaders,
-                educators, and policymakers — including pioneers like Dr. Ajay Chowdhury — to address India's
-                critical need for homegrown hardware talent and tech sovereignty.
+            </h1>
+            <div className="space-y-6 text-lg text-muted-foreground leading-relaxed text-left">
+              <p>
+                Make India Foundation (MIF) was born from a simple but urgent truth: India has the talent to lead the world in technology — it just needs the right platform to build it.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Inspired by the vision of transforming India from a services-led economy to a product nation,
-                we've created India's premier youth innovation challenge focused on hardware, electronics, and
-                deep-tech solutions for Indian problems.
+              <p>
+                Founded by a team of educators, entrepreneurs, and engineers united by one belief, MIF exists to transform India's brightest young minds from consumers of technology into confident creators of it. Through competitions, programs, and community-driven initiatives, we challenge students to move beyond textbooks — to design, build, innovate, and share solutions that matter.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
-                Our competitions bridge the gap between classroom learning and real-world impact, connecting
-                students with mentors from India's leading tech companies, research institutions, and startups.
+              <p>
+                MIF bridges two worlds: the global best practices of STEM education from the United States and the rich, untapped potential of India's student community. We are not just running programs — we are building a movement.
               </p>
-
-              {/* Impact Stats */}
-              <div className="grid grid-cols-3 gap-4 pt-4">
-                {IMPACT_STATS.map((stat, index) => (
-                  <ImpactStat key={index} {...stat} />
-                ))}
-              </div>
             </div>
           </div>
+        </section>
 
-          {/* Values Section */}
-          <div className="mb-16">
+        {/* What We Stand For */}
+        <section className="py-20 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
             <div className="text-center mb-12">
-              <h3 className="text-3xl font-heading font-bold text-foreground mb-3">
-                Why We Exist
-              </h3>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                In a world where 90% of India's electronics and chips are imported, we believe the
-                solution starts with inspiring our youth to become creators, not just consumers.
-              </p>
+              <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground">What We Stand For</h2>
             </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              <Card className="group hover:-translate-y-2 hover:shadow-xl transition-all duration-300 border-primary/20">
+                <CardContent className="p-8 text-center sm:text-left sm:flex items-start gap-6">
+                  <div className="mx-auto sm:mx-0 bg-blue-100 text-blue-600 w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 mb-6 sm:mb-0 group-hover:scale-110 transition-transform">
+                    <Target className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold mb-3">Our Mission</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      To ignite India's next generation of innovators by building a hands-on culture of designing and making — empowering students to create indigenous, world-class technological solutions that drive India from dependency to self-reliance.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {VALUES.map((value, index) => (
-                <ValueCard key={index} {...value} />
-              ))}
+              <Card className="group hover:-translate-y-2 hover:shadow-xl transition-all duration-300 border-primary/20">
+                <CardContent className="p-8 text-center sm:text-left sm:flex items-start gap-6">
+                  <div className="mx-auto sm:mx-0 bg-amber-100 text-amber-600 w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0 mb-6 sm:mb-0 group-hover:scale-110 transition-transform">
+                    <Lightbulb className="w-8 h-8" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold mb-3">Our Vision</h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      An India that is not just a services powerhouse, but a product nation — where students from every corner of the country have the skills, the mindset, and lower constraints to design, build, and share technology that solves real problems at national scale.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
+        </section>
 
-          {/* Inspired By Section */}
-          <div className="bg-background rounded-3xl p-8 md:p-12 border border-border/50 shadow-sm fade-in-up">
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Zap className="w-8 h-8 text-accent-dark" strokeWidth={1.5} />
+        {/* Our Founder */}
+        <section className="py-20 bg-slate-50 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold">Our Founder</h2>
+            </div>
+            <Card className="overflow-hidden border-none shadow-lg">
+              <div className="grid md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_3fr]">
+                <div className="bg-gradient-to-br from-primary/80 to-blue-600 p-8 flex flex-col items-center justify-center text-white text-center">
+                  <div className="relative w-24 h-24 mb-4">
+                    <img 
+                      src="/images/kumar-r.jpg" 
+                      alt="Kumar R" 
+                      className="w-24 h-24 rounded-full object-cover shadow-inner border-4 border-white/20"
+                      onError={(e) => { e.currentTarget.src = "https://ui-avatars.com/api/?name=Kumar+R&background=ffffff&color=2563eb&bold=true&size=200" }}
+                    />
+                  </div>
+                  <h3 className="text-2xl font-bold">Kumar R</h3>
+                  <p className="text-primary-foreground/80 mt-2 font-medium text-sm">Founder, Make India Foundation</p>
+                  <p className="text-primary-foreground/80 text-sm">Founder & CEO, Bytes & Bots STEM, USA</p>
+                </div>
+                <div className="p-8 sm:p-10 flex flex-col justify-center">
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    Kumar R is the driving force behind Make India Foundation. Based in the United States, he is the founder of Bytes & Bots — a K–12 STEM education company widely recognized for its distinctive project-based curriculum and hands-on teaching methodology.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Having built a successful STEM program in the US, Kumar turned his attention back to India — not as a distant observer, but as an active builder. He established MIF with a clear conviction: that Indian students deserve access to the same quality of innovation-first education that shapes the world's top engineers and entrepreneurs. His vision of <strong>Design · Build · Innovate · Share</strong> is not a tagline — it is the lived philosophy behind every MIF initiative.
+                  </p>
+                </div>
               </div>
-              <blockquote className="text-xl italic text-muted-foreground mb-6 leading-relaxed">
-                "We must move from services to products. From screwdriver assembly to designing and
-                making in India. This change must start with our youth — in schools, in maker spaces,
-                in young minds dreaming of building India's tech future."
-              </blockquote>
-              <div className="font-heading font-semibold text-foreground">
-                — Dr. Ajay Chowdhury, Co-founder HCL & Chairman, National Quantum Mission
-              </div>
-              <div className="text-sm text-muted-foreground mt-2">
-                From the NI Podcast conversation on India's tech sovereignty
-              </div>
+            </Card>
+          </div>
+        </section>
+
+        {/* Collaborative Partners */}
+        <section className="py-20 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold flex items-center justify-center gap-3">
+                <Users className="text-primary" /> Collaborative Partners
+              </h2>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* Partner 1 */}
+              <Card className="flex flex-col hover:shadow-lg transition-shadow border-slate-200 dark:border-slate-800">
+                <CardContent className="p-8 flex-1">
+                  <div className="flex items-center gap-4 mb-6 pb-6 border-b border-border">
+                    <img 
+                      src="/images/vishnu-v.jpg" 
+                      alt="Vishnu Varadan V" 
+                      className="w-16 h-16 rounded-full object-cover shadow-sm border border-border flex-shrink-0"
+                      onError={(e) => { e.currentTarget.src = "https://ui-avatars.com/api/?name=Vishnu+V&background=dcfce7&color=15803d&bold=true&size=150" }}
+                    />
+                    <div>
+                      <h3 className="text-2xl font-bold text-foreground">Vishnu Varadan V</h3>
+                      <p className="text-sm font-semibold text-primary mt-1">Chief Executive Officer, AIC–PEC Foundation</p>
+                      <p className="text-xs text-muted-foreground">Startup Ecosystem Builder & Design Thinking Evangelist</p>
+                    </div>
+                  </div>
+                  <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
+                    <p>
+                      Vishnu Varadan brings over 12 years of experience at the intersection of entrepreneurship, policy, and education. As CEO of the Atal Incubation Centre at PEC Foundation in Puducherry, he has been at the forefront of building South India's startup ecosystem — managing a $1.5M program grant, overseeing $350K in seed funding, and delivering 150+ ecosystem-building talks that have inspired 2,500+ students.
+                    </p>
+                    <p>
+                      A Design Thinking evangelist by philosophy and a builder by practice, Vishnu has mentored 50+ early-stage startups and mobilized over $375K in ecosystem funding. His academic contributions span innovation, new product development, startup valuation, and venture creation. He brings to MIF a relentless belief that India's next great products will emerge from the classroom.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Partner 2 */}
+              <Card className="flex flex-col hover:shadow-lg transition-shadow border-slate-200 dark:border-slate-800">
+                <CardContent className="p-8 flex-1">
+                  <div className="flex items-center gap-4 mb-6 pb-6 border-b border-border">
+                    <img 
+                      src="/images/sundaramurthy.jpg" 
+                      alt="Dr. R. Sundaramurthy" 
+                      className="w-16 h-16 rounded-full object-cover shadow-sm border border-border flex-shrink-0"
+                      onError={(e) => { e.currentTarget.src = "https://ui-avatars.com/api/?name=Dr+S&background=f3e8ff&color=7e22ce&bold=true&size=150" }}
+                    />
+                    <div>
+                      <h3 className="text-2xl font-bold text-foreground">Dr. R. Sundaramurthy</h3>
+                      <p className="text-sm font-semibold text-primary mt-1">Professor & Dean, Puducherry Technological University</p>
+                      <p className="text-xs text-muted-foreground">Executive Director, Atal Incubation Centre, PTU</p>
+                    </div>
+                  </div>
+                  <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
+                    <p>
+                      Dr. R. Sundaramurthy is a professor in the Department of Electronics and Instrumentation Engineering at Puducherry Technological University, where he also serves as Dean of Industrial Consultancy & Sponsored Research. He is the Executive Director of the Atal Incubation Centre at PTU — a NITI Aayog-sanctioned initiative valued at ₹9.98 Crores — and heads the Startup India Seed Fund program worth ₹3 Crores.
+                    </p>
+                    <p>
+                      His career spans work at ISRO's Space Application Centre, General Optics (Asia) Ltd., and over two decades in academia. His expertise — Embedded Systems, VLSI Engineering, Intelligent Instrumentation, and Innovation & Entrepreneurship — sits at the exact heart of MIF's mission. His passion is clear: promoting innovation and supporting the student community as a force for nation building.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+      </main>
+
+      <Footer />
     </div>
   );
 };
