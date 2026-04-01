@@ -20,34 +20,39 @@ import ScrollToTop from "./components/ScrollToTop";
 import { Smartphone } from "lucide-react";
 import About from "./pages/About";
 import ContactPage from "./pages/ContactPage";
+import { RegistrationProvider } from "./context/RegistrationContext";
+import RegistrationModal from "./components/RegistrationModal";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/competitions" element={<Competitions />} />
-          <Route path="/competitions/categories" element={<CompetitionCategories />} />
-          <Route path="/competitions/rules" element={<CompetitionRules />} />
-          <Route path="/competitions/faq" element={<CompetitionFAQ />} />
-          <Route path="/competitions/find-fair" element={<FindFair />} />
-          <Route path="/competitions/guidelines" element={<Guidelines />} />
-          <Route path="/competitions/arise" element={<ARISE />} />
-          <Route path="/competitions/ignite" element={<IGNITE />} />
-          <Route path="/competitions/awards" element={<Awards />} />
-          <Route path="/competitions/projects" element={<ProjectDatabase />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<ContactPage />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <RegistrationProvider>
+        <Toaster />
+        <Sonner />
+        <RegistrationModal />
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/competitions" element={<Competitions />} />
+            <Route path="/competitions/categories" element={<CompetitionCategories />} />
+            <Route path="/competitions/rules" element={<CompetitionRules />} />
+            <Route path="/competitions/faq" element={<CompetitionFAQ />} />
+            <Route path="/competitions/find-fair" element={<FindFair />} />
+            <Route path="/competitions/guidelines" element={<Guidelines />} />
+            <Route path="/competitions/arise" element={<ARISE />} />
+            <Route path="/competitions/ignite" element={<IGNITE />} />
+            <Route path="/competitions/awards" element={<Awards />} />
+            <Route path="/competitions/projects" element={<ProjectDatabase />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<ContactPage />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </RegistrationProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

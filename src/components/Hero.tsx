@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import hero1 from "@/assets/hero/hero1.png";
 import hero2 from "@/assets/hero/hero2.png";
+import hero3 from "@/assets/hero/hero3.png";
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -21,6 +22,14 @@ const Hero = () => {
       subtitle: "Innovate.",
       highlight: "Share.",
       description: "Join thousands of students building products for India's tech sovereignty",
+      align: "left"
+    },
+    {
+      image: hero3,
+      title: "Think Local,",
+      subtitle: "Create National",
+      highlight: "Impact Global",
+      description: "Developing indigenous technology to lead the world from the heart of India.",
       align: "left"
     }
   ];
@@ -61,9 +70,8 @@ const Hero = () => {
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              index === currentSlide ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100" : "opacity-0"
+              }`}
           >
             <img
               src={slide.image}
@@ -84,16 +92,14 @@ const Hero = () => {
             {slides.map((slide, index) => (
               <div
                 key={index}
-                className={`absolute w-full transition-all duration-1000 ease-in-out ${
-                  index === currentSlide
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-10"
-                } ${slide.align === "left" ? "left-0 text-left" : "right-0 text-right"}`}
+                className={`absolute w-full transition-all duration-1000 ease-in-out ${index === currentSlide
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+                  } ${slide.align === "left" ? "left-0 text-left" : "right-0 text-right"}`}
               >
                 <div
-                  className={`max-w-2xl ${
-                    slide.align === "left" ? "pl-8 lg:pl-16" : "pr-8 lg:pr-16"
-                  }`}
+                  className={`max-w-2xl ${slide.align === "left" ? "pl-8 lg:pl-16" : "pr-8 lg:pr-16"
+                    }`}
                 >
                   {/* Animated Title */}
                   <div
@@ -171,11 +177,10 @@ const Hero = () => {
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide
-                  ? "bg-white w-8"
-                  : "bg-white/50 hover:bg-white/75"
-              }`}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
+                ? "bg-white w-8"
+                : "bg-white/50 hover:bg-white/75"
+                }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}

@@ -6,8 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Trophy, Microscope, Rocket, CheckCircle2, BookOpen, Star, Sparkles, Navigation as NavIcon, ArrowRight, ShieldCheck, PenTool, Target } from "lucide-react";
 import { Link } from "react-router-dom";
 import ScienceHeroBackground from "@/components/ScienceHeroBackground";
+import { useRegistration } from "@/context/RegistrationContext";
 
 const ARISE = () => {
+  const { openModal } = useRegistration();
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Navigation />
@@ -36,6 +38,7 @@ const ARISE = () => {
             <Button 
               size="lg" 
               className="group relative overflow-hidden bg-blue-600 hover:bg-blue-500 text-white rounded-full px-10 py-8 text-xl font-bold transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)]"
+              onClick={() => openModal("arise")}
             >
               {/* Shimmer effect */}
               <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer" />
@@ -219,6 +222,7 @@ const ARISE = () => {
                 <Button 
                   size="lg" 
                   className="group relative overflow-hidden bg-blue-600 hover:bg-blue-500 text-white rounded-full px-12 py-8 text-2xl font-bold shadow-xl shadow-blue-500/20 transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(37,99,235,0.5)]"
+                  onClick={() => openModal("arise")}
                 >
                   {/* Shimmer effect */}
                   <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer" />

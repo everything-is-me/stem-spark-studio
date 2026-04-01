@@ -21,9 +21,9 @@ const competitions = [
   },
   {
     id: "ignite",
-    title: "IGNITE",
+    title: "SIJIC",
     subtitle:
-      "",
+      "South Indian Junior Innovation Challenge",
     description:
       "",
     image: c1,
@@ -51,10 +51,9 @@ const CompetitionSection = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {competitions.map((item, idx) => (
-            <Link to={item.href}>
+          {competitions.map((item) => (
+            <Link key={item.id} to={item.href}>
               <Card
-                key={item.id}
                 className="group flex flex-col relative overflow-hidden border border-border/40 bg-card/75 backdrop-blur-xl rounded-3xl hover:-translate-y-1 transition-all duration-300 shadow-[0_0px_10px_rgba(0,0,0,0.8)] hover:shadow-[0_0px_20px_rgba(0,0,0,1)]"
               >
                 <div className="group relative h-64 overflow-hidden">

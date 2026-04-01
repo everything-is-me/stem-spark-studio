@@ -6,8 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Trophy, Sparkles, Navigation as NavIcon, ArrowRight, ShieldCheck, PenTool, Lightbulb, Blocks, Compass, Medal, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import ScienceHeroBackground from "@/components/ScienceHeroBackground";
+import { useRegistration } from "@/context/RegistrationContext";
 
 const IGNITE = () => {
+  const { openModal } = useRegistration();
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Navigation />
@@ -36,6 +38,7 @@ const IGNITE = () => {
             <Button 
               size="lg" 
               className="group relative overflow-hidden bg-[#006241] hover:bg-[#008457] text-white rounded-full px-10 py-8 text-xl font-bold transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(0,98,65,0.4)]"
+              onClick={() => openModal("ignite")}
             >
               {/* Shimmer effect */}
               <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer" />
@@ -219,6 +222,7 @@ const IGNITE = () => {
                 <Button 
                   size="lg" 
                   className="group relative overflow-hidden bg-[#006241] hover:bg-[#008457] text-white rounded-full px-12 py-8 text-2xl font-bold shadow-xl shadow-[#006241]/20 transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,98,65,0.5)]"
+                  onClick={() => openModal("ignite")}
                 >
                   {/* Shimmer effect */}
                   <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer" />

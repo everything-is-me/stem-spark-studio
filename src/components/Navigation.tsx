@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Home, Trophy, Users, Mail, CircuitBoard, Cpu, ChevronDown } from "lucide-react";
+import { useRegistration } from "@/context/RegistrationContext";
 
 // ========== TYPES ==========
 interface NavItem {
@@ -220,9 +221,10 @@ const Navigation: React.FC = () => {
     );
   };
 
+  const { openModal } = useRegistration();
+
   const handleRegisterClick = () => {
-    // Navigate to competitions page or scroll to contact section
-    window.location.href = "/competitions/categories";
+    openModal("general");
   };
 
   const isActive = (href?: string) => {

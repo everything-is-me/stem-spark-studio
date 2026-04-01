@@ -13,10 +13,12 @@ interface NewsItem {
 }
 
 const RSS_FEEDS = {
-  hindu: "https://api.rss2json.com/v1/api.json?rss_url=https://www.thehindu.com/sci-tech/science/?service=rss",
-  toi: "https://api.rss2json.com/v1/api.json?rss_url=https://timesofindia.indiatimes.com/rssfeeds/-2128672765.cms",
-  ndtv: "https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=site:ndtv.com+science&hl=en-IN&gl=IN&ceid=IN:en"
+  hindu: "https://www.thehindu.com/sci-tech/science/?service=rss",
+  toi: "https://timesofindia.indiatimes.com/rssfeeds/-2128672765.cms",
+  ndtv: "https://news.google.com/rss/search?q=site:ndtv.com+science&hl=en-IN&gl=IN&ceid=IN:en"
 };
+
+const getRSSJson = (rssUrl: string) => `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
 export default function TrendingNews() {
   const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
@@ -26,15 +28,15 @@ export default function TrendingNews() {
     const fetchNews = async () => {
       try {
         const [hinduResponse, toiResponse, ndtvResponse] = await Promise.all([
-          fetch(RSS_FEEDS.hindu),
-          fetch(RSS_FEEDS.toi),
-          fetch(RSS_FEEDS.ndtv)
+          fetch(getRSSJson(RSS_FEEDS.hindu)),
+          fetch(getRSSJson(RSS_FEEDS.toi)),
+          fetch(getRSSJson(RSS_FEEDS.ndtv))
         ]);
 
         const [hinduData, toiData, ndtvData] = await Promise.all([
-          hinduResponse.json(),
-          toiResponse.json(),
-          ndtvResponse.json()
+          hinduResponse.ok ? hinduResponse.json() : { items: [] },
+          toiResponse.ok ? toiResponse.json() : { items: [] },
+          ndtvResponse.ok ? ndtvResponse.json() : { items: [] }
         ]);
 
         console.log('Hindu data:', hinduData);
