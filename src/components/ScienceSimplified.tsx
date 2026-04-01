@@ -1,3 +1,5 @@
+import { ArrowRight } from "lucide-react";
+
 const youtubeChannels = [
   {
     name: "Chitti Tamil",
@@ -33,22 +35,16 @@ export default function ScienceSimplified() {
     <div className="min-h-screen bg-background text-foreground">
       {/* Header Section */}
       <div className="flex flex-col items-center justify-center bg-gradient-to-b from-primary/10 to-background py-20 px-8">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mb-6 text-foreground" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>Science Simplified</h1>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mb-6 text-foreground" style={{ textShadow: '2px 2px 0px rgba(80, 20, 100, 0.4)' }}>Science Simplified</h1>
         <p className="text-lg text-muted-foreground max-w-3xl text-center">
-          Dive into the world of science with our simplified explanations, engaging visuals, and real-world applications. Whether you're a student, educator, or just curious about how things work, Science Simplified makes complex scientific concepts easy to understand and fun to explore.
+          Dive into the world of science with these simplified explanations, engaging visuals, and real-world applications. Whether you're a student, educator, or just curious about how things work, Science Simplified makes complex scientific concepts easy to understand and fun to explore.
         </p>
       </div>
 
       {/* YouTube Content Section */}
-      <div className="py-20 px-8 relative overflow-hidden">
+      <div className="pb-20 px-8 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-accent/10 to-primary/10 pointer-events-none" />
         <div className="relative z-10 container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-heading font-bold mb-4 text-foreground">Top YouTube Channels</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Subscribe to these amazing science and education channels for engaging content that makes learning fun and accessible.
-            </p>
-          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {youtubeChannels.map((channel, index) => (
@@ -112,12 +108,53 @@ export default function ScienceSimplified() {
             ))}
           </div>
 
-          {/* CTA Section */}
-          <div className="mt-16 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg p-8 text-center border border-primary/30">
-            <h3 className="text-2xl font-bold mb-4 text-foreground">Subscribe & Stay Updated</h3>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Click on any channel above to explore amazing science content. Don't forget to subscribe and hit the notification bell to stay updated with the latest videos!
-            </p>
+          {/* Credits & Disclaimer */}
+          <div className="mt-12 flex justify-center">
+            <div className="bg-primary/5 hover:bg-primary/10 transition-colors border border-primary/10 rounded-2xl p-5 text-center max-w-3xl flex items-start sm:items-center gap-4 text-left">
+              <span className="text-2xl flex-shrink-0" role="img" aria-label="info">ℹ️</span>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                <strong className="text-foreground">Credits & Disclaimer:</strong> All content, videos, and logos featured above belong to their respective YouTube creators. Make India Foundation curates these channels purely for educational purposes to inspire learning. We do not own or claim copyrights to these materials.
+              </p>
+            </div>
+          </div>
+
+          {/* CTA Section - Enhanced */}
+          <div className="max-w-5xl mx-auto mt-16">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              {/* Gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500"></div>
+
+              {/* Animated gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/40 via-purple-500/40 to-pink-500/40 animate-pulse"></div>
+
+              {/* Content */}
+              <div className="relative p-12 text-center">
+                <h3 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+                  Ready to Start Your Journey?
+                </h3>
+
+                <p className="text-lg sm:text-xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed">
+                  Join thousands of young innovators who have turned their ideas into reality through MIF's STEM competitions.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <button
+                    className="group relative bg-white text-indigo-600 px-10 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:bg-indigo-50 hover:text-indigo-700"
+                    onClick={() => window.location.href = "/competitions/categories"}
+                  >
+                    Register Now
+                    <ArrowRight className="inline-block w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+                  </button>
+
+                  <button
+                    className="group relative bg-transparent border-2 border-white text-white px-10 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:bg-white hover:text-indigo-600 hover:shadow-2xl hover:-translate-y-1"
+                    onClick={() => window.location.href = "/about"}
+                  >
+                    About Make India Foundation
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

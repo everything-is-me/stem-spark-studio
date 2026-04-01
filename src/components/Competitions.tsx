@@ -713,7 +713,7 @@ const Competitions: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16 fade-in-up">
-          <h2 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-4" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
+          <h2 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-4" style={{ textShadow: '2px 2px 0px rgba(80, 20, 100, 0.4)' }}>
             MIF Science and Engineering Fair
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

@@ -28,7 +28,7 @@ const NAV_ITEMS: NavItem[] = [
     ]
   },
   { id: "about", label: "About Us", icon: Users, href: "/about" },
-  { id: "contact", label: "Get in Touch", icon: Mail, href: "/#contact" },
+  { id: "contact", label: "Get in Touch", icon: Mail, href: "/contact" },
 ];
 
 // ========== COMPONENTS ==========
@@ -309,7 +309,7 @@ const Navigation: React.FC = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link to="/competitions">
+            {/* <Link to="/competitions">
               <Button
                 variant="outline"
                 className={`
@@ -322,7 +322,7 @@ const Navigation: React.FC = () => {
               >
                 View Challenges
               </Button>
-            </Link>
+            </Link> */}
             <Button
               variant="default"
               className={`

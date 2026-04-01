@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Trophy, Sparkles, Navigation as NavIcon, ArrowRight, ShieldCheck, PenTool, Lightbulb, Blocks, Compass, Medal, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import ScienceHeroBackground from "@/components/ScienceHeroBackground";
 
 const IGNITE = () => {
   return (
@@ -12,37 +13,53 @@ const IGNITE = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative bg-slate-900 text-white overflow-hidden py-24 sm:py-32">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-orange-500/30 via-slate-900 to-slate-900" />
+      <section className="h-screen relative bg-slate-900 text-white overflow-hidden py-24 sm:py-32 flex items-center justify-center">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-[#006241]/30 via-slate-900 to-slate-900" />
+        
+        {/* Animated Science Background */}
+        <div className="absolute inset-0 opacity-40 mix-blend-screen pointer-events-none scale-110">
+          <ScienceHeroBackground variant="ignite" />
+        </div>
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl animate-in fade-in slide-in-from-bottom-8 duration-700">
-          <div className="inline-flex items-center gap-2 bg-orange-500/20 border border-orange-500/30 text-orange-300 px-4 py-2 rounded-full text-sm font-bold mb-8 tracking-wide">
+          <div className="inline-flex items-center gap-2 bg-[#006241]/20 border border-[#006241]/30 text-[#40b58a] px-4 py-2 rounded-full text-sm font-bold mb-8 tracking-wide">
             <Sparkles className="w-4 h-4" />
             GRADES 6-8
           </div>
 
-          <h1 className="text-foreground text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-8" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">IGNITE</span> Competition
+          <h1 className="text-foreground text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-8" style={{ textShadow: '2px 2px 0px rgba(0, 48, 32, 0.4)' }}>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#006241] to-[#00a86b]">IGNITE Competition</span>
           </h1>
           <p className="text-xl md:text-2xl text-slate-300 mb-10 leading-relaxed max-w-3xl mx-auto">
             A beginner-friendly innovation track where middle school students first discover the magic of scientific inquiry and creativity.
           </p>
-          <Button size="lg" className="bg-orange-500 hover:bg-orange-400 text-white rounded-full px-8 py-6 text-lg font-semibold transition-transform hover:scale-105">
-            Register for IGNITE <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
+          <div className="animate-float">
+            <Button 
+              size="lg" 
+              className="group relative overflow-hidden bg-[#006241] hover:bg-[#008457] text-white rounded-full px-10 py-8 text-xl font-bold transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(0,98,65,0.4)]"
+            >
+              {/* Shimmer effect */}
+              <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer" />
+              
+              <span className="relative flex items-center gap-2">
+                Register for IGNITE 
+                <ArrowRight className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1" />
+              </span>
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* Interactive Tabs Content Section */}
-      <section className="py-20 flex-1 bg-amber-50/50 dark:bg-slate-900/10">
+      <section className="py-20 flex-1 bg-slate-50 dark:bg-slate-900/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-          
+ 
           <Tabs defaultValue="overview" className="w-full">
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 h-auto rounded-2xl p-2 bg-white dark:bg-slate-950 shadow-md mb-12 border border-slate-200 dark:border-slate-800">
-              <TabsTrigger value="overview" className="py-3 sm:py-4 rounded-xl text-sm sm:text-base data-[state=active]:bg-orange-500 data-[state=active]:text-white transition-all">Overview</TabsTrigger>
-              <TabsTrigger value="motivation" className="py-3 sm:py-4 rounded-xl text-sm sm:text-base data-[state=active]:bg-orange-500 data-[state=active]:text-white transition-all">Motivation</TabsTrigger>
-              <TabsTrigger value="guidelines" className="py-3 sm:py-4 rounded-xl text-sm sm:text-base data-[state=active]:bg-orange-500 data-[state=active]:text-white transition-all">Rules</TabsTrigger>
-              <TabsTrigger value="awards" className="py-3 sm:py-4 rounded-xl text-sm sm:text-base data-[state=active]:bg-orange-500 data-[state=active]:text-white transition-all">Awards</TabsTrigger>
-              <TabsTrigger value="process" className="py-3 sm:py-4 rounded-xl text-sm sm:text-base data-[state=active]:bg-orange-500 data-[state=active]:text-white transition-all">How to Appy</TabsTrigger>
+              <TabsTrigger value="overview" className="py-3 sm:py-4 rounded-xl text-sm sm:text-base data-[state=active]:bg-[#006241] data-[state=active]:text-white transition-all">Overview</TabsTrigger>
+              <TabsTrigger value="motivation" className="py-3 sm:py-4 rounded-xl text-sm sm:text-base data-[state=active]:bg-[#006241] data-[state=active]:text-white transition-all">Motivation</TabsTrigger>
+              <TabsTrigger value="guidelines" className="py-3 sm:py-4 rounded-xl text-sm sm:text-base data-[state=active]:bg-[#006241] data-[state=active]:text-white transition-all">Rules</TabsTrigger>
+              <TabsTrigger value="awards" className="py-3 sm:py-4 rounded-xl text-sm sm:text-base data-[state=active]:bg-[#006241] data-[state=active]:text-white transition-all">Awards</TabsTrigger>
+              <TabsTrigger value="process" className="py-3 sm:py-4 rounded-xl text-sm sm:text-base data-[state=active]:bg-[#006241] data-[state=active]:text-white transition-all">How to Appy</TabsTrigger>
             </TabsList>
 
             {/* OVERVIEW */}
@@ -50,7 +67,7 @@ const IGNITE = () => {
               <Card className="border-none shadow-xl bg-white dark:bg-slate-950 overflow-hidden">
                 <div className="grid md:grid-cols-2">
                   <div className="p-8 md:p-12 flex flex-col justify-center">
-                    <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 text-orange-500 rounded-2xl flex items-center justify-center mb-6">
+                    <div className="w-16 h-16 bg-[#006241]/10 dark:bg-[#006241]/30 text-[#006241] rounded-2xl flex items-center justify-center mb-6">
                       <Sparkles className="w-8 h-8" />
                     </div>
                     <h2 className="text-3xl font-bold mb-6">What is IGNITE?</h2>
@@ -61,14 +78,14 @@ const IGNITE = () => {
                       Start with something simple: test a science theory, build a basic model, write a small piece of code, or invent a gadget. IGNITE provides a supportive environment for your very first scientific project!
                     </p>
                   </div>
-                  <div className="bg-gradient-to-br from-orange-500 to-amber-500 p-8 md:p-12 text-white flex flex-col justify-center relative overflow-hidden">
+                  <div className="bg-gradient-to-br from-[#004d33] to-[#006241] p-8 md:p-12 text-white flex flex-col justify-center relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
                     <h3 className="text-2xl font-bold mb-6 flex items-center"><Lightbulb className="w-6 h-6 mr-3" /> Core Focus Areas</h3>
                     <ul className="space-y-4 text-lg">
-                      <li className="flex items-center"><Blocks className="w-5 h-5 mr-3 text-orange-100" /> Building & Prototyping Fun Ideas</li>
-                      <li className="flex items-center"><Compass className="w-5 h-5 mr-3 text-orange-100" /> Exploring Scientific Inquiry</li>
-                      <li className="flex items-center"><PenTool className="w-5 h-5 mr-3 text-orange-100" /> Learning the Scientific Method</li>
-                      <li className="flex items-center"><Sparkles className="w-5 h-5 mr-3 text-orange-100" /> Cultivating Unbound Creativity</li>
+                      <li className="flex items-center"><Blocks className="w-5 h-5 mr-3 text-emerald-100" /> Building & Prototyping Fun Ideas</li>
+                      <li className="flex items-center"><Compass className="w-5 h-5 mr-3 text-emerald-100" /> Exploring Scientific Inquiry</li>
+                      <li className="flex items-center"><PenTool className="w-5 h-5 mr-3 text-emerald-100" /> Learning the Scientific Method</li>
+                      <li className="flex items-center"><Sparkles className="w-5 h-5 mr-3 text-emerald-100" /> Cultivating Unbound Creativity</li>
                     </ul>
                   </div>
                 </div>
@@ -89,7 +106,7 @@ const IGNITE = () => {
                 ].map((item, i) => (
                   <Card key={i} className="group hover:-translate-y-2 hover:shadow-xl transition-all border-none shadow-md">
                     <CardHeader className="text-center pb-2">
-                      <div className="mx-auto w-16 h-16 bg-orange-50 dark:bg-orange-900/20 text-orange-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      <div className="mx-auto w-16 h-16 bg-emerald-50 dark:bg-[#006241]/20 text-[#006241] rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                         <item.icon className="w-8 h-8" />
                       </div>
                       <CardTitle className="text-xl">{item.title}</CardTitle>
@@ -106,7 +123,7 @@ const IGNITE = () => {
             <TabsContent value="guidelines" className="animate-in fade-in slide-in-from-bottom-4 duration-500">
               <Card className="border-none shadow-xl overflow-hidden p-8 md:p-12">
                 <div className="flex items-center gap-4 mb-8 pb-6 border-b">
-                  <ShieldCheck className="w-10 h-10 text-orange-500" />
+                  <ShieldCheck className="w-10 h-10 text-[#006241]" />
                   <div>
                     <h2 className="text-3xl font-bold">Rules & Eligibility</h2>
                     <p className="text-muted-foreground">The essentials you need to know before starting your project.</p>
@@ -140,11 +157,11 @@ const IGNITE = () => {
 
             {/* AWARDS */}
             <TabsContent value="awards" className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <Card className="border-none shadow-xl bg-gradient-to-br from-amber-700 to-orange-900 text-white overflow-hidden p-8 md:p-12 text-center relative">
-                <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-500/20 via-transparent to-transparent pointer-events-none" />
+              <Card className="border-none shadow-xl bg-gradient-to-br from-[#004d33] to-[#002f1f] text-white overflow-hidden p-8 md:p-12 text-center relative">
+                <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-500/20 via-transparent to-transparent pointer-events-none" />
                 <Trophy className="w-20 h-20 text-yellow-400 mx-auto mb-6 drop-shadow-lg" />
-                <h2 className="text-4xl font-extrabold mb-6" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>IGNITE Rewards</h2>
-                <p className="text-xl text-orange-200 max-w-2xl mx-auto mb-10 leading-relaxed">
+                <h2 className="text-4xl font-extrabold mb-6" style={{ textShadow: '2px 2px 0px rgba(0, 48, 32, 0.4)' }}>IGNITE Rewards</h2>
+                <p className="text-xl text-emerald-100 max-w-2xl mx-auto mb-10 leading-relaxed">
                   We reward pure curiosity! Winners of the IGNITE track take home exciting prizes that help continue their STEM journey.
                 </p>
                 <div className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
@@ -161,7 +178,7 @@ const IGNITE = () => {
                     <p className="text-white/80 text-sm">Trophies awarded to your school highlighting your success.</p>
                   </div>
                 </div>
-                <Button variant="secondary" size="lg" asChild className="rounded-full font-bold text-orange-900">
+                <Button variant="secondary" size="lg" asChild className="rounded-full font-bold text-[#006241]">
                   <Link to="/competitions/awards">View Award Page</Link>
                 </Button>
               </Card>
@@ -170,17 +187,17 @@ const IGNITE = () => {
             {/* REGISTRATION */}
             <TabsContent value="process" className="animate-in fade-in slide-in-from-bottom-4 duration-500">
               <div className="mb-10 text-center mt-6">
-                <h2 className="text-3xl font-bold">How to Apply</h2>
-                <p className="text-muted-foreground mt-4 text-lg max-w-2xl mx-auto">Follow these 4 simple steps to submit your IGNITE project online.</p>
+                <h2 className="text-3xl font-bold">Registration Process</h2>
+                <p className="text-muted-foreground mt-4 text-lg max-w-2xl mx-auto">Ready to begin your innovation journey? Follow these 4 simple steps to submit your project to the IGNITE committee.</p>
               </div>
               <div className="max-w-4xl mx-auto relative py-8">
                 <div className="absolute left-8 sm:left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2" />
                 <div className="space-y-12">
                   {[
-                    { title: "Team Up (or Go Solo)", desc: "Decide if you want to work alone or with your friends. Grab a teacher to guide you." },
-                    { title: "Pick a Category", desc: "Choose a simple STEM track you love, like Computer Science, Plant Science, or Math." },
-                    { title: "Build & Record", desc: "Do your project! Write down what happened, take photos, and film a quick 90-sec summary video." },
-                    { title: "Upload Submission", desc: "Log in to the portal and upload your write-up and video link. Done!" },
+                    { title: "Find a Mentor", desc: "Identify a teacher or guide at your school to certify and oversee your research." },
+                    { title: "Choose a Track", desc: "Select one of the 21 Competition Categories that fits your project's focus (e.g., Robotics, Chemistry)." },
+                    { title: "Prepare Documents", desc: "Write your Abstract, Methodology, Results, and record your 90-second pitch video." },
+                    { title: "Submit Online", desc: "Create an account on the MIF portal, fill the form, and upload your files before the deadline." },
                   ].map((step, i) => (
                     <div key={i} className="relative flex items-center w-full group min-h-[100px]">
                       <div className={`w-full sm:w-5/12 ${i % 2 === 0 ? "sm:mr-auto sm:text-right sm:pr-8" : "sm:ml-auto sm:text-left sm:pl-8"} pl-20 sm:pl-0`}>
@@ -191,16 +208,25 @@ const IGNITE = () => {
                           </CardContent>
                         </Card>
                       </div>
-                      <div className="absolute left-8 sm:left-1/2 w-16 h-16 bg-orange-100 text-orange-500 rounded-full border-4 border-background flex items-center justify-center font-bold text-xl top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 shadow-md transition-transform group-hover:scale-110">
+                      <div className="absolute left-8 sm:left-1/2 w-16 h-16 bg-emerald-50 text-[#006241] rounded-full border-4 border-background flex items-center justify-center font-bold text-xl top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 shadow-md transition-transform group-hover:scale-110">
                         <PenTool className="w-6 h-6" />
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="text-center mt-16">
-                <Button size="lg" className="bg-orange-500 hover:bg-orange-400 text-white rounded-full px-12 py-6 text-xl font-bold shadow-xl shadow-orange-500/20 transition-transform hover:scale-105">
-                  Begin Application
+              <div className="text-center mt-16 animate-float">
+                <Button 
+                  size="lg" 
+                  className="group relative overflow-hidden bg-[#006241] hover:bg-[#008457] text-white rounded-full px-12 py-8 text-2xl font-bold shadow-xl shadow-[#006241]/20 transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,98,65,0.5)]"
+                >
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer" />
+                  
+                  <span className="relative flex items-center gap-2">
+                    Begin Application
+                    <Sparkles className="w-6 h-6 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
+                  </span>
                 </Button>
               </div>
             </TabsContent>

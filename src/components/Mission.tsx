@@ -181,7 +181,7 @@ const Mission = () => {
     <section className="py-20 bg-card relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-4" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>At MIF STEM Ignites</h2>
+          <h2 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-4" style={{ textShadow: '2px 2px 0px rgba(80, 20, 100, 0.4)' }}>At MIF STEM Ignites</h2>
           <p className="text-lg text-muted-foreground mx-auto max-w-3xl">
             We inspire the next generation to explore, experiment, and build ideas <br />that can change the world.
           </p>
@@ -194,22 +194,19 @@ const Mission = () => {
                 key={card.title}
                 onMouseEnter={() => setActiveCard(index)}
                 onFocus={() => setActiveCard(index)}
-                className={`w-full text-left rounded-3xl p-6 border border-border/60 transition-all duration-300 overflow-hidden group relative ${
-                  activeCard === index ? "-translate-x-2 shadow-2xl border-primary/70" : "hover:-translate-x-1 hover:shadow-lg"
-                }`}
+                className={`w-full text-left rounded-3xl p-6 border border-border/60 transition-all duration-300 overflow-hidden group relative ${activeCard === index ? "-translate-x-2 shadow-2xl border-primary/70" : "hover:-translate-x-1 hover:shadow-lg"
+                  }`}
               >
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br ${card.theme} opacity-20 blur-2xl transition-all duration-500 ${
-                    activeCard === index ? "opacity-100" : "opacity-0"
-                  }`}
+                  className={`absolute inset-0 bg-gradient-to-br ${card.theme} opacity-20 blur-2xl transition-all duration-500 ${activeCard === index ? "opacity-100" : "opacity-0"
+                    }`}
                 />
                 <div className="relative z-10 flex items-center gap-4">
                   <img
                     src={card.image}
                     alt={card.title}
-                    className={`w-16 h-16 rounded-xl object-cover transition-transform duration-500 ${
-                      activeCard === index ? "scale-110" : "scale-100"
-                    }`}
+                    className={`w-16 h-16 rounded-xl object-cover transition-transform duration-500 ${activeCard === index ? "scale-110" : "scale-100"
+                      }`}
                   />
                   <div>
                     <h3 className="text-2xl font-heading font-bold text-foreground">{card.title}</h3>

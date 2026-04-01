@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Link } from 'react-router-dom';
 import { Lightbulb, Wrench, Trophy, Globe, Award, ArrowRight, Sparkles, Rocket } from "lucide-react";
 
 const journeySteps = [
@@ -10,9 +11,11 @@ const journeySteps = [
     emoji: "💡",
     title: "Spark an Idea",
     description: "Every innovation begins with curiosity. Identify a real-world problem and think of a creative solution.",
-    gradient: "from-primary to-primary-dark",
-    bgGradient: "from-primary/5 to-primary/10",
-    delay: "0s"
+    gradient: "from-amber-400 to-orange-500",
+    bgGradient: "from-amber-500/10 to-orange-500/10",
+    sectionBg: "bg-amber-50/50",
+    delay: "0s",
+    href: "/"
   },
   {
     id: 2,
@@ -20,9 +23,11 @@ const journeySteps = [
     emoji: "🛠",
     title: "MIF STEM Competition",
     description: "Bring your idea to life. Build, experiment, and present your project at MIF's platform.",
-    gradient: "from-secondary to-secondary-light",
-    bgGradient: "from-secondary/5 to-secondary/10",
-    delay: "0.1s"
+    gradient: "from-blue-500 to-cyan-400",
+    bgGradient: "from-blue-500/10 to-cyan-500/10",
+    sectionBg: "bg-blue-50/50",
+    delay: "0.1s",
+    href: "/"
   },
   {
     id: 3,
@@ -30,9 +35,11 @@ const journeySteps = [
     emoji: "🏆",
     title: "MIF Winner",
     description: "Stand out among the best. Winning at MIF gives you recognition, confidence, and the next big opportunity.",
-    gradient: "from-accent to-accent-dark",
-    bgGradient: "from-accent/5 to-accent/10",
-    delay: "0.2s"
+    gradient: "from-emerald-400 to-teal-500",
+    bgGradient: "from-emerald-500/10 to-teal-500/10",
+    sectionBg: "bg-emerald-50/50",
+    delay: "0.2s",
+    href: "/"
   },
   {
     id: 4,
@@ -40,9 +47,11 @@ const journeySteps = [
     emoji: "🌍",
     title: "Global Stage",
     description: "Take your innovation beyond borders and compete at an international level inspired by Society for Science Competitions.",
-    gradient: "from-primary to-secondary",
-    bgGradient: "from-primary/5 to-secondary/5",
-    delay: "0.3s"
+    gradient: "from-violet-500 to-fuchsia-500",
+    bgGradient: "from-violet-500/10 to-fuchsia-500/10",
+    sectionBg: "bg-violet-50/50",
+    delay: "0.3s",
+    href: "https://www.societyforscience.org/isef/"
   },
   {
     id: 5,
@@ -50,20 +59,26 @@ const journeySteps = [
     emoji: "🥇",
     title: "Global Recognition",
     description: "Become a global innovator. Showcase your work among the world's best and make a real impact.",
-    gradient: "from-secondary to-accent",
-    bgGradient: "from-secondary/5 to-accent/5",
-    delay: "0.4s"
+    gradient: "from-rose-400 to-pink-500",
+    bgGradient: "from-rose-500/10 to-pink-500/10",
+    sectionBg: "bg-rose-50/50",
+    delay: "0.4s",
+    href: "/"
   }
 ];
 
 const InnovatorJourney = () => {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
-  const [activeStep, setActiveStep] = useState<number>(1);
+  const [activeStep, setActiveStep] = useState<number | null>(1);
+
+  const activeSectionBg = hoveredStep
+    ? journeySteps.find(s => s.id === hoveredStep)?.sectionBg
+    : "bg-white";
 
   return (
-    <section className="py-20 bg-white text-foreground relative overflow-hidden">
+    <section className={`py-20 ${activeSectionBg} text-foreground relative overflow-hidden transition-colors duration-700 ease-in-out`}>
 
-        {/* Floating particles */}
+      {/* Floating particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(20)].map((_, i) => (
           <div
@@ -80,18 +95,18 @@ const InnovatorJourney = () => {
       </div>
 
       {/* Background elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 pointer-events-none"></div>
-      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -translate-y-32 translate-x-32"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full translate-y-64 -translate-x-64"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-purple-500/5 to-pink-500/5 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full -translate-y-32 translate-x-32 blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full translate-y-64 -translate-x-64 blur-3xl"></div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary/30 text-primary px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-6">
+          {/* <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary/30 text-primary px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-6">
             <Sparkles className="w-4 h-4" />
             Roadmap Breakdown
-          </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mt-4 text-foreground" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>The Innovator's Journey</h2>
+          </div> */}
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mt-4 text-foreground" style={{ textShadow: '2px 2px 0px rgba(80, 20, 100, 0.4)' }}>The Innovator's Journey</h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
             From a spark of curiosity to global recognition — your path to becoming a STEM innovator
           </p>
@@ -130,20 +145,19 @@ const InnovatorJourney = () => {
                   <div
                     key={step.id}
                     className="relative"
-                    style={{ 
+                    style={{
                       animation: `fadeInUp 0.6s ease-out ${step.delay} both`
                     }}
                     onMouseEnter={() => {
                       setHoveredStep(step.id);
                       setActiveStep(step.id);
                     }}
-                    onMouseLeave={() => setHoveredStep(null)}
+                    onMouseLeave={() => { setHoveredStep(null); setActiveStep(null); }}
                   >
                     {/* Step Number with Glow */}
                     <div className="flex justify-center mb-8 relative">
-                      <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white text-2xl font-bold shadow-2xl transform transition-all duration-500 ${
-                        isActive || isHovered ? 'scale-125 rotate-6' : 'scale-100'
-                      }`}>
+                      <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white text-2xl font-bold shadow-2xl transform transition-all duration-500 ${isActive || isHovered ? 'scale-125 rotate-6' : 'scale-100'
+                        }`}>
                         <span className="relative z-10">{step.id}</span>
                         {(isActive || isHovered) && (
                           <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${step.gradient} blur-xl opacity-60 animate-pulse`}></div>
@@ -152,58 +166,55 @@ const InnovatorJourney = () => {
                     </div>
 
                     {/* Card */}
-                    <Card className={`relative p-8 bg-card/75 backdrop-blur-xl border border-border/40 transition-all duration-500 overflow-hidden group ${
-                      isActive || isHovered 
-                        ? `border-primary/50 shadow-2xl -translate-y-4 bg-gradient-to-br ${step.bgGradient}` 
-                        : 'shadow-lg hover:-translate-y-2'
-                    }`}>
-                      {/* Gradient overlay on hover */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${step.gradient} opacity-0 transition-opacity duration-500 ${
-                        isActive || isHovered ? 'opacity-5' : ''
-                      }`}></div>
-
-                      {/* Icon */}
-                      <div className="relative mb-6 flex justify-center">
-                        <div className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${step.gradient} p-0.5 transition-transform duration-500 ${
-                          isActive || isHovered ? 'rotate-12 scale-110' : ''
+                    <Link to={step.href} target="_blank">
+                      <Card className={`relative p-8 bg-card/75 backdrop-blur-xl border border-border/40 transition-all duration-500 overflow-hidden group ${isActive || isHovered
+                        ? `border-primary/50 shadow-2xl -translate-y-4 bg-gradient-to-br ${step.bgGradient}`
+                        : 'shadow-lg -translate-y-2'
                         }`}>
-                          <div className="w-full h-full rounded-3xl bg-white flex items-center justify-center">
-                            <step.icon className={`w-10 h-10 bg-gradient-to-br ${step.gradient} bg-clip-text`} strokeWidth={2} />
+                        {/* Gradient overlay on hover */}
+                        <div className={`absolute inset-0 bg-gradient-to-br ${step.gradient} opacity-0 transition-opacity duration-500 ${isActive || isHovered ? 'opacity-5' : ''
+                          }`}></div>
+
+                        {/* Icon */}
+                        <div className="relative mb-6 flex justify-center">
+                          <div className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${step.gradient} p-0.5 transition-transform duration-500 ${isActive || isHovered ? 'rotate-12 scale-110' : ''
+                            }`}>
+                            <div className="w-full h-full rounded-3xl bg-white flex items-center justify-center">
+                              <step.icon className={`w-10 h-10 bg-gradient-to-br ${step.gradient} bg-clip-text`} strokeWidth={2} />
+                            </div>
                           </div>
                         </div>
-                      </div>
 
-                      {/* Emoji */}
-                      {/* <div className="text-4xl text-center mb-4 transform transition-transform duration-300 group-hover:scale-125">
+                        {/* Emoji */}
+                        {/* <div className="text-4xl text-center mb-4 transform transition-transform duration-300 group-hover:scale-125">
                         {step.emoji}
                       </div> */}
 
-                      {/* Content */}
-                      <div className="relative text-center">
-                        <h3 className="text-xl font-bold text-foreground mb-3">
-                          {step.title}
-                        </h3>
-                        <p className={`text-sm leading-relaxed transition-colors duration-300 ${
-                          isActive || isHovered ? 'text-foreground' : 'text-muted-foreground'
-                        }`}>
-                          {step.description}
-                        </p>
-                      </div>
+                        {/* Content */}
+                        <div className="relative text-center">
+                          <h3 className="text-xl font-bold text-foreground mb-3">
+                            {step.title}
+                          </h3>
+                          <p className={`text-sm leading-relaxed transition-colors duration-300 ${isActive || isHovered ? 'text-foreground' : 'text-muted-foreground'
+                            }`}>
+                            {step.description}
+                          </p>
+                        </div>
 
-                      {/* Shine effect */}
-                      {(isActive || isHovered) && (
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer"></div>
-                      )}
-                    </Card>
+                        {/* Shine effect */}
+                        {(isActive || isHovered) && (
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer"></div>
+                        )}
+                      </Card>
+                    </Link>
 
                     {/* Arrow connector */}
                     {index < journeySteps.length - 1 && (
                       <div className="absolute top-8 -right-3 z-20">
-                        <ArrowRight className={`w-6 h-6 transition-all duration-300 ${
-                          isActive || isHovered 
-                            ? `text-transparent bg-clip-text bg-gradient-to-r ${step.gradient} scale-125` 
-                            : 'text-slate-300'
-                        }`} />
+                        <ArrowRight className={`w-6 h-6 transition-all duration-300 ${isActive || isHovered
+                          ? `text-transparent bg-clip-text bg-gradient-to-r ${step.gradient} scale-125`
+                          : 'text-slate-300'
+                          }`} />
                       </div>
                     )}
                   </div>
@@ -222,28 +233,25 @@ const InnovatorJourney = () => {
                 <div
                   key={step.id}
                   className="relative"
-                  style={{ 
+                  style={{
                     animation: `fadeInUp 0.6s ease-out ${step.delay} both`
                   }}
                   onMouseEnter={() => setHoveredStep(step.id)}
                   onMouseLeave={() => setHoveredStep(null)}
                 >
-                  <Card className={`relative p-8 bg-card/75 backdrop-blur-xl border border-border/40 transition-all duration-500 overflow-hidden ${
-                    isHovered 
-                      ? `border-primary/50 shadow-2xl bg-gradient-to-br ${step.bgGradient}` 
-                      : 'shadow-lg'
-                  }`}>
+                  <Card className={`relative p-8 bg-card/75 backdrop-blur-xl border border-border/40 transition-all duration-500 overflow-hidden ${isHovered
+                    ? `border-primary/50 shadow-2xl bg-gradient-to-br ${step.bgGradient}`
+                    : 'shadow-lg'
+                    }`}>
                     <div className="flex gap-6">
                       {/* Number & Icon */}
                       <div className="flex-shrink-0">
-                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white text-2xl font-bold shadow-xl mb-4 transition-transform duration-500 ${
-                          isHovered ? 'scale-110 rotate-6' : ''
-                        }`}>
+                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white text-2xl font-bold shadow-xl mb-4 transition-transform duration-500 ${isHovered ? 'scale-110 rotate-6' : ''
+                          }`}>
                           {step.id}
                         </div>
-                        <div className={`w-16 h-16 rounded-3xl bg-gradient-to-br ${step.gradient} p-0.5 transition-transform duration-500 ${
-                          isHovered ? 'rotate-12' : ''
-                        }`}>
+                        <div className={`w-16 h-16 rounded-3xl bg-gradient-to-br ${step.gradient} p-0.5 transition-transform duration-500 ${isHovered ? 'rotate-12' : ''
+                          }`}>
                           <div className="w-full h-full rounded-3xl bg-white flex items-center justify-center">
                             <Icon className={`w-8 h-8 bg-gradient-to-br ${step.gradient} bg-clip-text text-transparent`} strokeWidth={2} />
                           </div>
@@ -268,48 +276,9 @@ const InnovatorJourney = () => {
           </div>
         </div>
 
-        {/* CTA Section - Enhanced */}
-        <div className="max-w-5xl mx-auto">
-          <div className="relative rounded-3xl overflow-hidden">
-            {/* Gradient background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary via-secondary to-accent"></div>
-            
-            {/* Animated gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/50 via-secondary/50 to-accent/50 animate-pulse"></div>
-            
-            {/* Content */}
-            <div className="relative p-12 text-center">
-              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 px-4 py-2 rounded-full mb-6">
-                <Rocket className="w-4 h-4 text-white" />
-                <span className="text-sm font-bold text-white uppercase tracking-wider">
-                  Begin Your Adventure
-                </span>
-              </div>
-
-              <h3 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-                Ready to Start Your Journey?
-              </h3>
-              
-              <p className="text-lg sm:text-xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed">
-                Join thousands of young innovators who have turned their ideas into reality through MIF's STEM competitions.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="group relative bg-white text-primary px-10 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:bg-primary hover:text-white">
-                  Start Your Idea Today
-                  <ArrowRight className="inline-block w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                </button>
-                
-                <button className="group relative bg-transparent border-2 border-white text-white px-10 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:bg-white hover:text-primary hover:shadow-2xl hover:-translate-y-1">
-                  Learn More About Competitions
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes fadeInUp {
           from {
             opacity: 0;

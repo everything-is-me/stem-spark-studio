@@ -143,12 +143,12 @@ const Hero = () => {
                       opacity: index === currentSlide ? 1 : 0
                     }}
                   >
-                    <button
+                    {/* <button
                       onClick={() => scrollToSection("competitions")}
                       className="bg-primary hover:bg-primary/80 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
                     >
                       View Challenges
-                    </button>
+                    </button> */}
                     <button
                       onClick={() => scrollToSection("contact")}
                       className="bg-white/20 hover:bg-white/30 text-white font-semibold py-3 px-8 rounded-lg backdrop-blur-sm transition-all duration-300 transform hover:scale-105 border border-white/50"

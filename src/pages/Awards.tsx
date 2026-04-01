@@ -7,21 +7,17 @@ const Awards = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/5 via-background to-secondary/5 py-20 border-b border-primary/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-bold mb-6 tracking-wide">
-              <Award className="w-4 h-4" />
-              AWARDS
-            </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 text-foreground" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 text-foreground" style={{ textShadow: '2px 2px 0px rgba(80, 20, 100, 0.4)' }}>
               Honoring Excellence
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Outstanding projects will be recognized and rewarded. 
+              Outstanding projects will be recognized and rewarded.
               Details regarding the exact prizes and benefits will be announced soon!
             </p>
           </div>
@@ -35,7 +31,7 @@ const Awards = () => {
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            
+
             {/* Award 1 */}
             <Card className="relative overflow-hidden group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 border-primary/20 bg-card">
               <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-500/10 rounded-bl-full -z-10 group-hover:scale-110 transition-transform duration-500" />

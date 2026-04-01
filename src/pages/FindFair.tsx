@@ -117,8 +117,8 @@ const FindFair = () => {
 
   const filteredFairs = fairs.filter(fair => {
     const matchesSearch = fair.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         fair.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         fair.state.toLowerCase().includes(searchTerm.toLowerCase());
+      fair.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      fair.state.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesState = selectedState === "" || selectedState === "All States" || fair.state === selectedState;
     return matchesSearch && matchesState;
   });
@@ -136,7 +136,7 @@ const FindFair = () => {
               Find a Fair
             </div>
 
-            <h1 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-6" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
+            <h1 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-6" style={{ textShadow: '2px 2px 0px rgba(80, 20, 100, 0.4)' }}>
               Locate State-Level{" "}
               <span className="text-primary">Science Fairs</span>
             </h1>
@@ -214,11 +214,10 @@ const FindFair = () => {
                             </span>
                           </div>
                         </div>
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                          fair.status === 'Registration Open'
+                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${fair.status === 'Registration Open'
                             ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
                             : 'bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400'
-                        }`}>
+                          }`}>
                           {fair.status}
                         </span>
                       </div>

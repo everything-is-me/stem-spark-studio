@@ -19,6 +19,7 @@ import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import { Smartphone } from "lucide-react";
 import About from "./pages/About";
+import ContactPage from "./pages/ContactPage";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/competitions/awards" element={<Awards />} />
           <Route path="/competitions/projects" element={<ProjectDatabase />} />
           <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<ContactPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

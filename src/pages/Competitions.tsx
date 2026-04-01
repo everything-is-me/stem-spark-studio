@@ -112,12 +112,12 @@ const Competitions = () => {
                   {/* Floating elements around logo */}
                   <div className="absolute -top-8 -left-8 w-32 h-32 bg-primary/10 rounded-3xl rotate-12 animate-float"></div>
                   <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-secondary/10 rounded-3xl -rotate-12 animate-float-delayed"></div>
-                  
+
                   {/* Main logo container */}
                   <div className="relative w-48 h-48 bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-xl rounded-3xl border border-white/30 shadow-2xl flex items-center justify-center">
-                    <img 
-                      src="/logo.png" 
-                      alt="Make India Foundation Logo" 
+                    <img
+                      src="/logo.png"
+                      alt="Make India Foundation Logo"
                       className="w-36 h-36 rounded-2xl object-cover shadow-lg"
                     />
                   </div>
@@ -192,7 +192,7 @@ const Competitions = () => {
       <section id="quick-links" className="py-20 bg-card">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-heading font-bold text-foreground mb-4" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
+            <h2 className="text-4xl font-heading font-bold text-foreground mb-4" style={{ textShadow: '2px 2px 0px rgba(80, 20, 100, 0.4)' }}>
               Competition Resources
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -210,7 +210,7 @@ const Competitions = () => {
                   className="group block"
                 >
                   <Card className="p-6 hover:shadow-lg transition-all duration-300 border-border/50 bg-background hover:-translate-y-1 fade-in-up group-hover:border-primary/50"
-                        style={{ animationDelay: `${index * 0.1}s` }}>
+                    style={{ animationDelay: `${index * 0.1}s` }}>
                     <div className="flex items-start gap-4">
                       <div className={`w-12 h-12 rounded-xl ${link.color} flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
                         <Icon className="w-6 h-6" strokeWidth={2} />

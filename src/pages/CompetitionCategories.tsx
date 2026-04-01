@@ -13,8 +13,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import {
-  Bug, Users, Beaker, Heart, Activity, Dna, Atom, Database, Globe, 
-  Cpu, Zap, Wrench, Leaf, Layers, Calculator, Microscope, Rocket, 
+  Bug, Users, Beaker, Heart, Activity, Dna, Atom, Database, Globe,
+  Cpu, Zap, Wrench, Leaf, Layers, Calculator, Microscope, Rocket,
   Bot, Terminal, Pill, Search, Target, Sprout, ArrowRight
 } from "lucide-react";
 
@@ -208,7 +208,7 @@ const CompetitionCategories = () => {
   const filteredCategories = useMemo(() => {
     const query = searchQuery.toLowerCase().trim();
     if (!query) return CATEGORIES;
-    return CATEGORIES.filter((category) => 
+    return CATEGORIES.filter((category) =>
       category.title.toLowerCase().includes(query) ||
       category.code.toLowerCase().includes(query) ||
       category.description.toLowerCase().includes(query) ||
@@ -225,14 +225,13 @@ const CompetitionCategories = () => {
         <section className="relative overflow-hidden bg-primary/5 py-16 sm:py-24 mb-12 border-b border-primary/10">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-background to-background" />
           <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl">
-            <Badge className="mb-4 bg-primary/20 text-primary hover:bg-primary/30 text-sm px-4 py-1">21 Categories</Badge>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 text-foreground" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
-              Find Your Passion
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 text-foreground" style={{ textShadow: '2px 2px 0px rgba(80, 20, 100, 0.4)' }}>
+              Categories and Subcategories
             </h1>
             <p className="text-xl text-muted-foreground mb-10">
-              Explore 21 major categories and countless sub-tracks. Filter below to find exactly where your project belongs!
+              Filter below to find exactly where your project belongs!
             </p>
-            
+
             {/* Search Bar */}
             <div className="relative max-w-2xl mx-auto group">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -267,8 +266,8 @@ const CompetitionCategories = () => {
               {filteredCategories.map((category, index) => {
                 const Icon = category.icon;
                 return (
-                  <Card 
-                    key={category.code} 
+                  <Card
+                    key={category.code}
                     className="group hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 border-border/50 bg-card overflow-hidden flex flex-col cursor-pointer"
                     onClick={() => setSelectedCategory(category)}
                   >
@@ -333,7 +332,7 @@ const CompetitionCategories = () => {
                     {selectedCategory.description}
                   </DialogDescription>
                 </div>
-                
+
                 <div className="p-6 bg-background">
                   <h4 className="font-bold text-sm text-muted-foreground uppercase tracking-wide mb-4">
                     Available Subcategories ({selectedCategory.subcategories.length})

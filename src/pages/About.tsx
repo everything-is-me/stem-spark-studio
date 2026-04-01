@@ -10,9 +10,9 @@ const About = () => {
 
       <main className="flex-1">
         {/* About MIF Section */}
-        <section className="bg-primary/5 py-20 border-b border-primary/10">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-8 text-foreground" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
+        <section className="h-screen flex flex-col align-center bg-primary/5 border-b border-primary/10">
+          <div className="container mx-auto my-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-8 text-foreground" style={{ textShadow: '2px 2px 0px rgba(80, 20, 100, 0.4)' }}>
               About Make India Foundation
             </h1>
             <div className="space-y-6 text-lg text-muted-foreground leading-relaxed text-left">
@@ -77,9 +77,9 @@ const About = () => {
               <div className="grid md:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_3fr]">
                 <div className="bg-gradient-to-br from-primary/80 to-blue-600 p-8 flex flex-col items-center justify-center text-white text-center">
                   <div className="relative w-24 h-24 mb-4">
-                    <img 
-                      src="/images/kumar-r.jpg" 
-                      alt="Kumar R" 
+                    <img
+                      src="/images/kumar-r.jpg"
+                      alt="Kumar R"
                       className="w-24 h-24 rounded-full object-cover shadow-inner border-4 border-white/20"
                       onError={(e) => { e.currentTarget.src = "https://ui-avatars.com/api/?name=Kumar+R&background=ffffff&color=2563eb&bold=true&size=200" }}
                     />
@@ -115,9 +115,9 @@ const About = () => {
               <Card className="flex flex-col hover:shadow-lg transition-shadow border-slate-200 dark:border-slate-800">
                 <CardContent className="p-8 flex-1">
                   <div className="flex items-center gap-4 mb-6 pb-6 border-b border-border">
-                    <img 
-                      src="/images/vishnu-v.jpg" 
-                      alt="Vishnu Varadan V" 
+                    <img
+                      src="/images/vishnu-v.jpg"
+                      alt="Vishnu Varadan V"
                       className="w-16 h-16 rounded-full object-cover shadow-sm border border-border flex-shrink-0"
                       onError={(e) => { e.currentTarget.src = "https://ui-avatars.com/api/?name=Vishnu+V&background=dcfce7&color=15803d&bold=true&size=150" }}
                     />
@@ -142,9 +142,9 @@ const About = () => {
               <Card className="flex flex-col hover:shadow-lg transition-shadow border-slate-200 dark:border-slate-800">
                 <CardContent className="p-8 flex-1">
                   <div className="flex items-center gap-4 mb-6 pb-6 border-b border-border">
-                    <img 
-                      src="/images/sundaramurthy.jpg" 
-                      alt="Dr. R. Sundaramurthy" 
+                    <img
+                      src="/images/sundaramurthy.jpg"
+                      alt="Dr. R. Sundaramurthy"
                       className="w-16 h-16 rounded-full object-cover shadow-sm border border-border flex-shrink-0"
                       onError={(e) => { e.currentTarget.src = "https://ui-avatars.com/api/?name=Dr+S&background=f3e8ff&color=7e22ce&bold=true&size=150" }}
                     />

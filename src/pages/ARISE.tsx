@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Trophy, Microscope, Rocket, CheckCircle2, BookOpen, Star, Sparkles, Navigation as NavIcon, ArrowRight, ShieldCheck, PenTool, Target } from "lucide-react";
 import { Link } from "react-router-dom";
+import ScienceHeroBackground from "@/components/ScienceHeroBackground";
 
 const ARISE = () => {
   return (
@@ -12,30 +13,46 @@ const ARISE = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative bg-slate-900 text-white overflow-hidden py-24 sm:py-32">
+      <section className="h-screen relative bg-slate-900 text-white overflow-hidden py-24 sm:py-32 flex items-center justify-center">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-600/30 via-slate-900 to-slate-900" />
+        
+        {/* Animated Science Background */}
+        <div className="absolute inset-0 opacity-50 mix-blend-screen pointer-events-none scale-110">
+          <ScienceHeroBackground variant="arise" />
+        </div>
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl animate-in fade-in slide-in-from-bottom-8 duration-700">
           <div className="inline-flex items-center gap-2 bg-blue-500/20 border border-blue-500/30 text-blue-300 px-4 py-2 rounded-full text-sm font-bold mb-8 tracking-wide">
             <Rocket className="w-4 h-4" />
             GRADES 9-12
           </div>
 
-          <h1 className="text-foreground text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-8" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">ARISE</span> Competition
+          <h1 className="text-foreground text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-8" style={{ textShadow: '2px 2px 0px rgba(80, 20, 100, 0.4)' }}>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">ARISE Competition</span>
           </h1>
           <p className="text-xl md:text-2xl text-slate-300 mb-10 leading-relaxed max-w-3xl mx-auto">
             Where high school innovators transform curiosity into real-world impact through advanced research and engineering.
           </p>
-          <Button size="lg" className="bg-blue-600 hover:bg-blue-500 text-white rounded-full px-8 py-6 text-lg font-semibold transition-transform hover:scale-105">
-            Register for ARISE <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
+          <div className="animate-float">
+            <Button 
+              size="lg" 
+              className="group relative overflow-hidden bg-blue-600 hover:bg-blue-500 text-white rounded-full px-10 py-8 text-xl font-bold transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)]"
+            >
+              {/* Shimmer effect */}
+              <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer" />
+              
+              <span className="relative flex items-center gap-2">
+                Register for ARISE 
+                <ArrowRight className="w-6 h-6 transition-transform duration-300 group-hover:translate-x-1" />
+              </span>
+            </Button>
+          </div>
         </div>
       </section>
 
       {/* Interactive Tabs Content Section */}
       <section className="py-20 flex-1 bg-slate-50 dark:bg-slate-900/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-          
+
           <Tabs defaultValue="overview" className="w-full">
             <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 h-auto rounded-2xl p-2 bg-white dark:bg-slate-950 shadow-md mb-12 border border-slate-200 dark:border-slate-800">
               <TabsTrigger value="overview" className="py-3 sm:py-4 rounded-xl text-sm sm:text-base data-[state=active]:bg-blue-600 data-[state=active]:text-white transition-all">Overview</TabsTrigger>
@@ -84,7 +101,7 @@ const ARISE = () => {
               <div className="grid md:grid-cols-3 gap-8">
                 {[
                   { icon: Star, title: "College Portfolios", desc: "A rigorous research project or working engineering prototype drastically boosts college applications globally." },
-                  { icon: Navigation, title: "Industry Mentorship", desc: "Get feedback not just from teachers, but from real engineers, scientists, and academics currently in the field." },
+                  { icon: NavIcon, title: "Industry Mentorship", desc: "Get feedback not just from teachers, but from real engineers, scientists, and academics currently in the field." },
                   { icon: Sparkles, title: "Make a Difference", desc: "Don't wait until college to change the world. Build solutions that can actually be deployed to help your community today." }
                 ].map((item, i) => (
                   <Card key={i} className="group hover:-translate-y-2 hover:shadow-xl transition-all border-none shadow-md">
@@ -143,7 +160,7 @@ const ARISE = () => {
               <Card className="border-none shadow-xl bg-gradient-to-br from-indigo-900 to-slate-900 text-white overflow-hidden p-8 md:p-12 text-center relative">
                 <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-500/20 via-transparent to-transparent pointer-events-none" />
                 <Trophy className="w-20 h-20 text-yellow-400 mx-auto mb-6 drop-shadow-lg" />
-                <h2 className="text-4xl font-extrabold mb-6" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>ARISE Honors</h2>
+                <h2 className="text-4xl font-extrabold mb-6" style={{ textShadow: '2px 2px 0px rgba(80, 20, 100, 0.4)' }}>ARISE Honors</h2>
                 <p className="text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed">
                   Top tier projects will compete for the ultimate ARISE National Awards, unlocking massive opportunities for young scientists.
                 </p>
@@ -198,9 +215,18 @@ const ARISE = () => {
                   ))}
                 </div>
               </div>
-              <div className="text-center mt-16">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-500 text-white rounded-full px-12 py-6 text-xl font-bold shadow-xl shadow-blue-500/20 transition-transform hover:scale-105">
-                  Start Registration Now
+              <div className="text-center mt-16 animate-float">
+                <Button 
+                  size="lg" 
+                  className="group relative overflow-hidden bg-blue-600 hover:bg-blue-500 text-white rounded-full px-12 py-8 text-2xl font-bold shadow-xl shadow-blue-500/20 transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(37,99,235,0.5)]"
+                >
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer" />
+                  
+                  <span className="relative flex items-center gap-2">
+                    Start Registration Now
+                    <Rocket className="w-6 h-6 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
+                  </span>
                 </Button>
               </div>
             </TabsContent>

@@ -1,9 +1,9 @@
-import { 
-  Facebook, 
-  Twitter, 
-  Instagram, 
-  Linkedin, 
-  Youtube, 
+import {
+  Facebook,
+  Twitter,
+  Instagram,
+  Linkedin,
+  Youtube,
   MessageCircle,
   Mail,
   MapPin,
@@ -39,7 +39,7 @@ const QUICK_LINKS: FooterLink[] = [
   { label: "Home", href: "#home" },
   { label: "Innovation Challenges", href: "#competitions" },
   { label: "About Us", href: "#about" },
-  { label: "Get in Touch", href: "#contact" },
+  { label: "Get in Touch", href: "/contact" },
   { label: "Student Projects Gallery", href: "#gallery" },
   { label: "Mentor Program", href: "#mentors" },
 ];
@@ -74,11 +74,22 @@ const SOCIAL_LINKS: SocialLink[] = [
 const CONTACT_INFO: ContactInfo[] = [
   { icon: Mail, text: "students@makeindiafoundation.org", href: "mailto:students@makeindiafoundation.org" },
   { icon: Phone, text: "1800-MAKE-INDIA (Toll Free)", href: "tel:18006253463" },
-  { icon: MapPin, text: "Delhi | Bengaluru | Mumbai | Hyderabad", href: "#" },
+  { icon: MapPin, text: "19 & 20 Aroma Garden, Auroville Main Road, Auroville, Tamil Nadu 605101", href: "https://maps.google.com/?q=19+%26+20+Aroma+Garden,+Auroville+Main+Road,+Auroville+Tamil+Nadu+605101" },
 ];
 
-const PARTNER_LOGOS = [
-  "HCL", "TATA", "ISRO", "DRDO", "AICTE", "NITI Aayog"
+const PARTNERS = [
+  {
+    name: "Agaram Foundation",
+    logo: "https://www.agaram.in/assets/images/logo/agaram_logo.png",
+  },
+  {
+    name: "ATAL Innovation Mission",
+    logo: "https://aicpecf.org/assets/AIM-BR9PY61i.webp",
+  },
+  {
+    name: "PTU",
+    logo: "https://aicpecf.org/assets/ptu-logo-DP1QNExA.png",
+  },
 ];
 
 // ========== COMPONENTS ==========
@@ -155,7 +166,7 @@ const Footer = () => {
     <footer className="bg-card pt-16 pb-8 border-t border-border/50 relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background/50 to-transparent"></div>
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
           {/* Brand Column */}
@@ -173,12 +184,12 @@ const Footer = () => {
                 </span>
               </div>
             </div>
-            
+
             <p className="text-muted-foreground mb-6 max-w-lg leading-relaxed">
-              Empowering India's next generation of hardware innovators and product creators. 
-              We're building a movement of young minds who design, build, and innovate for 
-              India's tech sovereignty. From chips to complete products, we're creating 
-              the builders of tomorrow.
+              Make India Foundation (MIF) is a movement transforming India's brightest young minds
+              from consumers of technology into confident creators. By bridging global STEM
+              excellence with India's untapped potential, we empower students to design, build,
+              and innovate solutions that truly matter.
             </p>
 
             {/* Contact Info */}
@@ -201,19 +212,19 @@ const Footer = () => {
 
           {/* Links Columns */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-            <LinkColumn 
-              title="Quick Links" 
-              links={QUICK_LINKS} 
+            <LinkColumn
+              title="Quick Links"
+              links={QUICK_LINKS}
               icon={Cpu}
             />
-            <LinkColumn 
-              title="Resources" 
-              links={RESOURCES} 
+            <LinkColumn
+              title="Resources"
+              links={RESOURCES}
               icon={Trophy}
             />
-            <LinkColumn 
-              title="Support" 
-              links={SUPPORT} 
+            <LinkColumn
+              title="Support"
+              links={SUPPORT}
               icon={Users}
             />
           </div>
@@ -224,13 +235,18 @@ const Footer = () => {
           <h5 className="text-center font-medium text-foreground mb-6">
             Supported by India's Leading Tech Organizations
           </h5>
-          <div className="flex flex-wrap justify-center gap-6">
-            {PARTNER_LOGOS.map((logo) => (
-              <div 
-                key={logo}
-                className="px-5 py-2 bg-white/5 rounded-lg border border-border/30 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all duration-200"
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {PARTNERS.map((partner) => (
+              <div
+                key={partner.name}
+                className="group relative flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"
               >
-                {logo}
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="h-12 md:h-16 w-auto object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+                  title={partner.name}
+                />
               </div>
             ))}
           </div>
@@ -271,7 +287,7 @@ const Footer = () => {
                 Empowering young Indians to build India's tech future.
               </p>
             </div>
-            
+
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <a href="#privacy" className="hover:text-primary transition-colors">
                 Privacy Policy

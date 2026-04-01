@@ -90,23 +90,23 @@ const INTEREST_CATEGORIES = [
 // ========== VALIDATION ==========
 const validateForm = (formData: ContactFormData): string[] => {
   const errors: string[] = [];
-  
+
   if (!formData.name.trim()) errors.push("Name is required");
-  
+
   if (!formData.email.trim()) {
     errors.push("Email is required");
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
     errors.push("Invalid email format");
   }
-  
+
   if (formData.phone && !/^[\d\s\-+()]{10,}$/.test(formData.phone)) {
     errors.push("Invalid phone number");
   }
-  
+
   if (!formData.category) errors.push("Please select an interest category");
-  
+
   if (!formData.message.trim()) errors.push("Message is required");
-  
+
   return errors;
 };
 
@@ -167,7 +167,7 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const errors = validateForm(formData);
     if (errors.length > 0) {
       toast({
@@ -177,18 +177,18 @@ const Contact = () => {
       });
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
-    
+
     toast({
       title: "🎉 Message Sent Successfully!",
       description: "Our student coordinator will contact you within 24 hours. Check your email for competition guidelines.",
       duration: 5000,
     });
-    
+
     setFormData({
       name: "",
       email: "",
@@ -198,7 +198,7 @@ const Contact = () => {
       category: "",
       message: "",
     });
-    
+
     setIsSubmitting(false);
   };
 
@@ -215,7 +215,7 @@ const Contact = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16 fade-in-up">
-          <h2 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-4" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
+          <h2 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-4" style={{ textShadow: '2px 2px 0px rgba(80, 20, 100, 0.4)' }}>
             Get In Touch
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -372,7 +372,7 @@ const Contact = () => {
                   "Send Message & Get Competition Guide"
                 )}
               </Button>
-              
+
               <p className="text-xs text-muted-foreground text-center">
                 By submitting, you agree to receive competition updates and resources.
                 We respect your privacy.

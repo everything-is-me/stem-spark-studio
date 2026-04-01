@@ -189,8 +189,8 @@ const ProjectDatabase = () => {
 
   const filteredProjects = projects.filter(project => {
     const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         project.abstract.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         project.keywords.some(keyword => keyword.toLowerCase().includes(searchTerm.toLowerCase()));
+      project.abstract.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.keywords.some(keyword => keyword.toLowerCase().includes(searchTerm.toLowerCase()));
     const matchesCategory = selectedCategory === "" || selectedCategory === "All Categories" || project.category === selectedCategory;
     const matchesYear = selectedYear === "" || selectedYear === "All Years" || project.year === selectedYear;
     const matchesAward = selectedAward === "" || selectedAward === "All Awards" || project.award === selectedAward;
@@ -217,7 +217,7 @@ const ProjectDatabase = () => {
               Project Database
             </div>
 
-            <h1 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-6" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
+            <h1 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-6" style={{ textShadow: '2px 2px 0px rgba(80, 20, 100, 0.4)' }}>
               Past Winning{" "}
               <span className="text-primary">Projects</span>
             </h1>

@@ -14,7 +14,8 @@ interface NewsItem {
 
 const RSS_FEEDS = {
   hindu: "https://api.rss2json.com/v1/api.json?rss_url=https://www.thehindu.com/sci-tech/science/?service=rss",
-  ndtv: "https://api.rss2json.com/v1/api.json?rss_url=https://www.ndtv.com/rssfeeds/ndtv-science.xml"
+  toi: "https://api.rss2json.com/v1/api.json?rss_url=https://timesofindia.indiatimes.com/rssfeeds/-2128672765.cms",
+  ndtv: "https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=site:ndtv.com+science&hl=en-IN&gl=IN&ceid=IN:en"
 };
 
 export default function TrendingNews() {
@@ -24,40 +25,43 @@ export default function TrendingNews() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const [hinduResponse, ndtvResponse] = await Promise.all([
+        const [hinduResponse, toiResponse, ndtvResponse] = await Promise.all([
           fetch(RSS_FEEDS.hindu),
+          fetch(RSS_FEEDS.toi),
           fetch(RSS_FEEDS.ndtv)
         ]);
 
-        const [hinduData, ndtvData] = await Promise.all([
+        const [hinduData, toiData, ndtvData] = await Promise.all([
           hinduResponse.json(),
+          toiResponse.json(),
           ndtvResponse.json()
         ]);
 
         console.log('Hindu data:', hinduData);
+        console.log('TOI data:', toiData);
         console.log('NDTV data:', ndtvData);
 
         const extractImage = (item: any) => {
           // Try enclosure first
           if (item.enclosure?.url) return item.enclosure.url;
           if (item.enclosure?.link) return item.enclosure.link;
-          
+
           // Try media content
           if (item.media?.content?.url) return item.media.content.url;
           if (item.media?.thumbnail?.url) return item.media.thumbnail.url;
-          
+
           // Extract from description HTML
           const imgMatch = item.description?.match(/<img[^>]+src="([^">]+)"/);
           if (imgMatch) return imgMatch[1];
-          
+
           return null;
         };
 
         const hinduItems = (hinduData.items || [])
-          .filter((item: any) => 
-            item.title?.toLowerCase().includes('science') || 
-            item.title?.toLowerCase().includes('space') || 
-            item.title?.toLowerCase().includes('tech') || 
+          .filter((item: any) =>
+            item.title?.toLowerCase().includes('science') ||
+            item.title?.toLowerCase().includes('space') ||
+            item.title?.toLowerCase().includes('tech') ||
             item.title?.toLowerCase().includes('research') ||
             item.title?.toLowerCase().includes('discovery') ||
             item.description?.toLowerCase().includes('science') ||
@@ -77,11 +81,11 @@ export default function TrendingNews() {
             pubDate: item.pubDate
           }));
 
-        const ndtvItems = (ndtvData.items || [])
-          .filter((item: any) => 
-            item.title?.toLowerCase().includes('science') || 
-            item.title?.toLowerCase().includes('space') || 
-            item.title?.toLowerCase().includes('tech') || 
+        const toiItems = (toiData.items || [])
+          .filter((item: any) =>
+            item.title?.toLowerCase().includes('science') ||
+            item.title?.toLowerCase().includes('space') ||
+            item.title?.toLowerCase().includes('tech') ||
             item.title?.toLowerCase().includes('research') ||
             item.title?.toLowerCase().includes('discovery') ||
             item.description?.toLowerCase().includes('science') ||
@@ -95,15 +99,27 @@ export default function TrendingNews() {
             title: item.title,
             excerpt: item.description?.replace(/<[^>]*>/g, '').substring(0, 150) + '...',
             link: item.link,
+            source: "Times of India",
+            logo: "https://timesofindia.indiatimes.com/photo/507610.cms",
+            image: extractImage(item),
+            pubDate: item.pubDate
+          }));
+
+        const ndtvItems = (ndtvData.items || [])
+          .slice(0, 2)
+          .map((item: any) => ({
+            title: item.title,
+            excerpt: item.description?.replace(/<[^>]*>/g, '').substring(0, 150) + '...',
+            link: item.link,
             source: "NDTV",
             logo: ndtv,
             image: extractImage(item),
             pubDate: item.pubDate
           }));
 
-        const allItems = [...hinduItems, ...ndtvItems].sort((a, b) => 
+        const allItems = [...hinduItems, ...toiItems, ...ndtvItems].sort((a, b) =>
           new Date(b.pubDate || 0).getTime() - new Date(a.pubDate || 0).getTime()
-        ).slice(0, 4);
+        ).slice(0, 6);
 
         setNewsItems(allItems);
       } catch (error) {
@@ -121,7 +137,7 @@ export default function TrendingNews() {
           {
             title: "NASA's Artemis II crew announced for Moon mission",
             excerpt: "NASA reveals the four astronauts who will fly around the Moon in 2025, including the first woman and next man to orbit Earth's natural satellite.",
-            link: "https://www.ndtv.com/science?pfrom=home-mainnavigation",
+            link: "https://www.ndtv.com/science",
             source: "NDTV",
             logo: ndtv,
             image: null,
@@ -137,7 +153,15 @@ export default function TrendingNews() {
           {
             title: "James Webb Space Telescope captures stunning images of distant galaxies",
             excerpt: "The telescope reveals unprecedented details of galaxy formation and evolution in the early universe.",
-            link: "https://www.ndtv.com/science?pfrom=home-mainnavigation",
+            link: "https://timesofindia.indiatimes.com/science",
+            source: "Times of India",
+            logo: "https://timesofindia.indiatimes.com/photo/507610.cms",
+            image: null,
+          },
+          {
+            title: "ISRO to launch more scientific satellites in 2025",
+            excerpt: "Indian Space Research Organisation plans a series of satellite launches focused on space science and planetary exploration.",
+            link: "https://www.ndtv.com/science",
             source: "NDTV",
             logo: ndtv,
             image: null,
@@ -156,7 +180,7 @@ export default function TrendingNews() {
       <section className="py-20 bg-card text-foreground relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 pointer-events-none" />
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mt-4 text-foreground" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>Trending News</h2>
+          <h2 className="text-center text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mt-4 text-foreground" style={{ textShadow: '2px 2px 0px rgba(80, 20, 100, 0.4)' }}>Trending News</h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
             Stay updated with the latest breakthroughs, discoveries, and innovations—curated from trusted sources.
           </p>
@@ -172,18 +196,18 @@ export default function TrendingNews() {
     <section className="py-20 bg-card text-foreground relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 pointer-events-none" />
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-center text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mt-4 text-foreground" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>Trending News</h2>
+        <h2 className="text-center text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mt-4 text-foreground" style={{ textShadow: '2px 2px 0px rgba(80, 20, 100, 0.4)' }}>Trending News</h2>
         <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
           Stay updated with the latest breakthroughs, discoveries, and innovations—curated from trusted sources.
         </p>
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {newsItems.map((item, index) => (
             <div key={index} className="flex flex-col align-center bg-background rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow duration-300 border border-border">
               {item.image && (
                 <div className="mb-4">
-                  <img 
-                    src={item.image} 
-                    alt={item.title} 
+                  <img
+                    src={item.image}
+                    alt={item.title}
                     className="w-full h-full object-cover rounded-lg"
                     onError={(e) => {
                       // Hide image if it fails to load

@@ -124,7 +124,7 @@ const CompetitionRules = () => {
               Official Rules & Guidelines
             </div>
 
-            <h1 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-6" style={{ textShadow: '3px 3px 0px rgba(80, 20, 100, 0.4)' }}>
+            <h1 className="text-4xl sm:text-5xl font-heading font-bold text-foreground mb-6" style={{ textShadow: '2px 2px 0px rgba(80, 20, 100, 0.4)' }}>
               Competition Rules &{" "}
               <span className="text-primary">Participation Guidelines</span>
             </h1>
