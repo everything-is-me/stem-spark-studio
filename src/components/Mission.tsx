@@ -135,7 +135,7 @@ const ValueCard: React.FC<ValueCardProps> = ({ value, onHover }) => {
       <h3 className="text-xl font-heading font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
         {value.title}
       </h3>
-      <p className="text-muted-foreground leading-relaxed">
+      <p className="text-muted-foreground leading-relaxed text-justify">
         {value.description}
       </p>
     </div>
@@ -158,7 +158,7 @@ const Mission = () => {
       title: "Technology",
       description: "Build digital platforms, software tools and devices that solve modern challenges.",
       detail: "Technology empowers students to design smart systems, functional prototypes, and secure electronics for India-first products.",
-      image: heroBg,
+      image: fewoImg,
       theme: "from-slate-800 via-indigo-700 to-cyan-700"
     },
     {

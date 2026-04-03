@@ -69,7 +69,7 @@ const Guidelines = () => {
                     <CardTitle className="flex items-center text-2xl">
                       <Users className="w-6 h-6 mr-3 text-primary" /> Who is Eligible?
                     </CardTitle>
-                    <CardDescription className="text-base mt-2 text-muted-foreground/90">
+                    <CardDescription className="text-base mt-2 text-muted-foreground/90 text-justify">
                       Students of Indian origin studying in schools based in South India (Tamil Nadu, Karnataka, Kerala, Andhra Pradesh, Telangana, and Puducherry).
                     </CardDescription>
                   </CardHeader>
@@ -158,7 +158,7 @@ const Guidelines = () => {
                       <CardTitle className="text-xl text-foreground font-bold">{step.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
+                      <p className="text-muted-foreground text-sm leading-relaxed text-justify">{step.desc}</p>
                     </CardContent>
                   </Card>
                 ))}

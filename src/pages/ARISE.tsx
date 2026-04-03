@@ -74,10 +74,10 @@ const ARISE = () => {
                       <Microscope className="w-8 h-8" />
                     </div>
                     <h2 className="text-3xl font-bold mb-6">What is ARISE?</h2>
-                    <p className="text-muted-foreground leading-relaxed text-lg mb-6">
+                    <p className="text-muted-foreground leading-relaxed text-lg text-justify mb-6">
                       ARISE is the premier innovation track designed exclusively for high school students (Grades 9-12). It challenges young researchers to look beyond textbooks and tackle actual societal, scientific, or engineering problems.
                     </p>
-                    <p className="text-muted-foreground leading-relaxed text-lg">
+                    <p className="text-muted-foreground leading-relaxed text-lg text-justify">
                       Whether you're developing an AI model to detect diseases, a sustainable water filtration system, or researching new behavioral psychology patterns, ARISE provides the professional platform you need to showcase your work to the world.
                     </p>
                   </div>

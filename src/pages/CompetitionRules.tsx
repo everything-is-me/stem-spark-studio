@@ -163,7 +163,7 @@ const CompetitionRules = () => {
                       {section.rules.map((rule, ruleIndex) => (
                         <li key={ruleIndex} className="flex items-start gap-3">
                           <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-muted-foreground">{rule}</span>
+                          <span className="text-muted-foreground text-justify">{rule}</span>
                         </li>
                       ))}
                     </ul>
@@ -191,7 +191,7 @@ const CompetitionRules = () => {
                 {prohibitedActivities.map((activity, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <XCircle className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
-                    <span className="text-muted-foreground">{activity}</span>
+                    <span className="text-muted-foreground text-justify">{activity}</span>
                   </li>
                 ))}
               </ul>
@@ -219,7 +219,7 @@ const CompetitionRules = () => {
                       {criteria.weight}
                     </span>
                   </div>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed text-justify">
                     {criteria.description}
                   </p>
                 </Card>

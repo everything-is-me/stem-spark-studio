@@ -4,7 +4,7 @@ const youtubeChannels = [
   {
     name: "Chitti Tamil",
     description: "Explore fascinating science concepts explained in Tamil through engaging videos and entertaining content.",
-    channelUrl: "https://youtube.com/@chitti_tamil?si=xNkFfqYTRbrY45-b",
+    channelUrl: "https://youtube.com/@chitti_tamil",
     subscribers: "1.2M+",
     category: "Science & Entertainment",
     logo: "https://yt3.googleusercontent.com/n5buBylgRIT5zu_Eik8UsCqmV3uCcQlIu0HnW2JPxQxjDt8XTbkzi4bUW64E-JFvtpgyrcXP-g=s160-c-k-c0x00ffffff-no-rj",
@@ -13,7 +13,7 @@ const youtubeChannels = [
   {
     name: "Dr Binocs Tamil",
     description: "Educational science content in Tamil featuring Dr. Binocs explaining complex scientific phenomena in simple terms.",
-    channelUrl: "https://youtube.com/@drbinocsthamil?feature=shared",
+    channelUrl: "https://youtube.com/@drbinocsthamil",
     subscribers: "2.5M+",
     category: "Educational Science",
     logo: "https://yt3.googleusercontent.com/muw3_iyfre4S5GqyjUdiviFHRjEsQNL6bUO0i6gI4-2Vfwpj2tgsQrsRMTsBL2E4LdT3rRqKFQ=s160-c-k-c0x00ffffff-no-rj",
@@ -27,6 +27,15 @@ const youtubeChannels = [
     category: "STEM Education",
     logo: "https://yt3.googleusercontent.com/ytc/AIdro_mgv10rzOO0ewY6gvNeUwviD1pQdir_kGEmXss_aauInP4=s160-c-k-c0x00ffffff-no-rj",
     icon: "🔬"
+  },
+  {
+    name: "Khan Academy",
+    description: "Free online education platform offering courses in science, math, and other subjects.",
+    channelUrl: "https://www.youtube.com/c/khanacademy",
+    subscribers: "10M+",
+    category: "Educational",
+    logo: "https://yt3.googleusercontent.com/ytc/AIdro_l3GggKOWViCBpDs9APIsK6MHB2Mu-ECo5dUEU-Vay2gg=s160-c-k-c0x00ffffff-no-rj",
+    icon: "🎓"
   }
 ];
 
@@ -93,7 +102,7 @@ export default function ScienceSimplified() {
                 </div>
 
                 {/* Description */}
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-muted-foreground mb-6 leading-relaxed text-justify">
                   {channel.description}
                 </p>
 

@@ -139,7 +139,7 @@ const Competitions = () => {
                   </span>
                 </h1>
 
-                <p className="text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0">
+                <p className="text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 text-justify">
                   Join thousands of young innovators across India in the largest science and technology competition.
                   From local fairs to national finals, discover your potential in STEM.
                 </p>

@@ -259,7 +259,7 @@ const CompetitionFAQ = () => {
                               </span>
                             </AccordionTrigger>
                             <AccordionContent className="px-6 pb-4">
-                              <p className="text-muted-foreground leading-relaxed">
+                              <p className="text-muted-foreground leading-relaxed text-justify">
                                 {faq.answer}
                               </p>
                             </AccordionContent>

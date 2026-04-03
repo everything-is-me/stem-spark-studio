@@ -144,7 +144,7 @@ const InnovatorJourney = () => {
                 return (
                   <div
                     key={step.id}
-                    className="relative"
+                    className="relative h-full"
                     style={{
                       animation: `fadeInUp 0.6s ease-out ${step.delay} both`
                     }}
@@ -167,7 +167,7 @@ const InnovatorJourney = () => {
 
                     {/* Card */}
                     <Link to={step.href} target="_blank">
-                      <Card className={`relative p-8 bg-card/75 backdrop-blur-xl border border-border/40 transition-all duration-500 overflow-hidden group ${isActive || isHovered
+                      <Card className={`relative h-[calc(100%-6rem)] p-8 bg-card/75 backdrop-blur-xl border border-border/40 transition-all duration-500 overflow-hidden group ${isActive || isHovered
                         ? `border-primary/50 shadow-2xl -translate-y-4 bg-gradient-to-br ${step.bgGradient}`
                         : 'shadow-lg -translate-y-2'
                         }`}>
@@ -195,7 +195,7 @@ const InnovatorJourney = () => {
                           <h3 className="text-xl font-bold text-foreground mb-3">
                             {step.title}
                           </h3>
-                          <p className={`text-sm leading-relaxed transition-colors duration-300 ${isActive || isHovered ? 'text-foreground' : 'text-muted-foreground'
+                          <p className={`text-sm leading-relaxed text-justify transition-colors duration-300 ${isActive || isHovered ? 'text-foreground' : 'text-muted-foreground'
                             }`}>
                             {step.description}
                           </p>

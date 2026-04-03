@@ -21,9 +21,9 @@ const competitions = [
   },
   {
     id: "ignite",
-    title: "SIJIC",
+    title: "IGNITE",
     subtitle:
-      "South Indian Junior Innovation Challenge",
+      "",
     description:
       "",
     image: c1,
@@ -54,7 +54,7 @@ const CompetitionSection = () => {
           {competitions.map((item) => (
             <Link key={item.id} to={item.href}>
               <Card
-                className="group flex flex-col relative overflow-hidden border border-border/40 bg-card/75 backdrop-blur-xl rounded-3xl hover:-translate-y-1 transition-all duration-300 shadow-[0_0px_10px_rgba(0,0,0,0.8)] hover:shadow-[0_0px_20px_rgba(0,0,0,1)]"
+                className="group flex flex-col h-full relative overflow-hidden border border-border/40 bg-card/75 backdrop-blur-xl rounded-3xl hover:-translate-y-1 transition-all duration-300 shadow-[0_0px_10px_rgba(0,0,0,0.8)] hover:shadow-[0_0px_20px_rgba(0,0,0,1)]"
               >
                 <div className="group relative h-64 overflow-hidden">
 
@@ -66,7 +66,7 @@ const CompetitionSection = () => {
 
                   {/* <div className="absolute inset-0 bg-gradient-to-t from-primary/50 via-primary/20 to-transparent" /> */}
                   <div className="absolute bottom-4 left-4 flex items-center gap-3">
-                    <Badge className="bg-primary text-primary-foreground px-3 py-1 text-xs uppercase font-semibold">{item.category}</Badge>
+                    <Badge className="bg-white text-primary px-3 py-1 text-xs uppercase font-semibold">{item.category}</Badge>
                     {/* <span className="text-xs font-medium text-primary-foreground/90">{item.keyPoint}</span> */}
                   </div>
                 </div>

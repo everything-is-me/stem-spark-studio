@@ -72,7 +72,7 @@ export default function TrendingNews() {
             item.description?.toLowerCase().includes('research') ||
             item.description?.toLowerCase().includes('discovery')
           )
-          .slice(0, 2)
+          .slice(0, 1)
           .map((item: any) => ({
             title: item.title,
             excerpt: item.description?.replace(/<[^>]*>/g, '').substring(0, 150) + '...',
@@ -96,7 +96,7 @@ export default function TrendingNews() {
             item.description?.toLowerCase().includes('research') ||
             item.description?.toLowerCase().includes('discovery')
           )
-          .slice(0, 2)
+          .slice(0, 1)
           .map((item: any) => ({
             title: item.title,
             excerpt: item.description?.replace(/<[^>]*>/g, '').substring(0, 150) + '...',
@@ -108,7 +108,7 @@ export default function TrendingNews() {
           }));
 
         const ndtvItems = (ndtvData.items || [])
-          .slice(0, 2)
+          .slice(0, 1)
           .map((item: any) => ({
             title: item.title,
             excerpt: item.description?.replace(/<[^>]*>/g, '').substring(0, 150) + '...',
@@ -199,7 +199,7 @@ export default function TrendingNews() {
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 pointer-events-none" />
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-center text-4xl sm:text-5xl lg:text-6xl font-heading font-bold mt-4 text-foreground" style={{ textShadow: '2px 2px 0px rgba(80, 20, 100, 0.4)' }}>Trending News</h2>
-        <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
+        <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto text-justify">
           Stay updated with the latest breakthroughs, discoveries, and innovations—curated from trusted sources.
         </p>
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -223,7 +223,7 @@ export default function TrendingNews() {
                 <span className="text-sm text-muted-foreground"> Credits: {item.source}</span>
               </div>
               <h3 className="text-xl font-semibold mb-2 text-foreground">{item.title}</h3>
-              <p className="text-muted-foreground mb-4">{item.excerpt}</p>
+              <p className="text-muted-foreground mb-4 text-justify">{item.excerpt}</p>
               <a
                 href={item.link}
                 target="_blank"

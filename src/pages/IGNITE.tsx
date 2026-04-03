@@ -74,10 +74,10 @@ const IGNITE = () => {
                       <Sparkles className="w-8 h-8" />
                     </div>
                     <h2 className="text-3xl font-bold mb-6">What is IGNITE?</h2>
-                    <p className="text-muted-foreground leading-relaxed text-lg mb-6">
+                    <p className="text-muted-foreground leading-relaxed text-lg text-justify mb-6">
                       IGNITE is specifically crafted for younger students in middle school (Grades 6-8). The goal is not to solve uncrackable global crises, but to spark an undying curiosity for asking "Why?" and "How can I build this?".
                     </p>
-                    <p className="text-muted-foreground leading-relaxed text-lg">
+                    <p className="text-muted-foreground leading-relaxed text-lg text-justify">
                       Start with something simple: test a science theory, build a basic model, write a small piece of code, or invent a gadget. IGNITE provides a supportive environment for your very first scientific project!
                     </p>
                   </div>

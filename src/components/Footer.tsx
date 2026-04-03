@@ -233,7 +233,7 @@ const Footer = () => {
         {/* Partners Section */}
         <div className="mb-12 pt-8 border-t border-border/30">
           <h5 className="text-center font-medium text-foreground mb-6">
-            Supported by India's Leading Tech Organizations
+            Supporters and Partners
           </h5>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
             {PARTNERS.map((partner) => (

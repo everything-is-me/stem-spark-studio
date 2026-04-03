@@ -40,10 +40,10 @@ const About = () => {
 
                 {/* Right Column - Content */}
                 <div className="text-center lg:text-left space-y-6 animate-in fade-in slide-in-from-right-8 duration-700" style={{ animationDelay: "0.2s" }}>
-                  <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
+                  {/* <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
                     <Users className="w-4 h-4" />
                     Built for India's Future
-                  </div>
+                  </div> */}
 
                   <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-white leading-tight">
                     About{" "}
@@ -54,19 +54,19 @@ const About = () => {
                     Foundation
                   </h1>
 
-                  <div className="space-y-6 text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed text-left">
+                  <div className="space-y-6 text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed text-justify">
                     <p>
-                      Make India Foundation (MIF) was born from a simple but urgent truth: India has the talent to lead the world in technology — it just needs the right platform to build it.
+                      Make India Foundation (MIF) was born from a simple but urgent truth: India has the talent to lead the world in technology - it just needs the right platform to build it.
                     </p>
                     <p>
-                      Founded by a team of educators, entrepreneurs, and engineers united by one belief, MIF exists to transform India's brightest young minds from consumers of technology into confident creators of it. Through competitions, programs, and community-driven initiatives, we challenge students to move beyond textbooks — to design, build, innovate, and share solutions that matter.
+                      Founded by a team of educators, entrepreneurs, and engineers united by one belief, MIF exists to transform India's brightest young minds from consumers of technology into confident creators of it. Through competitions, programs, and community-driven initiatives, we challenge students to move beyond textbooks - to design, build, innovate, and share solutions that matter.
                     </p>
                     <p>
-                      MIF bridges two worlds: the global best practices of STEM education from the United States and the rich, untapped potential of India's student community. We are not just running programs — we are building a movement.
+                      MIF bridges two worlds: the global best practices of STEM education from the United States and the rich, untapped potential of India's student community. We are not just running programs - we are building a movement.
                     </p>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  {/* <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                     <Button
                       size="lg"
                       className="bg-primary hover:bg-primary-dark px-8 py-6 text-lg rounded-full"
@@ -75,7 +75,7 @@ const About = () => {
                       Our Philosophy
                       <ChevronRight className="w-5 h-5 ml-2" />
                     </Button>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -96,8 +96,8 @@ const About = () => {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold mb-3">Our Mission</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      To ignite India's next generation of innovators by building a hands-on culture of designing and making — empowering students to create indigenous, world-class technological solutions that drive India from dependency to self-reliance.
+                    <p className="text-muted-foreground leading-relaxed text-justify">
+                      To ignite India's next generation of innovators by building a hands-on culture of designing and making - empowering students to create indigenous, world-class technological solutions that drive India from dependency to self-reliance.
                     </p>
                   </div>
                 </CardContent>
@@ -110,8 +110,8 @@ const About = () => {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold mb-3">Our Vision</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      An India that is not just a services powerhouse, but a product nation — where students from every corner of the country have the skills, the mindset, and lower constraints to design, build, and share technology that solves real problems at national scale.
+                    <p className="text-muted-foreground leading-relaxed text-justify">
+                      An India that is not just a services powerhouse, but a product nation - where students from every corner of the country have the skills, the mindset, and lower constraints to design, build, and share technology that solves real problems at national scale.
                     </p>
                   </div>
                 </CardContent>
@@ -137,16 +137,16 @@ const About = () => {
                       onError={(e) => { e.currentTarget.src = "https://ui-avatars.com/api/?name=Kumar+R&background=ffffff&color=2563eb&bold=true&size=200" }}
                     />
                   </div>
-                  <h3 className="text-2xl font-bold">Kumar R</h3>
+                  <h3 className="text-2xl font-bold">Kumar Ram</h3>
                   <p className="text-primary-foreground/80 mt-2 font-medium text-sm">Founder, Make India Foundation</p>
-                  <p className="text-primary-foreground/80 text-sm">Founder & CEO, Bytes & Bots STEM, USA</p>
+                  <p className="text-primary-foreground/80 text-sm">Founder & CEO, Bytes & Bots, USA</p>
                 </div>
                 <div className="p-8 sm:p-10 flex flex-col justify-center">
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    Kumar R is the driving force behind Make India Foundation. Based in the United States, he is the founder of Bytes & Bots — a K–12 STEM education company widely recognized for its distinctive project-based curriculum and hands-on teaching methodology.
+                  <p className="text-muted-foreground leading-relaxed text-justify mb-4">
+                    Kumar Ram is the driving force behind Make India Foundation. Based in the United States, he is the founder of Bytes & Bots - a K–12 STEM education company widely recognized for its distinctive project-based curriculum and hands-on teaching methodology.
                   </p>
-                  <p className="text-muted-foreground leading-relaxed">
-                    Having built a successful STEM program in the US, Kumar turned his attention back to India — not as a distant observer, but as an active builder. He established MIF with a clear conviction: that Indian students deserve access to the same quality of innovation-first education that shapes the world's top engineers and entrepreneurs. His vision of <strong>Design · Build · Innovate · Share</strong> is not a tagline — it is the lived philosophy behind every MIF initiative.
+                  <p className="text-muted-foreground leading-relaxed text-justify">
+                    Having built a successful STEM program in the US, Kumar turned his attention back to India - not as a distant observer, but as an active builder. He established MIF with a clear conviction: that Indian students deserve access to the same quality of innovation-first education that shapes the world's top engineers and entrepreneurs. His vision of <strong>Design · Build · Innovate · Share</strong> is not a tagline - it is the lived philosophy behind every MIF initiative.
                   </p>
                 </div>
               </div>
@@ -181,10 +181,10 @@ const About = () => {
                     </div>
                   </div>
                   <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
-                    <p>
-                      Vishnu Varadan brings over 12 years of experience at the intersection of entrepreneurship, policy, and education. As CEO of the Atal Incubation Centre at PEC Foundation in Puducherry, he has been at the forefront of building South India's startup ecosystem — managing a $1.5M program grant, overseeing $350K in seed funding, and delivering 150+ ecosystem-building talks that have inspired 2,500+ students.
+                    <p className="text-justify">
+                      Vishnu Varadan brings over 12 years of experience at the intersection of entrepreneurship, policy, and education. As CEO of the Atal Incubation Centre at PEC Foundation in Puducherry, he has been at the forefront of building South India's startup ecosystem - managing a $1.5M program grant, overseeing $350K in seed funding, and delivering 150+ ecosystem-building talks that have inspired 2,500+ students.
                     </p>
-                    <p>
+                    <p className="text-justify">
                       A Design Thinking evangelist by philosophy and a builder by practice, Vishnu has mentored 50+ early-stage startups and mobilized over $375K in ecosystem funding. His academic contributions span innovation, new product development, startup valuation, and venture creation. He brings to MIF a relentless belief that India's next great products will emerge from the classroom.
                     </p>
                   </div>
@@ -208,11 +208,11 @@ const About = () => {
                     </div>
                   </div>
                   <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
-                    <p>
-                      Dr. R. Sundaramurthy is a professor in the Department of Electronics and Instrumentation Engineering at Puducherry Technological University, where he also serves as Dean of Industrial Consultancy & Sponsored Research. He is the Executive Director of the Atal Incubation Centre at PTU — a NITI Aayog-sanctioned initiative valued at ₹9.98 Crores — and heads the Startup India Seed Fund program worth ₹3 Crores.
+                    <p className="text-justify">
+                      Dr. R. Sundaramurthy is a professor in the Department of Electronics and Instrumentation Engineering at Puducherry Technological University, where he also serves as Dean of Industrial Consultancy & Sponsored Research. He is the Executive Director of the Atal Incubation Centre at PTU - a NITI Aayog-sanctioned initiative valued at ₹9.98 Crores - and heads the Startup India Seed Fund program worth ₹3 Crores.
                     </p>
-                    <p>
-                      His career spans work at ISRO's Space Application Centre, General Optics (Asia) Ltd., and over two decades in academia. His expertise — Embedded Systems, VLSI Engineering, Intelligent Instrumentation, and Innovation & Entrepreneurship — sits at the exact heart of MIF's mission. His passion is clear: promoting innovation and supporting the student community as a force for nation building.
+                    <p className="text-justify">
+                      His career spans work at ISRO's Space Application Centre, General Optics (Asia) Ltd., and over two decades in academia. His expertise - Embedded Systems, VLSI Engineering, Intelligent Instrumentation, and Innovation & Entrepreneurship - sits at the exact heart of MIF's mission. His passion is clear: promoting innovation and supporting the student community as a force for nation building.
                     </p>
                   </div>
                 </CardContent>

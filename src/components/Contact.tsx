@@ -129,7 +129,7 @@ const ContactInfoCard: React.FC<ContactInfoCardProps> = ({ info }) => {
           </h4>
           <div className="space-y-1">
             {info.details.map((detail, index) => (
-              <p key={index} className="text-muted-foreground">
+              <p key={index} className="text-muted-foreground text-justify">
                 {detail}
               </p>
             ))}
